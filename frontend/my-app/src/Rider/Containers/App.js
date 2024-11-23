@@ -1,9 +1,17 @@
 import React from 'react'
+import NavbarTop from '../Components/NavbarTop/NavbarTop'
+import NavbarLeft from '../Components/Home/NavbarLeft'
+import Body from "../Components/Home/Body"
+
 
 class App extends React.Component{
     render(){
         return(
-            <h1>Rider</h1>
+            <div>
+                <NavbarTop/>
+                <Body/>
+                <NavbarLeft/>
+            </div>
         )
     }
 }

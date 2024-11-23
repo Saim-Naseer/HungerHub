@@ -1,0 +1,10 @@
+.navbar{
+    height:875px;
+    width:215px;
+    background-color:#22476D;
+    position:fixed;
+    top:148px;
+    left:0px;
+    justify-content: center;
+    display:flex;
+}
