@@ -63,7 +63,6 @@ class App extends React.Component{
         return(
             <>
             {content}
-            <h1>hi</h1>
             </>
         )            
     }
