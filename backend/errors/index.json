@@ -1,0 +1,92 @@
+{
+  "UNKNOWN_ERROR": {
+    "status": "error",
+    "message": "An unknown error occurred. Please try again later.",
+    "statusCode": 400
+  },
+  "PAGE_NOT_FOUND": {
+    "status": "error",
+    "message": "The requested page was not found. Please try again later.",
+    "statusCode": 404
+  },
+  "INVALID_ARGUMENTS": {
+    "status": "error",
+    "message": "Invalid arguments.",
+    "statusCode": 404
+  },
+  "UNAUTHORIZED": {
+    "status": "fail",
+    "message": "You are unauthorized to view this page.",
+    "statusCode": 400
+  },
+  "INCOMPLETE_ARGS": {
+    "status": "error",
+    "message": "Incomplete arguments provided. Please try again later.",
+    "statusCode": 401
+  },
+  "SCHOOL_NOT_FOUND": {
+    "status": "error",
+    "message": "The school with the emis code does not exists.",
+    "statusCode": 400
+  },
+  "SCHOOL_ALREADY_EXISTS": {
+    "status": "error",
+    "message": "The school with the emis code already exists.",
+    "statusCode": 400
+  },
+  "WRONG_CREDENTIALS": {
+    "status": "error",
+    "message": "Wrong EMIS code or Password.",
+    "statusCode": 400
+  },
+  "REGNO_ALREADY_EXISTS": {
+    "status": "error",
+    "message": "The Registry No already exists.",
+    "statusCode": 400
+  },
+  "FORMB_ALREADY_EXISTS": {
+    "status": "error",
+    "message": "The Form B already exists.",
+    "statusCode": 400
+  },
+  "STUDENT_NOT_FOUND": {
+    "status": "error",
+    "message": "Student not found, please refresh the page",
+    "statusCode": 400
+  },
+  "STUDENT_NOT_THIS_SCHOOL": {
+    "status": "error",
+    "message": "The student you are trying to delete is not of your school.",
+    "statusCode": 400
+  },
+  "ATTENDANCE_ALREADY_EXISTS": {
+    "status": "error",
+    "message": "Attendance already sent.",
+    "statusCode": 400
+  },
+  "ATTENDANCE_CLOSED": {
+    "status": "error",
+    "message": "Attendance is closed right now.",
+    "statusCode": 400
+  },
+  "STAFF_NOT_FOUND": {
+    "status": "error",
+    "message": "Staff not found, please refresh the page",
+    "statusCode": 400
+  },
+  "STAFF_NOT_THIS_SCHOOL": {
+    "status": "error",
+    "message": "The staff you are trying to delete is not of your school.",
+    "statusCode": 400
+  },
+  "PRESENT_BOYS_GREATER": {
+    "status": "error",
+    "message": "Present boys cannot be more than total boys.",
+    "statusCode": 400
+  },
+  "PRESENT_GIRLS_GREATER": {
+    "status": "error",
+    "message": "Present girls cannot be more than total girls.",
+    "statusCode": 400
+  }
+}
