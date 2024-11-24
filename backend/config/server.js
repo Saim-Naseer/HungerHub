@@ -38,6 +38,16 @@ app.use((err, req, res, next) => {
 const AuthRoute = require("../src/api/AuthRoute")();
 app.use("/auth/", AuthRoute);
 
+const CustomerRoute = require("../src/api/CustomerRoute")();
+app.use("/customer/",CustomerRoute)
+
+const RestaurantRoute = require("../src/api/RestaurantRoute")();
+app.use("/restaurant/",RestaurantRoute)
+
+const RiderRoute = require("../src/api/RiderRoute")();
+app.use("/rider/",RiderRoute)
+
+
 // 404 error
 app.get("*", async (req, res) => {
   return ErrorManager.getError(res, "PAGE_NOT_FOUND");

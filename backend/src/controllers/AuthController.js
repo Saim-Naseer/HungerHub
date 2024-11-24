@@ -1,14 +1,6 @@
 const fs = require("fs");
 const Status = require("../constants/Status.json");
-const jwt = require("jsonwebtoken");
-
-const Logger = require("../utils/Logger");
 const ErrorManager = require("../../errors/error-manager");
-
-const logger = new Logger();
-
-const { JwtKey, environment } = require("../../config");
-
 const CounterModel = require('../models/Customer')
 
 module.exports = {
@@ -30,7 +22,6 @@ module.exports = {
     } catch(e)
     {
       ErrorManager.getError(res, "UNKNOWN_ERROR");
-      logger.error(e.message + "\n" + e.stack);
       if (environment === "prod") throw e;
     }
   },
@@ -41,10 +32,6 @@ module.exports = {
         return ErrorManager.getError(res, "WRONG_CREDENTIALS");
       }
 
-      const logintoken = jwt.sign({ emis, level: School.level }, JwtKey);
-
-
-
       return res.json({
         status: Status.SUCCESS,
         message: "Login successful.",
@@ -54,7 +41,6 @@ module.exports = {
       });
     } catch (e) {
       ErrorManager.getError(res, "UNKNOWN_ERROR");
-      logger.error(e.message + "\n" + e.stack);
       if (environment === "prod") throw e;
     }
   },
