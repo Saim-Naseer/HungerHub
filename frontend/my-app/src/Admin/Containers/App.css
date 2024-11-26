@@ -1,0 +1,11 @@
+/* Global style for all links */
+a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+    color: black;
+  }
+  
