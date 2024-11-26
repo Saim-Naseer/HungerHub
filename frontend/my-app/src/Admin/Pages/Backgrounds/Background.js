@@ -5,7 +5,7 @@ import './Background.css'
 
 const Background = () => {
     return (
-        <div class = "background">
+        <div class = "backgrounda">
             <div className = "upper">
                 <img src = {logo} alt = "Logo" ></img>
                 <h2>Hunger Hub</h2>
