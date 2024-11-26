@@ -1,0 +1,60 @@
+.card {
+    background-color: rgb(214, 214, 214); /* Light grey */
+    display: inline-block;
+    border-radius: 30px; 
+    margin: 0.5rem;
+    transform: scale(1); /* Default scale */
+    border-width: 2px;
+    box-shadow: 0 4px 8px black;
+    transition: transform 0.3s ease;
+    width: 300px; /* Fixed width for all cards */
+    height: auto; /* Reduced height for compactness */
+    text-align: center; /* Center-align content */
+    
+}
+
+.card img {
+    width: 100%; /* Image fills the card's width */
+    height: 180px; /* Reduced fixed height for images */
+    object-fit: fill; /* Ensure images are cropped to fit proportionally */
+    border-top-left-radius: 30px; /* Optional: rounded corners for images */
+    border-top-right-radius: 30px;
+    margin-bottom: 5px; /* Reduced spacing below the image */
+}
+
+.card1 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: flex; /* Align items horizontally */
+    justify-content: space-between; /* Space out elements */
+    align-items: center; /* Vertically center items */
+    margin-bottom: 5px; /* Add spacing below the rating container */
+}
+
+.card1 img {
+    width: 25px; /* Reduced size for star icon */
+    height: 25px;
+    padding-bottom: 5px;
+}
+
+.rating-container {
+    display: flex;
+    align-items: center; /* Vertically align rating text and star */
+    gap: 5px; /* Add spacing between text and star */
+}
+
+.card h2 {
+    font-size: 1rem; /* Smaller heading size */
+    margin: 5px 0; /* Reduced margin below the title */
+}
+
+.card p {
+    font-size: 0.9rem; /* Adjust paragraph font size */
+    margin: 2px 0; /* Reduced spacing between lines */
+    line-height: 1.2; /* Tighter line height */
+    padding-bottom: 0.5rem;
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
