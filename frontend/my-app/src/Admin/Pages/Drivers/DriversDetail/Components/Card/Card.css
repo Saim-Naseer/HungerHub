@@ -1,0 +1,142 @@
+.drivers-detail .card-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #cacacc;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 8px 12px rgb(126, 123, 123);
+    max-width: 600px;
+    margin: 40px auto; /* 30px lower by increasing the margin */
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    height: 150px; /* Fixed height to accommodate the design */
+}
+.card-header-1{
+    display: flex;
+    gap:5px;
+}
+.card-image img {
+    border-radius: 8px;
+    width: auto;
+    height: 153px; /* Make the image cover the full height */
+    object-fit: cover;
+    margin-top: 3px;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center-align content vertically */
+    align-items: center; /* Center-align content horizontally */
+    flex: 1;
+    text-align: center;
+}
+
+.card-header {
+    display: flex;
+    align-items: center; /* Align name and rating vertically */
+    justify-content: center; /* Center horizontally */
+    gap: 60px; /* Add space between the name and rating */
+    margin-bottom: 20px;
+}
+
+.card-header h2 {
+    font-size: 1.3rem; /* Slightly larger font for the name */
+    font-weight: bold;
+    margin-bottom: 1px;
+}
+
+.card-header .card-header-1 h2{
+    font-size: 1.1rem; /* Slightly larger font for the name */
+}
+.card-header img {
+    /* Spacing for the star icon */
+    width: 20px; /* Adjust size for better alignment */
+    height: 20px;
+    margin-top: 15px;
+}
+.card-header .half-star-icon{
+    width: 10px; 
+    height: 20px;
+    margin-top: 15px;
+}
+.card-content p {
+    margin: 3px 0px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #535353;
+}
+.stats-box-driver {
+    background-color: #cacacc;
+    border: 1px solid #ccc;
+    box-shadow: 0 8px 12px rgb(126, 123, 123);
+    padding: 20px 0px;
+    border-radius: 8px;
+    color: #000;
+    max-width: 820px;
+    margin: 40px auto;
+    margin-bottom: 30px;
+}
+.stats-box-driver .stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Centers items vertically */
+    margin: 20px -15px 10px 90px;
+    font-weight: bold;
+    font-family: "Georgia", serif; 
+    padding-bottom: 12px;
+}
+
+.label {
+    font-size: 18px;
+    flex: 1; /* Allow label to grow and push content */
+    text-align: left; /* Align labels to the left */
+}
+
+.value {
+    font-size: 18px;
+    flex: 1; /* Center numbers using flex */
+    text-align: center; /* Align numbers to the center */
+}
+  /* Center the button in the viewport */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container-delete-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  /* Styling for the delete button */
+  .delete-button {
+    background-color: #e9200a; /* Red background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Padding for size */
+    font-size: 16px; /* Font size */
+    font-family: Arial, sans-serif; /* Font family */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    margin-bottom: 20px;
+  }
+  
+  /* Hover effect */
+  .delete-button:hover {
+    background-color: #b12314; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly enlarge the button */
+  }
+  
+  /* Active (pressed) effect */
+  .delete-button:active {
+    background-color: #a93226; /* Even darker red when clicked */
+    transform: scale(0.95); /* Slightly shrink the button */
+  }
+  
