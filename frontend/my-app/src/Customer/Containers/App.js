@@ -1,6 +1,5 @@
 import React from 'react'
 import NavbarTop from '../Components/NavbarTop/NavbarTop'
-import NavbarLeft from '../Components/Home/NavbarLeft'
 import Body from "../Components/Home/Body"
 
 
@@ -10,7 +9,6 @@ class App extends React.Component{
             <div>
                 <NavbarTop/>
                 <Body/>
-                <NavbarLeft/>
             </div>
         )
     }

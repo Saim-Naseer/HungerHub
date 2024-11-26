@@ -1,12 +1,13 @@
-.Navbar{
+.Navbar1{
     height:148px;
-    width:1482px;
+    width:100vw;
     background-color:#FFB703;
     position:fixed;
     top:0px;
     left:0px;
     align-items: center;
     display:flex;
+    z-index: 5;
 }
 
 .logo{
@@ -37,7 +38,7 @@
     width:50px;
     border-radius: 50%;
     background-color: white;
-    margin-left:900px;
+    margin-left:950px;
     background-image: url("./profile.png");
     background-size: cover;
 }

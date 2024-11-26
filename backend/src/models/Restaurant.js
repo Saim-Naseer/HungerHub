@@ -24,9 +24,22 @@ const Restaurant = Mongoose.Schema({
         type:String,
         required:true
     },
+    cusine:{
+        type:String,
+        required:true
+    },
     description:{
         type:String
+    },
+    total_stars:{
+        type:Number,
+        default:0
+    },
+    total_ratings:{
+        type:Number,
+        default:0
     }
+    
 });
 
 module.exports = Mongoose.model("Restaurant",Restaurant);
