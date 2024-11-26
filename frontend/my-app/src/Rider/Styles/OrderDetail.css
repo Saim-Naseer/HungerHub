@@ -1,0 +1,98 @@
+/* General page layout */
+
+.backbutton{
+
+  background-color: #4CA9A9;
+    color: white;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 15px;
+    width:fit-content;
+
+}
+
+.backbutton:hover {
+  background-color: #16223f;
+}
+
+
+
+.order-detail-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .upper-half {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .info-box {
+    background-color: #d7d4d4;
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .info-box h3 {
+    margin-bottom: 10px;
+  }
+  
+  .info-box p {
+    margin: 5px 0;
+  }
+  
+  .chat-button {
+    background-color: #4CA9A9;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 10px;
+    float: right;
+    width: 20%;
+  }
+  
+  .chat-button:hover {
+    background-color: #16223f;
+  }
+  
+  .order-details {
+    background-color: #d7d4d4;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .order-info-box h3 {
+    margin-bottom: 10px;
+  }
+  
+  .order-summary p {
+    margin: 10px 0;
+  }
+  
+  .complete-order-button {
+    background-color: #28a745;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 15px;
+    float: right;
+  }
+  
+  .complete-order-button:hover {
+    background-color: #218838;
+  }
+  
