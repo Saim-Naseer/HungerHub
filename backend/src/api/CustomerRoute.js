@@ -3,6 +3,7 @@ const CustomerController = require('../controllers/CustomerController')
 
 module.exports = () => {
     
+    router.post("/create",CustomerController.Create)
     return router
 }
 
