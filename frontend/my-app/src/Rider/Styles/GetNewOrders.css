@@ -1,0 +1,62 @@
+.get-new-orders {
+    padding: 20px;
+  }
+  
+  .get-new-orders h2 {
+    margin-bottom: 20px;
+  }
+  
+  .order-card1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #dedede;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .order-info1 {
+    flex: 1;
+  }
+  
+  .order-info1 p {
+    margin: 5px 0;
+  }
+  
+  .order-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .accept-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .accept-button:hover {
+    background-color: #229527;
+    scale: 105%;
+  }
+  
+  .reject-button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .reject-button:hover {
+    background-color: #9d0d0d;
+    scale: 105%;
+  }
+  

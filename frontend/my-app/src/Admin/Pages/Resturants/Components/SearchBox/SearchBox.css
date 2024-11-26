@@ -9,7 +9,7 @@
 h3{
     margin-right: 100px;
 }
-input{
+.search_box{
     width:400px;
     background-color:  rgb(6, 48, 90);
     height: 35px;

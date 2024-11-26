@@ -1,0 +1,126 @@
+.profile-page {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .user-info {
+    background-color: #ccc;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .data{
+    margin-left: 25px;
+  }
+  .user-img{
+    margin: 5px;
+  }
+  .actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .edit-button, .reports-button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  .edit-button {
+    background-color: #43d24a;
+  }
+
+  .edit-button:hover{
+    scale: 104%;
+    background-color: #246325;
+  }
+  
+  .reports-button {
+    background-color: #b74343;
+  }
+
+  .reports-button:hover{
+    scale: 104%;
+    background-color: #770404;
+  }
+  
+  .edit-button:hover, .reports-button:hover {
+    opacity: 0.9;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 35px;
+    border-radius: 25px;
+    width: 40%;
+    max-width: 90%;
+  }
+  
+  .modal-content h2 {
+    margin-bottom: 20px;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .modal-content input {
+    width: 95%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .modal-actions {
+    display: flex;
+    justify-content: right;
+  }
+  
+  .update-button {
+    background-color: #43A7B7;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  
+  .close-button {
+    background-color: #b53d49;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+
+  }
+  
+  .update-button:hover, .close-button:hover {
+    scale: 104%;
+  }
+  
