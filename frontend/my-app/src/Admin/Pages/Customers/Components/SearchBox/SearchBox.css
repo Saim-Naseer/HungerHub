@@ -1,0 +1,30 @@
+.search_box_customer{
+    margin-top: 40px;
+    display: flex;
+   
+    justify-content: center;
+}
+.search_box_customer h3{
+    margin-right: 100px;
+}
+.search_box_customer input{
+    width:400px;
+    background-color:  rgb(6, 48, 90);
+    height: 35px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 15px;  /* Round the corners */
+    border: 2px solid rgb(0, 15, 80);  /* Optional: Add a border */
+    outline: none;  /* Optional: Remove default outline on focus */
+    transition: all 0.3s ease; 
+    text-align: center;
+    color: aliceblue;
+    font-weight: bold;
+    margin-top: 14px;
+}
+.search_box_customer input::placeholder {
+    color: white;  
+    font-style: italic;  
+}
+
+
