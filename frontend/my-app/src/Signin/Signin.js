@@ -9,12 +9,32 @@ class Signin extends React.Component {
         this.state={
             email:"",
             pwd:"",
-            page:"signin"
+            page:"signin",
+            borderColor:{
+                email:"#F8F8F8",
+                pwd:"#F8F8F8"
+            }
         }
     }
 
-    checkInputs = () =>{
+    enterField = () => {
+        
+        const borderColor1 = {...this.state.borderColor}
 
+        borderColor1.email = (this.state.email==="") ? "red" : "#F8F8F8";
+        borderColor1.pwd = (this.state.pwd==="") ? "red" : "#F8F8F8";
+
+        this.setState({borderColor:borderColor1})
+    }
+
+    checkInputs = () => {
+        if(this.state.email!=="" & this.state.pwd!=="")
+        {
+            this.setState("home")
+        }
+        else{
+            this.enterField()
+        }
     }
 
 
@@ -38,9 +58,9 @@ class Signin extends React.Component {
                         <div className="right">
                             <h1 className="title2">Sign In</h1>
                             <form style={{display:'inline-block',position:'relative',left:'50px'}}>
-                                <input type="email" placeholder="Email" className="email" onChange={(event) => this.setState({email:event})}/>
-                                <input type="password" placeholder="Password" className="pwd" onChange={(event) => this.setState({pwd:event})}/>
-                                <div className="button" onClick={this.checkInputs}>Sign In</div>
+                                <input type="email" placeholder="Email" className="email" style={{borderColor:this.state.borderColor.email}} onChange={(event)=>this.setState({email:event.target.value})} />
+                                <input type="password" placeholder="Password" className="pwd" style={{borderColor:this.state.borderColor.pwd}} onChange={(event)=>this.setState({pwd:event.target.value})}/>
+                                <div className="button" onClick={this.checkInputs()}>Sign In</div>
                             </form>
                             <p className="account">Don't have a account <p className="signup" onClick={() => this.changePage("signup")}>SIGN UP</p></p>
                         </div>
