@@ -6,10 +6,10 @@
     padding-bottom: 5px;
     padding-top: 2rem;
 }
-h3{
+.search_box h3{
     margin-right: 100px;
 }
-input{
+.search_box input{
     width:400px;
     background-color:  rgb(6, 48, 90);
     height: 35px;

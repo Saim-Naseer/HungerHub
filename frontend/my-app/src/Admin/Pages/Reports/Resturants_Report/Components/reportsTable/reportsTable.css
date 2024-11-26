@@ -57,12 +57,14 @@ tbody td:first-child {
     display: flex;
     margin:10px auto;
     gap:15px;
+    margin-bottom: 10px;
 }
 .reports-input .input-button{
-    margin-top: 10px;
+    margin-top: 12px;
     border: 2px solid rgb(0, 0, 0); 
     width:450px;
-    height:10px;
+    height:23px;
+    border-radius: 10px;
     text-align: left;
     background-color: aliceblue;
     color: black;
