@@ -1,0 +1,123 @@
+.signup_background{
+    height:100vh;
+    width:100wh;
+    background-image: url("./image.png");
+    background-size:cover;
+    justify-content:center;
+    align-items: center;
+}
+
+
+.menu{
+    height:900px;
+    width:700px;
+    background-image: url("./HH_menu2.png");
+    background-size: cover;
+    position:relative;
+    left:380px;
+    opacity: 1;
+}
+
+.title3{
+    font-size: 80px;
+    font-family:'CustomFont', sans-serif;
+    color:#FFB703;
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    position:relative;
+    top:550px;
+    right:18px;
+    letter-spacing: 30px;
+}
+
+.logo2{
+    height:108px;
+    width:145px;
+    background-image: url("./HH_logo.png");
+    background-size:cover;
+    position:relative;
+    left:265px;
+    top:160px;
+}
+
+.name1{
+    position:relative;
+    top:415px;
+    left:195px;
+    border-radius: 50px;
+    border-color:#F8F8F8;
+}
+
+.email1{
+    position:relative;
+    top:480px;
+    left:10px;
+    border-radius: 50px;
+    border-color:#F8F8F8;
+}
+
+.role{
+    position:relative;
+    top:548px;
+    right:176px;
+    border-radius: 50px;
+    border-color:#F8F8F8;
+}
+
+.region{
+    position:relative;
+    top:615px;
+    right:235px;
+    width:250px;
+    border-radius: 50px;
+    border-color:#F8F8F8;
+}
+
+.pwd1{
+    position:relative;
+    top:653px;
+    left:238px;
+    border-radius: 50px;
+    border-color:#F8F8F8;
+}
+
+.pwd2{
+    position:relative;
+    top:719px;
+    left:102px;
+    border-radius: 50px;
+    border-color:#F8F8F8;
+}
+
+.button1{
+    background-color:#22476D;
+    color:#F8F8F8;
+    height:40px;
+    width:200px;
+    font-size: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    position:relative;
+    top:510px;
+    left:245px;
+}
+
+.button1:hover{
+    background-color:#43A7B7;
+    color:#F8F8F8;
+    height:40px;
+    width:200px;
+    font-size: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
+
+.account1{
+    position:relative;
+    top:485px;
+    left:225px;
+}

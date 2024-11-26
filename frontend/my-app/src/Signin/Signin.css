@@ -1,0 +1,129 @@
+.background{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    background-image: url("./background2.jpg");
+    background-size: cover;
+}
+
+.box{
+    width:1000px;
+    height:600px;
+    background-color: #FFB703;
+    display:flex;
+    border-radius: 10%;
+   
+}
+
+.logo1{
+    height:200px;
+    width:270px;
+    background-image: url("./HH_logo.png");
+    background-size: cover;
+    position:relative;
+    top:150px;
+}
+
+.left{
+    height:600px;
+    width:500px;
+    border-right:1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.right{
+    height:600px;
+    width:500px;
+    border-left:1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.title{
+    font-size: 45px;
+    font-family:'CustomFont', sans-serif;
+    color:#926902;
+}
+
+
+.title2{
+    font-size: 45px;
+    font-family:'CustomFont', sans-serif;
+    color:#926902;
+    padding-right: 170px;
+    padding-left: 170px;
+    position:relative;
+    top:80px;
+    right:5px;
+}
+
+.button{
+    background-color:#22476D;
+    color:#F8F8F8;
+    position:relative;
+    left:97px;
+    top:60px;
+    height:40px;
+    width:200px;
+    font-size: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
+
+.button:hover{
+    background-color:#43A7B7;
+    color:#F8F8F8;
+    position:relative;
+    left:97px;
+    top:60px;
+    height:40px;
+    width:200px;
+    font-size: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
+
+.email{
+    height:50px;
+    width:400px;
+    background-color:#F8F8F8;
+    position:relative;
+    top:15px;
+    right:15px;
+    border-radius: 50px;
+    padding-left: 20px;
+    border-color: #F8F8F8;
+}
+
+.pwd{
+    height:50px;
+    width:400px;
+    background-color:#F8F8F8;
+    position:relative;
+    top:35px;
+    right:15px;
+    border-radius: 50px;
+    padding-left: 20px;
+    border-color: #F8F8F8;
+}
+
+
+.signup{
+    display:inline-block;
+    color:red;
+}
+
+.account{
+    position:relative;
+    bottom:25px;
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import "./App.css"
 import Admin from "./Admin/Containers/App"
-import Customer from "./Customer/Containers/App"
+import Customer from "./Signin/Signin"
 import Rider from "./Rider/Containers/App"
 import Restaurant from "./Restaurant/Containers/App"
 
