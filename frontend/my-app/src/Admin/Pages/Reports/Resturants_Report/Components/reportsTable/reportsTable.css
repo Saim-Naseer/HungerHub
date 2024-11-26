@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+
+h2 {
+    font-family: 'Carter One', cursive;
+}
+
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Scrollable Table Styling */
+.scrollable-table {
+    max-height: 275px; /* Set a fixed maximum height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    width: 80%; /* Keep the table width consistent */
+    box-shadow: 0 10px 18px black; /* Optional: Add shadow */
+}
+
+/* Table Styling */
+table {
+    width: 100%; /* Ensure table fits within the container */
+    border-collapse: collapse;
+    text-align: center;
+}
+
+thead {
+    background-color: rgb(6, 48, 90); /* Header background color */
+    color: white;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    position: sticky; /* Sticky header */
+    top: 0; /* Position it at the top */
+    z-index: 1; /* Ensure header stays above the rows */
+    font-size: 20px;
+}
+
+th, td {
+    padding: 12px 12px 0px 12px;
+    border: 1px solid rgb(34, 71, 109);
+}
+
+td {
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: "Georgia", serif; /* Font style for text */
+}
+
+tbody td:first-child {
+    font-style: italic;
+}
+.message{
+    text-align: left;
+    margin-bottom: 20px;
+}
+.reports-input{
+    display: flex;
+    margin:10px auto;
+    gap:15px;
+}
+.reports-input .input-button{
+    margin-top: 10px;
+    border: 2px solid rgb(0, 0, 0); 
+    width:450px;
+    height:10px;
+    text-align: left;
+    background-color: aliceblue;
+    color: black;
+}
+.enter{
+    margin-top:13px;
+    background-color: rgb(6, 48, 90); /* Red background */
+    place-items: center;
+    width:100px;
+    height:27px;
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+   /* Padding for size */
+    font-size: 16px; /* Font size */
+    font-family: Arial, sans-serif; /* Font family */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Pointer cursor on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+}
+.enter:hover {
+    background-color: rgb(0, 21, 43); /* Darker red on hover */
+    transform: scale(1.05); /* Slightly enlarge the button */
+  }
+  
+  /* Active (pressed) effect */
+  .enter:active {
+    background-color: rgb(0, 15, 31); /* Even darker red when clicked */
+    transform: scale(0.95); /* Slightly shrink the button */
+  }
