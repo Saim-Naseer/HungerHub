@@ -4,7 +4,7 @@ import "./HH_logo.png"
 
 const NavbarTop=()=>{
     return(
-        <div className="Navbar">
+        <div className="Navbar1">
             <div className="logo"></div>
             <p className="title">Hunger Hub</p>
             <div className="profile"></div>

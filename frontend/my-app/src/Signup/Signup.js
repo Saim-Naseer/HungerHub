@@ -88,14 +88,14 @@ class Signup extends React.Component{
                     </select>
                     <select className="region" style={{borderColor:this.state.borderColor.region}} onChange={(event)=>this.setState({region:event.target.value})}>
                         <option>-</option>
-                        <option>1) Shahdara, Badami Bagh, Ravi Town</option>
-                        <option>2) Inner Lahore, Anarkali, Data Darbar, Circular Road</option>
-                        <option>3) Liberty Market, MM Alam Road, Ghalib Market, Main Boulevard</option>
-                        <option>4) Model Town, Garden Town, Faisal Town, Township</option>
-                        <option>5) DHA Phases 1-8, Lahore Cantt, Walton</option>
-                        <option>6) Johar Town, Wapda Town, Valencia Town</option>
-                        <option>7) Allama Iqbal Town, Sabzazar, Samanabad</option>
-                        <option>8) Bahria Town, NFC Society, Canal Road extensions</option>
+                        <option>Shahdara, Badami Bagh, Ravi Town</option>
+                        <option>Inner Lahore, Anarkali, Data Darbar, Circular Road</option>
+                        <option>Liberty Market, MM Alam Road, Ghalib Market, Main Boulevard</option>
+                        <option>Model Town, Garden Town, Faisal Town, Township</option>
+                        <option>DHA Phases 1-8, Lahore Cantt, Walton</option>
+                        <option>Johar Town, Wapda Town, Valencia Town</option>
+                        <option>Allama Iqbal Town, Sabzazar, Samanabad</option>
+                        <option>Bahria Town, NFC Society, Canal Road extensions</option>
                     </select>
                     <input type="password" placeholder="Password" className="pwd1" style={{borderColor:this.state.borderColor.pwd}} onChange={(event)=>this.setState({pwd:event.target.value})}/>
                     <input type="password" placeholder="Confirm Password" className="pwd2" style={{borderColor:this.state.borderColor.cpwd}} onChange={(event)=>this.setState({cpwd:event.target.value})}/>
