@@ -3,8 +3,9 @@
 .backgrounda{
     text-align: center;
 }
-h2 {
+.backgrounda h2 {
     font-family: 'Carter One', cursive;
+    color:black;
 }
 
 .upper{

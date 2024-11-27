@@ -1,0 +1,92 @@
+.order-history {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  h2 {
+    color: #22476D;
+  }
+
+  .clear-filter-button{
+    margin-left: 8px;
+    background-color: #43A7B7;
+    border-radius: 5px;
+    border: 0px;
+    color: white;
+  }
+  
+  .clear-filter-button:hover{
+    scale: 103%;
+    background-color: #24545b;
+  }
+  .filter-bar {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 20px;
+  }
+  
+  .date-picker {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+  }
+  
+  .date-picker label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .date-picker-input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .orders {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next row */
+    gap: 15px; /* Space between boxes */
+  }
+   
+  .order-Card {
+    flex: 1 1 calc(50% - 15px); /* Each box takes up 50% of the row minus the gap */
+    max-width: calc(50% - 15px); /* Ensure the boxes don't exceed 50% width */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Include padding and borders in the width calculation */
+  }
+  
+  .container {
+    width: 100%; /* Ensure the parent container takes the full width */
+  }
+  
+  /* .order-Card {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  } */
+  
+  .order-Card p {
+    margin: 5px 0;
+  }
+  
+  .order-Card a {
+    text-decoration: none;
+    color: #22476D;
+    font-weight: bold;
+  }
+  
+  .order-Card a:hover {
+    text-decoration: underline;
+  }
+  
+  .no-orders-message {
+    color: #999;
+    font-style: italic;
+  }
+  
