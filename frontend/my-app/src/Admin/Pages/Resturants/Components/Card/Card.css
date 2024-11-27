@@ -46,6 +46,7 @@
 .card h2 {
     font-size: 1rem; /* Smaller heading size */
     margin: 5px 0; /* Reduced margin below the title */
+    color:black
 }
 
 .card p {

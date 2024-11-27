@@ -25,7 +25,7 @@ class Main_Resturant extends React.Component {
         <div>
             <Background />
             <SearchBox SearchChange = {this.onSearchChange}/>
-            <h2 style={{textAlign:"center" , marginTop : '2rem'}}>All Resturants</h2>
+            <h2 style={{textAlign:"center" , marginTop : '2rem' , color:"black"}}>All Resturants</h2>
             <CardList resturants = {filteredResturants}/>
         </div>
     );

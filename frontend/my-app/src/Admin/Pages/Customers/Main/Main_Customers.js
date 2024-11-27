@@ -25,7 +25,7 @@ class Main_Customers extends React.Component {
         <div>
             <Background />
             <SearchBox SearchChange = {this.onSearchChange}/>
-            <h2 style={{textAlign:"center", marginTop:"23px" , marginBottom:"23px"}}>All Customers</h2>
+            <h2 style={{textAlign:"center", marginTop:"23px" , marginBottom:"23px", color:"black"}}>All Customers</h2>
 
             <CustomersTable customers = {filteredCustomers} />
            

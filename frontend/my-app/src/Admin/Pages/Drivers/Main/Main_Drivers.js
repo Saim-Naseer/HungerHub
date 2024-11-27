@@ -24,7 +24,7 @@ class Main_Drivers extends React.Component {
         <div>
             <Background />
             <SearchBox SearchChange = {this.onSearchChange}/>
-            <h2 style={{textAlign:"center" ,  marginTop:"23px" , marginBottom:"23px"}}>All Drivers</h2>
+            <h2 style={{textAlign:"center" ,  marginTop:"23px" , marginBottom:"23px", color:"black"}}>All Drivers</h2>
            
                 <DriversTable drivers = {filteredDrivers} />
            

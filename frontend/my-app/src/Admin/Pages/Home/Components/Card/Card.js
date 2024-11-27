@@ -13,7 +13,7 @@ const Card = ({ name }) => {
             <Link to={`/${name}`}>
             <img src={image} alt={`${name}`} />
             <div>
-                <h2>Manage {name}</h2>
+                <h3>Manage {name}</h3>
             </div>
             </Link>
         </div>
