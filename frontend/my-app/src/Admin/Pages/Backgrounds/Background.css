@@ -3,8 +3,9 @@
 .backgrounda{
     text-align: center;
 }
-h2 {
+.backgrounda h2 {
     font-family: 'Carter One', cursive;
+    color:black;
 }
 
 .upper{
@@ -26,7 +27,9 @@ h2 {
     align-items: center;
 }
 .upper .sign_out img{
-    height: fit-content;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    height: 70px;
 }
 .upper .sign_out a{
     color:black;
@@ -39,7 +42,7 @@ h2 {
     display:flex;
     align-items: center;
     text-align: center;
-    text-indent: 30px;
+    text-indent: 80px;
 }
 .lower h3{
     color:white;
