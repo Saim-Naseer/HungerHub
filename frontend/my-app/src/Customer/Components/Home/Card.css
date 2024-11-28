@@ -1,7 +1,7 @@
 .c_card{
-    height:300px;
+    height:375px;
     width:300px;
-    background-color: black;
+    background-color: #D6D6D6;
     margin-top:50px;
     display:flex;
     flex-wrap: wrap;
@@ -12,23 +12,22 @@
 }
 
 .c_image{
-    height:170px;
+    height:300px;
     width:300px;
-    background-color: red;
     border-top-right-radius: 50px;
     border-top-left-radius: 50px;
 }
 
 .c_name{
     color:white;
-    position:relative;
-    bottom:30px;
-    right:70px;
+    margin-left:100px;
+    margin-right: 100px;
+    color:black;
 }
 
 .c_cuisine{
     color:white;
     position:relative;
-    top:20px;
-    right:20px;
+    bottom:20px;
+    color:black;
 }

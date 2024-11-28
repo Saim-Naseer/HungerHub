@@ -8,15 +8,13 @@ module.exports = {
 
         try{
 
-            const Customer = new CustomerModel({
-                Customer_id:1,
-                email:"saim@gmail.com",
-                pwd:"1234",
-                name:"Saim Naseer",
-                location:"DHA Phases 1-8, Lahore Cantt, Walton"
-            })
+            const restaurant = await RestaurantModel.findOneAndUpdate(
+                {Restaurant_id:1},
+                {$set: {image:"/Images/chezious.jpg"}},
+                {new:true}
+            )
     
-            await Customer.save()
+            await restaurant.save()
     
             res.send("done")
     

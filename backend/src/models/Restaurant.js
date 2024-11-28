@@ -38,6 +38,9 @@ const Restaurant = Mongoose.Schema({
     total_ratings:{
         type:Number,
         default:0
+    },
+    image:{
+        type:String
     }
     
 });

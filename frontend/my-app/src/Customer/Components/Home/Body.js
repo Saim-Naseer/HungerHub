@@ -9,7 +9,9 @@ class Body extends React.Component{
     {
         super()
         this.state={
-            restaurants:[]
+            restaurants:[],
+            pastOrders:[],
+            search:""
         }
     }
 
@@ -28,13 +30,19 @@ class Body extends React.Component{
     {
         const restaurants = this.state.restaurants
 
-        const content = restaurants.map((x) => {
-            return <Card key={x.id_} name={x.name} cusine={x.cusine} />
+        const content1 = restaurants.filter((x)=>{
+            return (
+                x.name.toLowerCase().includes(this.state.search.toLowerCase()) ||  x.cusine.toLowerCase().includes(this.state.search.toLowerCase())
+            )
         })
 
+        const content = content1.map((x) => {
+            return <Card key={x.id_} name={x.name} cusine={x.cusine} image={x.image}/>
+        })
 
         return(
             <>
+                <input type="text" className='c_searchbox' placeholder='Search' onChange={(event)=>this.setState({search:event.target.value})}/>
                 <div className='body_container'>
                     <div className='body1'>
                         {content}
