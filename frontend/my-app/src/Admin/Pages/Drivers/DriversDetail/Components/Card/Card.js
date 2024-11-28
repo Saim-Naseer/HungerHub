@@ -51,7 +51,7 @@ const Card = ({ name, email, number, rating, location, orders }) => {
             <div className = "drivers-detail">
                 <div className="card-main">
                     <div className="card-image">
-                        <img src={image} alt={`${name} restaurant`} />
+                        <img src={image} alt={`${name}`} />
                     </div>
                     <div className="card-content">
                         <div className="card-header">
