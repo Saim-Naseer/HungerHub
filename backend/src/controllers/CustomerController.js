@@ -1,6 +1,7 @@
 
 const RestaurantModel = require('../models/Restaurant')
 const CustomerModel = require('../models/Customer')
+const MenuModel = require('../models/Menu')
 const service = require("../services/CustomerServices")
 
 module.exports = {
@@ -8,16 +9,17 @@ module.exports = {
 
         try{
 
-            const restaurant = await RestaurantModel.findOneAndUpdate(
-                {Restaurant_id:1},
-                {$set: {image:"/Images/chezious.jpg"}},
-                {new:true}
-            )
+            const item = new MenuModel({
+                Restaurant_id:1,
+                Item_id:1,
+                name:"Crown Crust",
+                price:1800,
+                popular:true
+            })
     
-            await restaurant.save()
-    
+            await item.save()
+
             res.send("done")
-    
 
         }catch(e){
 
@@ -34,6 +36,17 @@ module.exports = {
 
             await res.send(restaurant)
 
+        }catch(e){
+            res.send("not found")
+        }
+    },
+    GetPopularItems: async(req,res)=>{
+        try{
+            const Restaurant_id = Number(req.query.rid);
+
+            const items = await service.GetPopularItems(Restaurant_id)
+
+            await res.send(items)
         }catch(e){
             res.send("not found")
         }

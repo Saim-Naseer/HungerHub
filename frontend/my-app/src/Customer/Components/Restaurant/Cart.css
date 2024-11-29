@@ -1,0 +1,34 @@
+.c_cart{
+    height:600px;
+    width:400px;
+    position:fixed;
+    top:200px;
+    left:1100px;
+    background-color: #D6D6D6;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+}
+
+.c_heading{
+    margin-top:10px;
+    font-size:30px;
+}
+
+
+.c_items{
+    height:375px;
+    width:375px;
+    background-color: white;
+    border-radius: 25px;
+    margin-top: 5px;
+}
+
+.c_bill{
+    height:100px;
+    width:375px;
+    background-color: white;
+    border-radius: 25px;
+    
+}
+

@@ -2,6 +2,8 @@ import React from 'react'
 import Card from "./Card"
 import Session from "../../../Session"
 import "./Body.css"
+import R_Session from "../Restaurant/Session"
+import Restaurant from "../../Containers/Restaurant"
 
 class Body extends React.Component{
 
@@ -11,7 +13,8 @@ class Body extends React.Component{
         this.state={
             restaurants:[],
             pastOrders:[],
-            search:""
+            search:"",
+            page:"home"
         }
     }
 
@@ -26,6 +29,10 @@ class Body extends React.Component{
         this.fetchData()
     }
 
+    changePage = (pageName) => {
+        this.setState({page:pageName})
+    }
+
     render()
     {
         const restaurants = this.state.restaurants
@@ -36,19 +43,38 @@ class Body extends React.Component{
             )
         })
 
-        const content = content1.map((x) => {
-            return <Card key={x.id_} name={x.name} cusine={x.cusine} image={x.image}/>
+        const content2 = content1.map((x) => {
+            return <Card key={x.id_} name={x.name} cusine={x.cusine} image={x.image} onClick={()=>{R_Session.restaurant_id=x.Restaurant_id;  R_Session.name=x.name; R_Session.location=x.location; R_Session.image=x.image; R_Session.cusine=x.cusine; R_Session.exact_address=x.exact_address; this.changePage("restaurant")}}/>
         })
+
+
+        let content
+
+        if(this.state.page==="home")
+        {
+            content = (
+                <>
+                    <input type="text" className='c_searchbox' placeholder='Search' onChange={(event)=>{this.setState({search:event.target.value})}}/>
+                    <div className='body_container'>
+                        <div className='body1'>
+                            {content2}
+                        </div>
+                    </div>
+                </>
+            )
+        }
+        else if(this.state.page==="restaurant")
+        {
+            content = (
+                <Restaurant />
+            )
+        }
 
         return(
             <>
-                <input type="text" className='c_searchbox' placeholder='Search' onChange={(event)=>this.setState({search:event.target.value})}/>
-                <div className='body_container'>
-                    <div className='body1'>
-                        {content}
-                    </div>
-                </div>
+                {content}
             </>
+            
         )
     }
 }

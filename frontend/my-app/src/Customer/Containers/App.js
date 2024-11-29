@@ -1,15 +1,11 @@
 import React from 'react'
-import NavbarTop from '../Components/NavbarTop/NavbarTop'
-import Body from "../Components/Home/Body"
+import Home from "./Home"
 
 
 class App extends React.Component{
     render(){
         return(
-            <div>
-                <NavbarTop/>
-                <Body/>
-            </div>
+            <Home />
         )
     }
 }
