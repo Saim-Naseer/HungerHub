@@ -1,8 +1,10 @@
-.get-new-orders {
+.Driver-get-new-orders {
     padding: 20px;
+    background-color: white;
+    height: 100vh;
   }
   
-  .get-new-orders h2 {
+  .Driver-get-new-orders h2 {
     margin-bottom: 20px;
   }
   

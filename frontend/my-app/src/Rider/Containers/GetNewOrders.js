@@ -52,7 +52,7 @@ const GetNewOrders = () => {
   };
 
   return (
-    <div className="get-new-orders">
+    <div className="Driver-get-new-orders">
       <h2>Available Orders:</h2>
       {orders.length === 0 ? (
         <p>No new orders available in your area.</p>

@@ -48,7 +48,7 @@ const OrderDetail = () => {
   }
 
   return (
-    <div className="order-detail-page">
+    <div className="Rider-order-detail-page">
       <button className="backbutton" onClick={() => navigate('/')}>back</button>
       <div className="upper-half">
         {/* Customer Info Section */}
@@ -72,7 +72,7 @@ const OrderDetail = () => {
       </div>
 
       {/* Order Details Section */}
-      <div className="order-details">
+      <div className="order-Alldetails">
         <div className="order-info-box">
           <h3>Order Details</h3>
           <div className="order-summary">
