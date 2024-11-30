@@ -14,7 +14,7 @@ const momenttz = require("moment-timezone");
 
 moment.tz.setDefault("Asia/Karachi");
 
-app.listen(port, "0.0.0.0", () => {
+app.listen(port, "127.0.0.1", () => {
   logger.info(`Working with port ${port}`);
 });
 

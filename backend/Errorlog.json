@@ -1,1 +1,53 @@
-[]
+[
+  {
+    "id": 0,
+    "time": 1732907195449,
+    "message": "listen EADDRINUSE: address already in use 0.0.0.0:5000",
+    "code": "EADDRINUSE",
+    "stack": "Error: listen EADDRINUSE: address already in use 0.0.0.0:5000\n    at Server.setupListenHandle [as _listen2] (node:net:1907:16)\n    at listenInCluster (node:net:1964:12)\n    at node:net:2170:7\n    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)",
+    "errno": -4091,
+    "syscall": "listen",
+    "address": "0.0.0.0",
+    "port": 5000
+  },
+  {
+    "id": 1,
+    "time": 1732909936365,
+    "message": "getaddrinfo ENOTFOUND 5000",
+    "code": "ENOTFOUND",
+    "stack": "Error: getaddrinfo ENOTFOUND 5000\n    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:120:26)",
+    "errno": -3008,
+    "syscall": "getaddrinfo",
+    "hostname": "5000"
+  },
+  {
+    "id": 2,
+    "time": 1732953362534,
+    "message": "Cannot read properties of undefined (reading 'User')",
+    "stack": "TypeError: Cannot read properties of undefined (reading 'User')\n    at GetActiveOrders (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\controllers\\RiderController.js:13:38)\n    at Layer.handle [as handle_request] (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:47:12)"
+  },
+  {
+    "id": 3,
+    "time": 1732953374157,
+    "message": "Cannot read properties of undefined (reading 'User')",
+    "stack": "TypeError: Cannot read properties of undefined (reading 'User')\n    at GetActiveOrders (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\controllers\\RiderController.js:13:38)\n    at Layer.handle [as handle_request] (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:47:12)"
+  },
+  {
+    "id": 4,
+    "time": 1732953377595,
+    "message": "Cannot read properties of undefined (reading 'User')",
+    "stack": "TypeError: Cannot read properties of undefined (reading 'User')\n    at GetActiveOrders (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\controllers\\RiderController.js:13:38)\n    at Layer.handle [as handle_request] (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:47:12)"
+  },
+  {
+    "id": 5,
+    "time": 1732953567519,
+    "message": "Cannot read properties of undefined (reading 'User')",
+    "stack": "TypeError: Cannot read properties of undefined (reading 'User')\n    at GetActiveOrders (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\controllers\\RiderController.js:13:38)\n    at Layer.handle [as handle_request] (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:47:12)"
+  },
+  {
+    "id": 6,
+    "time": 1732953587833,
+    "message": "Cannot read properties of undefined (reading 'User')",
+    "stack": "TypeError: Cannot read properties of undefined (reading 'User')\n    at GetActiveOrders (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\controllers\\RiderController.js:13:38)\n    at Layer.handle [as handle_request] (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:47:12)"
+  }
+]
