@@ -44,6 +44,9 @@ const Restaurant = Mongoose.Schema({
     },
     image:{
         type:String
+    },
+    phone:{
+        type:Number
     }
     
 });
