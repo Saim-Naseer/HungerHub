@@ -23,6 +23,9 @@ const Rider = Mongoose.Schema({
     location:{
         type:String,
         required:true
+    },
+    phone:{
+        type:Number
     }
 });
 
