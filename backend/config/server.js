@@ -35,6 +35,8 @@ app.use((err, req, res, next) => {
     next(err);
   }
 });
+
+
 const AuthRoute = require("../src/api/AuthRoute")();
 app.use("/auth/", AuthRoute);
 

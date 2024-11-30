@@ -1,0 +1,38 @@
+.c_statusbar{
+    position:relative;
+    top:180px;
+    left:50px;
+}
+
+
+.c_circle{
+    background-color: #D9D9D9;
+    border-radius: 50%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    display:inline-flex;
+    height:50px;
+    width:50px;
+    font-size: 30px;
+    color:#22476D;
+
+}
+
+.c_bar{
+    width:250px;
+    height:30px;
+    background-color: #D9D9D9;
+    display:inline-block;
+    border-radius: 25px;
+}
+
+.c_statustext{
+    color:#22476D;
+    font-size: 50px;
+    display:inline-block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    position: relative;
+    top:2px;
+}
