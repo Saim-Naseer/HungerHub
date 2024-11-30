@@ -1,0 +1,50 @@
+.orders {
+    padding: 90px;
+    margin-left: 200px;
+  }
+  
+  .order-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .order-info,
+  .customer-info {
+    flex: 1;
+  }
+  
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .done-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 200px;
+  }
+  
+  .cancel-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 200px;
+  }
+  
+  .time-remaining {
+    color: red;
+    font-weight: bold;
+  }
+  
