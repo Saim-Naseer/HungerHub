@@ -1,13 +1,29 @@
 import React from "react";
 import "./Card.css";
+import { useNavigate } from 'react-router-dom'; // React Router v6
+import axios from "axios";
 
-const images = require.context("../../../images", false, /\.(png|jpe?g|svg)$/);
+const Card = ({ Rider_id, name, email, phone, total_stars, total_ratings, location, image, onDelete }) => {
+    const navigate = useNavigate(); // React Router v6 hook for programmatic navigation
+    const starImage = "/Images/star.png";
+    const halfStar = "/Images/half_star.png";
+    const noImage = "/Images/no image available.png"; // Fallback image
+    const rating = ((total_stars / total_ratings) / 2).toFixed(1);
 
-const Card = ({ name, email, number, rating, location, orders }) => {
-    const imageName = `${name.toLowerCase()}.png`;
-    const starImage = "star.png";
-    const halfStar = "half_star.png";
-    const noImage = "no image available.png";
+    const handleDelete = async () => {
+        try {
+            const response = await axios.delete(`http://localhost:5000/admin/deleteRider/${Rider_id}`);
+            alert(response.data.message); // Display success message
+            if (onDelete) {
+                onDelete(Rider_id); // Call onDelete prop to update the parent state
+            }
+            // Navigate to the drivers page after deleting
+            navigate("/drivers");
+        } catch (error) {
+            console.error("Error deleting rider:", error);
+            alert("Failed to delete the rider. Please try again.");
+        }
+    };
 
     // Generate an array of stars based on the rating
     const renderStars = () => {
@@ -19,7 +35,7 @@ const Card = ({ name, email, number, rating, location, orders }) => {
             stars.push(
                 <img
                     key={`full-${i}`}
-                    src={images(`./${starImage}`)}
+                    src={starImage}
                     alt="star"
                     width="20px"
                     height="20px"
@@ -32,7 +48,7 @@ const Card = ({ name, email, number, rating, location, orders }) => {
             stars.push(
                 <img
                     key="half-star"
-                    src={images(`./${halfStar}`)} 
+                    src={halfStar}
                     alt="half star"
                     width="20px"
                     height="20px"
@@ -44,83 +60,42 @@ const Card = ({ name, email, number, rating, location, orders }) => {
         return stars;
     };
 
-    try {
-        const image = images(`./${imageName}`); // Dynamically load image
-
-        return (
-            <div className = "drivers-detail">
-                <div className="card-main">
-                    <div className="card-image">
-                        <img src={image} alt={`${name}`} />
-                    </div>
-                    <div className="card-content">
-                        <div className="card-header">
-                            <h2>{name}</h2>
-                            <div className="card-header-1">
-                                {renderStars()} 
-                            </div>
+    return (
+        <div className="drivers-detail">
+            <div className="card-main">
+                <div className="card-image">
+                    <img 
+                        src={image || noImage} 
+                        alt={`${name} rider`} 
+                        onError={(e) => e.target.src = noImage} 
+                    />
+                </div>
+                <div className="card-content">
+                    <div className="card-header">
+                        <h2>{name}</h2>
+                        <div className="card-header-1">
+                            {renderStars()} {/* Render stars dynamically */}
                         </div>
-                        <p>{email}</p>
-                        <p>{number}</p>
                     </div>
-                </div>
-                <div className="stats-box-driver">
-                    <div className="stat">
-                        <span className="label">Location</span>
-                        <span className="value">{location}</span>
-                    </div>
-                    <div className="stat">
-                        <span className="label">Orders</span>
-                        <span className="value">{orders}</span>
-                    </div>
-                    <div className="stat">
-                        <span className="label">Overall Rating</span>
-                        <span className="value">{rating}</span>
-                    </div>
-                </div>
-                <div className="container-delete-button">
-                    <button className="delete-button" >Delete Driver</button>
-                </div>
-            </div>     
-        );
-    } catch (error) {
-        return (
-            <div className = "drivers-detail">
-                <div className="card-main">
-                    <div className="card-image">
-                        <img src={noImage} alt={`  ${name}`} />
-                    </div>
-                    <div className="card-content">
-                        <div className="card-header">
-                            <h2>{name}</h2>
-                            <div className="card-header-1">
-                                {renderStars()} 
-                            </div>
-                        </div>
-                        <p>{email}</p>
-                        <p>{number}</p>
-                    </div>
-                </div>
-                <div className="stats-box-driver">
-                    <div className="stat">
-                        <span className="label">Location</span>
-                        <span className="value">{location}</span>
-                    </div>
-                    <div className="stat">
-                        <span className="label">Orders</span>
-                        <span className="value">{orders}</span>
-                    </div>
-                    <div className="stat">
-                        <span className="label">Overall Rating</span>
-                        <span className="value">{rating}</span>
-                    </div>
-                </div>
-                <div className="container-delete-button">
-                    <button className="delete-button" >Delete Driver</button>
+                    <p>{email}</p>
+                    <p>{phone}</p>
                 </div>
             </div>
-        );
-    }
+            <div className="stats-box-driver">
+                <div className="stat">
+                    <span className="label">Location</span>
+                    <span className="value">{location}</span>
+                </div>
+                <div className="stat">
+                    <span className="label">Total Orders</span>
+                    <span className="value">--</span> {/* Placeholder for Total Orders */}
+                </div>
+            </div>
+            <div className="container-delete-button">
+                <button className="delete-button" onClick={handleDelete}>Delete Driver</button>
+            </div>
+        </div>
+    );
 };
 
 export default Card;

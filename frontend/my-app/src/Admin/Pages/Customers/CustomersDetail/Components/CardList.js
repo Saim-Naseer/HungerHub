@@ -1,25 +1,25 @@
 import React from 'react';
 import Card from './Card/Card.js';
 
-const CardList = ({ id, customers }) => {
-
-    const selectedCustomer = customers.find(customer => customer.id === id);
-
+const CardList = ({ Customer_id, customers }) => {
+    console.log(customers)
+    const selectedCustomer = customers.find(customers => customers.Customer_id === Customer_id);
     if (!selectedCustomer) {
         return <p style={{ padding: '2.7rem', marginTop: '2rem' }}>No Customer found</p>;
     }
-
-    const { name, email, number, reviews, location, orders } = selectedCustomer;
+    
+    const { name, email, phone, exact_address, onDelete,image } = selectedCustomer;
 
     return (
         <div>
             <Card
+                Customer_id={Customer_id}
                 name={name}
                 email={email}
-                number={number}
-                location={location}
-                orders={orders}
-                reviews={reviews}
+                phone={phone}
+                exact_address={exact_address}
+                onDelete={onDelete}
+                image={image}
             />
         </div>
     );

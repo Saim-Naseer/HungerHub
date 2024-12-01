@@ -26,9 +26,9 @@ class App extends React.Component{
                 <Route path="/customers" element={<Main_Customer />} />
                 <Route path="/drivers" element={<Main_Driver />} />
                 <Route path="/customers" element={<Main_Customers />} />
-                <Route path="/resturant/:id" element={<Main_Resturant_Details />} />
-                <Route path="/customer/:id" element={<Main_Customer_Details />} />
-                <Route path="/driver/:id" element={<Main_Drivers_Details />} />
+                <Route path="/resturant/:Restaurant_id" element={<Main_Resturant_Details />} />
+                <Route path="/customer/:Customer_id" element={<Main_Customer_Details />} />
+                <Route path="/driver/:Rider_id" element={<Main_Drivers_Details />} />
                 <Route path="/report" element={<Main_Report />} />
                 <Route path="/resturant-report" element={<Main_Resturant_Report />} />
                 <Route path="/rider-report" element={<Main_Rider_Report />} />

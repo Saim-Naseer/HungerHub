@@ -1,26 +1,29 @@
 import React from 'react';
 import Card from './Card/Card.js';
 
-const CardList = ({ id, resturants }) => {
+const CardList = ({ Restaurant_id, restaurants }) => {
 
-    const selectedRestaurant = resturants.find(resturant => resturant.id === id);
+    const selectedRestaurant = restaurants.find(restaurant => restaurant.Restaurant_id === Restaurant_id);
 
     if (!selectedRestaurant) {
         return <p style={{ padding: '2.7rem', marginTop: '2rem' }}>No Restaurant found</p>;
     }
 
-    const { name, type, time, rating, location, total_orders, reviews } = selectedRestaurant;
+    const { name, email,phone,total_stars,exact_address, total_ratings, cusine, onDelete, image } = selectedRestaurant;
 
     return (
         <div>
             <Card
+                Restaurant_id={Restaurant_id}
                 name={name}
-                type={type}
-                time={time}
-                rating={rating}
-                location={location}
-                total_orders={total_orders}
-                reviews={reviews}
+                email={email}
+                phone={phone}
+                exact_address={exact_address}
+                total_ratings={total_ratings}
+                total_stars={total_stars}
+                cusine={cusine}
+                onDelete={onDelete}
+                image={image}
             />
         </div>
     );
