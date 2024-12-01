@@ -53,11 +53,14 @@ const Order = Mongoose.Schema({
         type:Boolean,
         default:false
     },
-
     isReady:{
         type:Boolean,
         default:false
+    },
+    date:{
+        type:Date
     }
+
 })
 
 module.exports = Mongoose.model("Order",Order)
