@@ -1,0 +1,16 @@
+.c_confirmOrder{
+    height:65px;
+    width:450px;
+    background-color: #22476D;
+    color:#D9D9D9;
+    font-size: 30px;
+    border-radius: 50px;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    top:685px;
+    left:525px;
+}

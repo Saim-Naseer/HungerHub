@@ -22,10 +22,10 @@ class NavbarTop extends React.Component{
 
         return(
             <>
-                <div className="Navbar1">
-                    <div className="logo" onClick={()=>this.resetRestaurantSession}></div>
-                    <p className="title" >Hunger Hub</p>
-                    <div className="profile"></div>
+                <div className="Navbar2">
+                    <div className="logo2" onClick={()=>this.resetRestaurantSession}></div>
+                    <p className="title2" >Hunger Hub</p>
+                    <div className="profile2"></div>
                 </div>
             </>
         )

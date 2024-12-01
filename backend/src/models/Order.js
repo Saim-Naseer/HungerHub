@@ -7,7 +7,7 @@ const Order = Mongoose.Schema({
     },
     Rider_id:{
         type:Number,
-        required:true
+        default:-1
     },
     Order_id:{
         type:Number,
@@ -19,9 +19,17 @@ const Order = Mongoose.Schema({
     },
     price:{
         type:Number,
-        required:true
+        default:0
     },
     completed:{
+        type:Boolean,
+        default:false
+    },
+    isPlaced:{
+        type:Boolean,
+        default:false
+    },
+    isReady:{
         type:Boolean,
         default:false
     },

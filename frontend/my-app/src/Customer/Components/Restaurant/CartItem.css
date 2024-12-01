@@ -1,0 +1,25 @@
+.c_cartitem{
+    height:30px;
+    width:375px;
+    display:flex;
+    align-items: center;
+}
+
+.c_cartitem_name{
+    position:relative;
+    left:10px;
+    display:inline-flex
+}
+
+
+.c_cartitem_price{
+    position:relative;
+    left:100px;
+    display:inline-flex
+}
+
+.c_cartitem_qty{
+    position:relative;
+    left:200px;
+    display:inline-flex
+}
