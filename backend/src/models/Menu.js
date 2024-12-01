@@ -1,6 +1,6 @@
 const Mongoose = require('mongoose')
 
-const Menu = Mongoose.model({
+const Menu = Mongoose.Schema({
     Restaurant_id:{
         type:Number,
         required:true

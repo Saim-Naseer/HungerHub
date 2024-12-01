@@ -6,7 +6,7 @@ class Body extends React.Component{
     {
         return(
             <div className='body'>
-                <h1>Restaurant</h1>
+                
             </div>
         )
     }

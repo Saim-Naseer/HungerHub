@@ -48,6 +48,7 @@ const Restaurant = Mongoose.Schema({
     phone:{
         type:Number
     }
+    
 });
 
 module.exports = Mongoose.model("Restaurant",Restaurant);

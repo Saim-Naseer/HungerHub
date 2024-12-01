@@ -1,0 +1,37 @@
+.c_info{
+    height:275px;
+    width:1100px;
+    position:relative;
+    top:150px;
+    border-bottom: 1px solid #D4D4D4;
+}
+
+.c_info_image{
+    height:225px;
+    width:225px;
+    position:relative;
+    top:25px;
+    left:25px;
+    border-radius: 25px;
+}
+
+.c_info_name{
+    position:relative;
+    left:300px;
+    bottom:230px;
+    font-size: 50px;
+}
+
+.c_info_cusine{
+    position:relative;
+    left:300px;
+    bottom:260px;
+    font-size: 25px;
+}
+
+.c_info_location{
+    position:relative;
+    left:300px;
+    bottom:260px;
+    font-size: 25px;;
+}

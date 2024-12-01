@@ -1,0 +1,33 @@
+.c_card{
+    height:375px;
+    width:300px;
+    background-color: #D6D6D6;
+    margin-top:50px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    border-radius: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.c_image{
+    height:300px;
+    width:300px;
+    border-top-right-radius: 50px;
+    border-top-left-radius: 50px;
+}
+
+.c_name{
+    color:white;
+    margin-left:100px;
+    margin-right: 100px;
+    color:black;
+}
+
+.c_cuisine{
+    color:white;
+    position:relative;
+    bottom:20px;
+    color:black;
+}

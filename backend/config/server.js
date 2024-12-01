@@ -35,8 +35,13 @@ app.use((err, req, res, next) => {
     next(err);
   }
 });
+
+
 const AuthRoute = require("../src/api/AuthRoute")();
 app.use("/auth/", AuthRoute);
+
+const AdminRoute = require("../src/api/AdminRoute")();
+app.use("/admin/", AdminRoute);
 
 const CustomerRoute = require("../src/api/CustomerRoute")();
 app.use("/customer/",CustomerRoute)

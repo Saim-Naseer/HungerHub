@@ -1,0 +1,33 @@
+.c_item{
+    height:60px;
+    width:1100px;
+    display:flex;
+    align-items: center;
+}
+
+.c_item_name{
+    position:relative;
+    left:100px;
+    font-size: 25px;
+}
+
+.c_item_price{
+    position:relative;
+    left:500px;
+    font-size: 25px;
+}
+
+.c_item_add{
+    position:relative;
+    left:550px;
+    border:1px solid black;
+    border-radius: 50%;
+    height:30px;
+    width:30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    background-color: #22476D;
+    font-size: 25px;
+}

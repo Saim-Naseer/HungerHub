@@ -1,5 +1,5 @@
 .card-home {
-    background-color: rgb(214, 214, 214); /* Light grey */
+    background-color: rgb(6,48,90); /* Light grey */
     display: inline-block;
     border-radius: 30px; 
     margin: 50px 40px 0px 40px;
@@ -10,6 +10,7 @@
     width: 18%; /* Fixed width for all cards */
     height: auto; /* Reduced height for compactness */
     text-align: center; /* Center-align content */
+    
 }
 
 .card-home img {
@@ -23,4 +24,8 @@
 
 .card-home:hover {
     transform: scale(1.05); /* Slight zoom on hover */
+}
+.card-home h3{
+    color:white;
+    margin-top:20px;
 }

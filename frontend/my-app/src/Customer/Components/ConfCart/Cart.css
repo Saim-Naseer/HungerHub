@@ -1,0 +1,82 @@
+.c_cart1{
+    height:480px;
+    width:400px;
+    position:fixed;
+    top:270px;
+    left:550px;
+    background-color: #D6D6D6;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+}
+
+.c_heading1{
+    margin-top:10px;
+    font-size:30px;
+}
+
+
+.c_items1{
+    height:375px;
+    width:375px;
+    background-color: white;
+    border-radius: 25px;
+    margin-top: 5px;
+}
+
+.c_bill1{
+    height:100px;
+    width:375px;
+    background-color: white;
+    border-radius: 25px;
+    
+}
+
+.c_hname1{
+    display:inline-flex;
+    position:relative;
+    top:45px;
+    right:164px;
+}
+
+.c_hprice1{
+    display:inline-flex;
+    position:relative;
+    top:45px;
+    right:54px;
+}
+
+.c_hqty1{
+    display:inline-flex;
+    position:relative;
+    top:45px;
+    left:36px;
+}
+
+.c_htotal1{
+    font-weight: bold;
+    position:relative;
+    bottom:125px;
+    right:100px;
+    display:inline-block;
+}
+
+.c_vtotal1{
+    position:relative;
+    bottom:125px;
+    left:0px;
+}
+
+.c_cartOrder1{
+    height:50px;
+    width:300px;
+    border-radius: 50px;
+    background-color: #4CA9A9;
+    color:white;
+    position:relative;
+    bottom:120px;
+    left:5px;
+    display:flex;
+    justify-content:center;
+    align-items: center;
+}

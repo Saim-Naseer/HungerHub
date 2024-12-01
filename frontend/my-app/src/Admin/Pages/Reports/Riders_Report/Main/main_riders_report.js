@@ -24,7 +24,7 @@ class Main_riders_report extends React.Component {
         <div>
             <Background />
             <SearchBox SearchChange = {this.onSearchChange}/>
-            <h2 style={{textAlign:"center"}}>Riders  Reports</h2>
+            <h2 style={{textAlign:"center", color:"black"}}>Riders  Reports</h2>
             <ReportsTable riders_reports = {filteredRiders_reports} />
            
         </div>

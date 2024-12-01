@@ -17,9 +17,11 @@
 
 .resturants-report h2 {
     margin-right: 50px; /* Space between the text and button */
+    color: black;
 }
 .riders-report h2{
     margin-right: 105px;
+    color: black;
 }
 
 .display-button {

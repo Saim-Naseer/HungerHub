@@ -1,15 +1,16 @@
-.Navbar{
+.Navbar2{
     height:148px;
-    width:1482px;
+    width:100vw;
     background-color:#FFB703;
     position:fixed;
     top:0px;
     left:0px;
     align-items: center;
     display:flex;
+    z-index: 5;
 }
 
-.logo{
+.logo2{
     height:125px;
     width:170px;
     background-image: url("./HH_logo.png");
@@ -23,7 +24,7 @@
     src: url('./CarterOne-Regular.ttf') format('truetype'); /* Path to the font file */
 }
 
-.title{
+.title2{
     display:inline-flex;
     font-size: 45px;
     font-family:'CustomFont', sans-serif;
@@ -31,13 +32,13 @@
     margin-left:25px;
 }
 
-.profile{
+.profile2{
     display:inline-flex;
     height:50px;
     width:50px;
     border-radius: 50%;
     background-color: white;
-    margin-left:900px;
+    margin-left:950px;
     background-image: url("./profile.png");
     background-size: cover;
 }

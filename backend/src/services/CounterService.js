@@ -1,4 +1,4 @@
-const CounterModel = require("../models/CounterModel");
+const CounterModel = require("../models/Counter")
 
 module.exports = {
   Get: async (collectionName) => {
