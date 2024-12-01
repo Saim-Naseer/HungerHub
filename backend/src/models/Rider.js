@@ -26,6 +26,10 @@ const Rider = Mongoose.Schema({
     },
     phone:{
         type:Number
+    },
+    type:{
+        type:String,
+        default:"rider"
     }
 });
 

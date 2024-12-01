@@ -1,4 +1,4 @@
-.background{
+.background3{
     width:100vw;
     height:100vh;
     display:flex;
@@ -8,7 +8,7 @@
     background-size: cover;
 }
 
-.box{
+.box3{
     width:1000px;
     height:600px;
     background-color: #FFB703;
@@ -17,7 +17,7 @@
    
 }
 
-.logo1{
+.logo13{
     height:200px;
     width:270px;
     background-image: url("./HH_logo.png");
@@ -26,7 +26,7 @@
     top:150px;
 }
 
-.left{
+.left3{
     height:600px;
     width:500px;
     border-right:1px solid black;
@@ -36,7 +36,7 @@
 
 }
 
-.right{
+.right3{
     height:600px;
     width:500px;
     border-left:1px solid black;
@@ -45,14 +45,14 @@
     justify-content: center;
 }
 
-.title{
+.title6{
     font-size: 45px;
     font-family:'CustomFont', sans-serif;
     color:#926902;
 }
 
 
-.title2{
+.title23{
     font-size: 45px;
     font-family:'CustomFont', sans-serif;
     color:#926902;
@@ -63,7 +63,7 @@
     right:5px;
 }
 
-.button{
+.button3{
     background-color:#22476D;
     color:#F8F8F8;
     position:relative;
@@ -78,7 +78,7 @@
     border-radius: 50px;
 }
 
-.button:hover{
+.button3:hover{
     background-color:#43A7B7;
     color:#F8F8F8;
     position:relative;
@@ -93,7 +93,7 @@
     border-radius: 50px;
 }
 
-.email{
+.email3{
     height:50px;
     width:400px;
     background-color:#F8F8F8;
@@ -105,7 +105,7 @@
     border-color: #F8F8F8;
 }
 
-.pwd{
+.pwd3{
     height:50px;
     width:400px;
     background-color:#F8F8F8;
@@ -118,12 +118,12 @@
 }
 
 
-.signup{
+.signup3{
     display:inline-block;
     color:red;
 }
 
-.account{
+.account3{
     position:relative;
     bottom:25px;
 }

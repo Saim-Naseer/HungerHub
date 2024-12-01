@@ -4,6 +4,10 @@ const Menu = require("../models/Menu")
 const CounterServices = require("./CounterService")
 const Orders = require("../models/Order")
 const Carts = require("../models/Cart")
+const Discounts = require("../models/Discounts")
+const Admin = require("../models/Admin")
+const Riders = require("../models/Rider")
+
 
 module.exports = {
     GetRestaurants: async(location) =>{
@@ -13,6 +17,40 @@ module.exports = {
         const customer =  await Customers.findOne({Customer_id})
         return customer ? customer.location : null
     },
+    FindUser: async (email, pwd) => {
+      let val;
+  
+      // Check in Admins collection
+      val = await Admin.findOne({ email, pwd });
+      if (val) {
+          console.log("admin", val);
+          return val;
+      }
+  
+      // Check in Customers collection
+      val = await Customers.findOne({ email, pwd });
+      if (val) {
+          console.log("customer", val);
+          return val;
+      }
+  
+      // Check in Restaurants collection
+      val = await Restaurants.findOne({ email, pwd });
+      if (val) {
+          console.log("restaurant", val);
+          return val;
+      }
+  
+      // Check in Riders collection
+      val = await Riders.findOne({ email, pwd });
+      if (val) {
+          console.log("rider", val);
+          return val;
+      }
+  
+      // Return null if no user is found
+      return null;
+    },  
     GetPopularItems: async(Restaurant_id) =>{
         return await Menu.find({Restaurant_id,popular:true})
     },
@@ -21,6 +59,12 @@ module.exports = {
     },
     GetActiveOrders: async(Customer_id) =>{
         return await Orders.findOne({Customer_id,isPlaced:false})
+    },
+    GetPastOrders: async(Customer_id) =>{
+      return await Orders.find({Customer_id,completed:true})
+    },
+    GetWaitingOrders: async(Customer_id) =>{
+      return await Orders.find({Customer_id,isPlaced:true,completed:false})
     },
     CreateOrder: async({Customer_id}) =>{
         const orderId = await CounterServices.Get("Order");
@@ -119,6 +163,88 @@ module.exports = {
           },
         ]);
 
-      }
+      },
+      GetDiscounts: async(cart)=>{
+        const RestaurantIds = cart.map((x)=>{
+          return x.Restaurant_id
+        })
+
+       // return await Discounts.find({Restaurant_id:{$in:RestaurantIds}})
+
+        return await Discounts.aggregate([
+          {
+            $match: {
+              Restaurant_id:{$in:RestaurantIds}
+            },
+          },
+          {
+            $lookup: {
+              from: "restaurants", // Name of the Menu collection (usually pluralized in MongoDB)
+              localField: "Restaurant_id", // Field in Cart to match
+              foreignField: "Restaurant_id", // Field in Menu to match
+              as: "RestaurantDetails", // Output array field name
+            },
+          },
+          {
+            $unwind: "$RestaurantDetails", // Flatten the array for easier access
+          },
+          {
+            $project: {
+              Restaurant_id: 1,
+              Discount_id:1,
+              name:1,
+              cap:1,
+              percentage:1,
+              "RestaurantDetails.name": 1
+            },
+          },
+        ]);
+
+
+      },
+      ApplyDiscount: async ({ Restaurant_id, Discount_id, customerOrder }) => {
+        try {
+            const discount = await Discounts.findOne({ Restaurant_id, Discount_id });
+            if (!discount) throw new Error("Discount not found");
+    
+            const { percentage, cap } = discount;
+            const { Order_id, Cart_id, Customer_id, price } = customerOrder;
+    
+            const f_cart = await Carts.find({ Order_id, Cart_id });
+            if (!f_cart.length) throw new Error("Cart is empty");
+    
+            let d_price = 0;
+            f_cart.forEach((x) => {
+                const potential_discount = (x.price / 100) * percentage;
+                if (d_price + potential_discount <= cap) {
+                    d_price += potential_discount;
+                }
+                else
+                {
+                  d_price=cap
+                }
+            });
+    
+            const n_price= price - d_price
+
+            if(n_price<0)
+            {
+              n_price=0
+            }
+
+
+            await Orders.findOneAndUpdate(
+              {Customer_id,Order_id},
+              {price:n_price},
+              {new:true}
+            )
+    
+            return "Discount applied successfully";
+        } catch (error) {
+            console.error(error);
+            throw new Error("Error applying discount");
+        }
+    }
+    
       
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import { CartContext } from './CartContext';
 import "./Item.css"
-//import R_Session from "./Session"
-//import Session from "../../../Session"
+import R_Session from "./Session"
+import Session from "../../../Session"
 
 
 class Item extends React.Component{
@@ -19,9 +19,9 @@ class Item extends React.Component{
     addToCart = async () => {
         try {
           // Parameters to send in the request
-          const uid = 1; // Replace with dynamic values if needed
-          const rid = 1;
-          const iid = 1;
+          const uid = Session.user_id; // Replace with dynamic values if needed
+          const rid = R_Session.restaurant_id;
+          const iid = this.state.Item_id;
       
           // Construct the URL with query parameters
           const url = `http://localhost:5000/customer/addtocart?uid=${uid}&rid=${rid}&iid=${iid}`;

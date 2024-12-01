@@ -1,28 +1,56 @@
 import React from 'react'
 import Home from "./Home"
 import NavbarTop from "../Components/NavbarTop/NavbarTop"
-//import U_Session from "../../Session"
-//import Session from "../Session"
+import Profile from "../Components/NavbarTop/Profile"
 
 class App extends React.Component{
-    // CreateSession= async()=>{
-    //     const data2 = await fetch("http://localhost:5000/customer/StartOrder?uid="+U_Session.user_id)
-    //     const data = data2.json
+    constructor()
+    {
+        super()
+        this.state={
+            page:"default"
+        }
+    }
 
-    //     Session.Order_id=data.Order_id
-    //     Session.Cart_id=data.Cart_id
-    // }
-
-    // componentDidMount()
-    // {
-    //     this.CreateSession()
-    // }
+    changePage = (pageName) => {
+        console.log("ChangePage called with:", pageName); // Debugging
+        this.setState({ page: pageName });
+    }
 
     render(){
+        let content
+
+        if(this.state.page==="default")
+        {
+            content=(
+                <>
+                    <NavbarTop pagefunc={(pageName) => {this.changePage(pageName)}}/>
+                    <Home />
+                </>
+            )
+        }
+        else if(this.state.page==="profile")
+        {
+            content=(
+                <>
+                    <NavbarTop pagefunc={(pageName) => {this.changePage(pageName)}}/>
+                    <Profile />
+                </>
+            )
+        }
+        else if(this.state.page==="home")
+        {
+            content=(
+                <>
+                    <NavbarTop pagefunc={(pageName) => {this.changePage(pageName)}}/>
+                    <Home />
+                </>
+            )
+        }
+
         return(
             <>
-                <NavbarTop/>
-                <Home />
+                {content}
             </>
         )
     }

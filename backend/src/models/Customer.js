@@ -29,7 +29,12 @@ const Customer = Mongoose.Schema({
     },
     exact_address:{
         type:String
+    },
+    type:{
+        type:String,
+        default:"customer"
     }
+    
 });
 
 module.exports = Mongoose.model("Customer",Customer);

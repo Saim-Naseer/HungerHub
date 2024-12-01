@@ -18,13 +18,13 @@ class Cart extends React.Component {
 
     static contextType = CartContext;
 
-    componentDidMount() {
-        this.fetchData();
+    componentDidMount = async() => {
+        await this.fetchData();
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate = async(prevProps, prevState) => {
         if (this.context.fetchTrigger !== prevState.fetchTrigger) {
-            this.fetchData();
+            await this.fetchData();
         }
     }
 

@@ -1,14 +1,18 @@
 import React from "react"
 import "./NavbarTop.css"
 import "./HH_logo.png"
-import App from "../../Containers/App"
 import R_Session from "../Restaurant/Session"
-import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 
 class NavbarTop extends React.Component{
-    constructor()
+    constructor(props)
     {
-        super()
+        super(props)
+        const { pagefunc } = props;
+        this.state={
+            page:"",
+            val:1,
+            curentPageFunc:pagefunc
+        }
     }
 
     resetRestaurantSession = () => {
@@ -20,16 +24,24 @@ class NavbarTop extends React.Component{
     render()
     {
 
+        if(this.state.val===1)
+        {
+            console.log(this.state.curentPageFunc)
+            this.setState({val:2})
+        }
+
         return(
             <>
-                <div className="Navbar2">
-                    <div className="logo2" onClick={()=>this.resetRestaurantSession}></div>
-                    <p className="title2" >Hunger Hub</p>
-                    <div className="profile2"></div>
+                <div className="Navbar4">
+                    <div className="logo4" onClick={()=>this.state.curentPageFunc("home")}></div>
+                    <p className="title4" >Hunger Hub</p>
+                    <div className="profile4" onClick={()=>this.state.curentPageFunc("profile")}></div>
                 </div>
             </>
         )
     }
 }
+
+
 
 export default NavbarTop;
