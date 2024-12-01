@@ -18,6 +18,8 @@ module.exports = () => {
 
     router.put('/set-rider/:orderId', RiderController.setRider);
 
+    router.put('/complete-order/:orderId', RiderController.completeOrder);
+
     return router
 
 }

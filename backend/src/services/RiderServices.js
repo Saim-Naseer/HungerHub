@@ -296,6 +296,38 @@ const GetOrder = async (orderId, userId) => {
         };
     }
 };
+
+const completeOrder = async (orderId) => {
+    try {
+        // Find the order by Order_id
+        const order = await Order.findOne({ Order_id: orderId });
+
+        if (!order) {
+            return {
+                success: false,
+                message: `Order with Order_id ${orderId} not found`
+            };
+        }
+
+        // Update the 'completed' field to true
+        order.completed = true;
+
+        // Save the updated order document
+        await order.save();
+
+        return {
+            success: true,
+            message: `Order with Order_id ${orderId} marked as completed`
+        };
+    } catch (error) {
+        console.error('Error completing the order:', error);
+        return {
+            success: false,
+            message: `Error completing the order: ${error.message}`
+        };
+    }
+};
+
   
   
   
@@ -309,7 +341,8 @@ module.exports = {
     updateRider,
     getReports,
     getNewOrders,
-    GetOrder
+    GetOrder,
+    completeOrder
 };
 
 

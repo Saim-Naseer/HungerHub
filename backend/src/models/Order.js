@@ -50,8 +50,7 @@ const Order = Mongoose.Schema({
         default:false
     },
     date:{
-        type:Date,
-        default:false
+        type:Date
     }
 
 })

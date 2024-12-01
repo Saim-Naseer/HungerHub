@@ -142,6 +142,32 @@ module.exports = {
                 message: error.message || 'Server error. Please try again later.'
             });
         }
+    },
+
+    completeOrder: async (req, res) => {
+        const { orderId } = req.params; // Extract orderId from the URL parameters
+        try {
+            // Call the service to complete the order for the given Order_id
+            const result = await service.completeOrder(orderId);
+    
+            if (result.success) {
+                return res.status(200).json({
+                    success: true,
+                    message: result.message
+                });
+            } else {
+                return res.status(404).json({
+                    success: false,
+                    message: result.message
+                });
+            }
+        } catch (error) {
+            console.error('Error in controller:', error);
+            return res.status(500).json({
+                success: false,
+                message: error.message || 'Server error. Please try again later.'
+            });
+        }
     }
 }
 
