@@ -19,13 +19,13 @@ const App = () => {
         <NavigationBar />
         <div className="rider-content">
         <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/:id" element={<Dashboard />} />
             <Route path="/OrderDetail/:id" element={<OrderDetail />} />
-            <Route path="/GetNewOrders" element={<GetNewOrders />} />
-            <Route path="/OrderHistory" element={<OrderHistory />} />
+            <Route path="/GetNewOrders/:id" element={<GetNewOrders />} />
+            <Route path="/OrderHistory/:id" element={<OrderHistory />} />
             <Route path="/Profile" element={<Profile />} />
             <Route path="/Chat" element={<Chat />} />
-            <Route path="/Reports" element={<Reports />} />
+            <Route path="/Reports/:id" element={<Reports />} />
         </Routes>
         </div>
       </div>

@@ -11,8 +11,8 @@ const CustomersTable = ({ customers }) => {
                         <tr>
                             <th>No.</th>
                             <th>Name</th>
-                            <th>Orders</th>
-                            <th>Reviews</th>
+                            <th>Email</th>
+                            <th>Phone No.</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -20,12 +20,12 @@ const CustomersTable = ({ customers }) => {
                             <tr key={i}>
                                 <td>{i + 1}.</td>
                                 <td>
-                                    <Link to={`/customer/${customers[i].id}`} className="customer-link">
+                                    <Link to={`/customer/${customers[i].Customer_id}`} className="customer-link">
                                         {customers[i].name}
                                     </Link>
                                 </td>
-                                <td>{customers[i].orders}</td>
-                                <td>{customers[i].reviews}</td>
+                                <td>{customers[i].email}</td>
+                                <td>{customers[i].phone}</td>
                             </tr>
                         ))}
                     </tbody>

@@ -1,21 +1,20 @@
-const Mongoose = reuire('mongoose')
+const Mongoose = require('mongoose');
 
 const RestaurantReport = Mongoose.Schema({
-    Customer_id:{
-        type:Number,
-        Reuired:True
+    Customer_id: {
+        type: Number,
+        required: true // Corrected typo here
     },
-    Restaurant_id:{
-        type:Number,
-        Required:True
+    Restaurant_id: {
+        type: Number,
+        required: true // Corrected typo here
     },
-    Message:{
-        type:String
+    Message: {
+        type: String
     },
-    Reply:{
-        type:String
+    Reply: {
+        type: String
     }
-})
+});
 
-
-module.exports = Mongoose.model("RiderReport",RestaurantReport)
+module.exports = Mongoose.model("RestaurantReport", RestaurantReport); // Corrected model name here

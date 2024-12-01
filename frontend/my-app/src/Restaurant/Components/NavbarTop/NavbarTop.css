@@ -1,43 +1,47 @@
-.Navbar{
-    height:148px;
-    width:100vw;
-    background-color:#FFB703;
-    position:fixed;
-    top:0px;
-    left:0px;
+/* Styles for the navigation bar */
+.navigation-bar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .nav-header {
+    display: flex;
     align-items: center;
-    display:flex;
-}
-
-.logo{
-    height:125px;
-    width:170px;
-    background-image: url("./HH_logo.png");
-    background-size: cover;
-    margin-left:20px;
-    display:inline-flex;
-}
-
-@font-face {
-    font-family: 'CustomFont'; /* The name you'll use in CSS */
-    src: url('./CarterOne-Regular.ttf') format('truetype'); /* Path to the font file */
-}
-
-.title{
-    display:inline-flex;
-    font-size: 45px;
-    font-family:'CustomFont', sans-serif;
-    color:#926902;
-    margin-left:25px;
-}
-
-.profile{
-    display:inline-flex;
-    height:50px;
-    width:50px;
-    border-radius: 50%;
-    background-color: white;
-    margin-left:500px;
-    background-image: url("./profile.png");
-    background-size: cover;
-}
+    background-color: #ffc107; 
+  }
+  
+  .nav-logo {
+    height: 70px; /* Adjust as needed */
+    width: auto;
+    margin-right: 10px;
+  }
+  
+  .nav-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+    color: #000; /* Black for text */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Subtle shadow */
+  }
+  
+  .nav-buttons {
+    display: flex;
+    justify-content: space-around;
+    background-color: #22476D;
+    position: static;
+  }
+  
+  .nav-button {
+    
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: 700;
+    padding: 7px 13px;
+    text-decoration: none;
+    transition: background-color .3s ease, color .3s ease;
+ }
+  
+  .nav-button:hover {
+    /* background-color: #000; */
+    color: #ffc107;
+  }
+  

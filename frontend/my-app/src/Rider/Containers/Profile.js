@@ -1,25 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import riderProfile from '../Assets/Rider_img.png'; 
 import '../Styles/Profile.css'; // Add your CSS file for styling
+import Session from '../../Session';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
 
-  // Initial user data
-  const [userData, setUserData] = useState({
-    name: 'John Doe',
-    contact: '123-456-7890',
-    email: 'johndoe@example.com',
-    password: 'password123',
-    location: '123 Main Street, Lahore',
-  });
+  // State for user data
+  const [userData, setUserData] = useState(null); // Start with null to indicate loading
+  const [isLoading, setIsLoading] = useState(true); // Loading state for API call
+  const [error, setError] = useState(null); // Error state for API call
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Temporary data for editing
-  const [tempData, setTempData] = useState({ ...userData });
+  const [tempData, setTempData] = useState({});
+
+  // Fetch rider information
+  useEffect(() => {
+    const fetchRiderInfo = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/rider/get-rider-info/${Session.user_id}`); // Adjust the endpoint as needed
+        if (!response.ok) {
+          throw new Error('Failed to fetch rider information');
+        }
+
+        const data = await response.json(); // Get the response as JSON
+        
+        if (data.success && data.data.length > 0) {
+          // Extract the first item from the data array
+          const riderInfo = data.data[0];
+          
+          setUserData(riderInfo); // Set the fetched rider data
+          setTempData(riderInfo); // Set the temporary data for the modal
+        } else {
+          throw new Error('No rider data found');
+        }
+
+        setIsLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setIsLoading(false);
+      }
+    };
+
+    fetchRiderInfo();
+  }, []);
 
   // Handle input change in the modal
   const handleInputChange = (e) => {
@@ -33,21 +61,30 @@ const ProfilePage = () => {
     setIsModalOpen(false); // Close the modal after updating
   };
 
+  // Loading and error handling
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div className="profile-page">
       <h1>Profile</h1>
 
       {/* Display User Info */}
       <div className="user-info">
-        <div className='user-img'>
-            <img src={riderProfile} alt="Rider Profile" className="profile-image" />
+        <div className="user-img">
+          <img src={riderProfile} alt="Rider Profile" className="profile-image" />
         </div>
-        <div className='data'>
-            <p><strong>Name:</strong> {userData.name}</p>
-            <p><strong>Contact No:</strong> {userData.contact}</p>
-            <p><strong>Email:</strong> {userData.email}</p>
-            <p><strong>Password:</strong> {userData.password}</p>
-            <p><strong>Location:</strong> {userData.location}</p>
+        <div className="data">
+          <p><strong>Name:</strong> {userData.name}</p>
+          <p><strong>Contact No:</strong> {userData.phone}</p>
+          <p><strong>Email:</strong> {userData.email}</p>
+          <p><strong>Password:</strong> {userData.pwd}</p>
+          <p><strong>Location:</strong> {userData.location}</p>
         </div>
       </div>
 
@@ -56,7 +93,7 @@ const ProfilePage = () => {
         <button className="edit-button" onClick={() => setIsModalOpen(true)}>
           Edit Personal Info
         </button>
-        <button className="reports-button" onClick={() => navigate('/Reports')}>
+        <button className="reports-button" onClick={() => navigate(`/Reports/${Session.user_id}`)}>
           Check Reports
         </button>
       </div>
@@ -79,8 +116,8 @@ const ProfilePage = () => {
               Contact No:
               <input
                 type="text"
-                name="contact"
-                value={tempData.contact}
+                name="phone"
+                value={tempData.phone}
                 onChange={handleInputChange}
               />
             </label>
@@ -97,8 +134,8 @@ const ProfilePage = () => {
               Password:
               <input
                 type="text"
-                name="password"
-                value={tempData.password}
+                name="pwd"
+                value={tempData.pwd}
                 onChange={handleInputChange}
               />
             </label>

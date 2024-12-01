@@ -1,25 +1,28 @@
 import React from 'react';
 import Card from './Card/Card.js';
 
-const CardList = ({ id, drivers }) => {
+const CardList = ({ Rider_id, drivers }) => {
 
-    const selectedDriver = drivers.find(driver => driver.id === id);
+    const selectedDriver = drivers.find(driver => driver.Rider_id === Rider_id);
 
     if (!selectedDriver) {
         return <p style={{ padding: '2.7rem', marginTop: '2rem' }}>No Driver found</p>;
     }
 
-    const { name, email, number, rating, location, orders } = selectedDriver;
+    const { name, email, phone, total_stars, total_ratings, location, image,  onDelete } = selectedDriver;
 
     return (
         <div>
             <Card
+                Rider_id={Rider_id}
                 name={name}
                 email={email}
-                number={number}
+                phone={phone}
                 location={location}
-                orders={orders}
-                rating={rating}
+                total_stars={total_stars}
+                total_ratings={total_ratings}
+                image={image}
+                onDelete={onDelete}
             />
         </div>
     );

@@ -5,6 +5,9 @@
     font-family: Arial, sans-serif;
   }
   
+  .active-order-amount{
+    margin-left: auto;
+  }
   /* Sidebar styling */
   .sidebar {
     align-items: center;

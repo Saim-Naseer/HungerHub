@@ -1,23 +1,28 @@
 import React from "react"
 import "./NavbarTop.css"
-import "./HH_logo.png"
+import logo from "./HH_logo.png"
 import { Link } from 'react-router-dom';
 
 
-const NavbarTop=()=>{
-    return(
-        <div className="Navbar">
-             <div className="logo"></div>
-            <p className="title">Hunger Hub</p>
-            <div className="profile"></div>
-            <div className="nav-buttons">
-                <Link to="/" className="nav-button">Orders</Link>
-                <Link to="/EditMenu" className="nav-button">Edit Menu</Link>
-                <Link to="/VoucherGenerator" className="nav-button">Generate Vouchers</Link>
-                <Link to="/Reports" className="nav-button">Reports</Link>
-            </div>
+const NavbarTop = () => {
+    return (
+      <div className="navigation-bar">
+        {/* Top section with logo and title */}
+        <div className="nav-header">
+          <img src={logo} alt="Hunger Hub Logo" className="nav-logo" />
+          <h1 className="nav-title">Hunger Hub</h1>
         </div>
-    )
-}
+  
+        {/* Bottom section with buttons */}
+        <div className="nav-buttons">
+          <Link to="/" className="nav-button">Orders</Link>
+          <Link to="/EditMenu" className="nav-button">Edit Menu</Link>
+          <Link to="/VoucherGenerator" className="nav-button">Generate Voucher</Link>
+          <Link to="/Reports" className="nav-button">Reports</Link>
+        </div>
+      </div>
+    );
+  };
+  
 
 export default NavbarTop;
