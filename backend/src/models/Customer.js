@@ -27,6 +27,9 @@ const Customer = Mongoose.Schema({
     phone:{
         type:Number
     },
+    image:{
+        type:String
+    },
     exact_address:{
         type:String
     }
