@@ -71,11 +71,14 @@ tbody td:first-child {
     color: black;
 }
 .enter{
-    margin-top:13px;
+    margin-top:7px;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+    text-align:center;
     background-color: rgb(6, 48, 90); /* Red background */
     place-items: center;
+    max-height: fit-content;
     width:100px;
-    height:27px;
     color: white; /* White text */
     border: none; /* No border */
     border-radius: 5px; /* Rounded corners */

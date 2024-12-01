@@ -54,6 +54,8 @@
     margin: 2px 0; /* Reduced spacing between lines */
     line-height: 1.2; /* Tighter line height */
     padding-bottom: 0.5rem;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .card:hover {

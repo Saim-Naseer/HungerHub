@@ -24,9 +24,21 @@ const Rider = Mongoose.Schema({
         type:String,
         required:true
     },
+    total_stars:{
+        type:Number,
+        default:0
+    },
+    total_ratings:{
+        type:Number,
+        default:0
+    },
+    image:{
+        type:String
+    },
     phone:{
         type:Number
     }
+
 });
 
 module.exports = Mongoose.model("Rider",Rider);
