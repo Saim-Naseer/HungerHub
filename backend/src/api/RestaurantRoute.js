@@ -1,31 +1,31 @@
-const router = require('express').Router();
-const RestaurantController = require('../controllers/RestaurantController');
+const express = require("express");
+const router = express.Router();
+const RestaurantController = require("../controllers/RestaurantController");
 
 module.exports = () => {
-    //get menu
-    router.get('/menu/:restaurantId', RestaurantController.GetMenu);
+    // Get menu
+    router.get('/menu', RestaurantController.GetMenu);
 
-    //add item to menu
-    router.post('/menu/:restaurantId', RestaurantController.AddMenuItem);
+    // Add item to menu
+    router.post('/menu', RestaurantController.AddMenuItem);
 
-    //delete item from menu
-    router.delete('/menu/:restaurantId/:itemId', RestaurantController.DeleteMenuItem);
+    // Delete item from menu
+    router.delete('/menu', RestaurantController.DeleteMenuItem);
 
-    //edit item from menu
-    router.put('/menu/:restaurantId/:itemId', RestaurantController.EditMenuItem);
+    // Edit item in menu
+    router.put('/menu', RestaurantController.EditMenuItem);
 
-    //get active order
-    router.get('/active-orders/:restaurantId', RestaurantController.GetActiveOrders);
+    // Get active orders
+    router.get('/active-orders', RestaurantController.GetActiveOrders);
 
-    //order done
-    router.put('/orders/:orderId/ready', RestaurantController.SetOrderReady);
+    // Mark order as ready
+    router.put('/orders/ready', RestaurantController.SetOrderReady);
 
-    //generate voucher
+    // Generate discount voucher
     router.post('/createDiscount', RestaurantController.createDiscountVoucher);
-    //get reports
-    router.get('/reports/:restaurantId', RestaurantController.getRestaurantReports);
 
-   //router.post("/create",RestaurantController.Create);
+    // Get reports
+    router.get('/reports', RestaurantController.getRestaurantReports);
 
     return router;
 };

@@ -1,170 +1,146 @@
-const RestaurantService = require('../services/RestaurantMenuService');
-const ErrorManager = require('../../errors/error-manager');
+const RestaurantService = require("../services/RestaurantMenuService");
+const CounterService = require("../services/CounterService");
+const ErrorManager = require("../../errors/error-manager");
 
 module.exports = {
-
-    // Create: async (req,res) => {
-
-    //     try{
-
-    //         const item = new cartmodel({
-    //             Customer_id:1,
-    //             Restaurant_id:1,
-    //             Message: "The food was delicious but took a bit longer than expected.",
-    //             Reply: "We apologize for the delay. We're working on improving our delivery times."
-  
-    //         })
-    
-    //         await item.save()
-
-    //         res.send("done")
-
-    //     }catch(e){
-
-    //         res.send("not done")
-    //     }
-    // },
-
-    // Existing function to get menu items
     GetMenu: async (req, res) => {
         try {
-            const restaurantId = req.params.restaurantId;
+            const restaurantId = req.query.rid; // Fix destructuring
+            if (!restaurantId) return ErrorManager.getError(res, "RESTAURANT_ID_REQUIRED");
+    
             const menuItems = await RestaurantService.getMenuItems(restaurantId);
-            if (!menuItems) {
-                return ErrorManager.getError(res, 'MENU_NOT_FOUND');
+            if (!menuItems || menuItems.length === 0) {
+                return ErrorManager.getError(res, "MENU_NOT_FOUND");
             }
-            res.status(200).json(menuItems);
+    
+            res.status(200).json({ menuItems });
         } catch (error) {
-            return ErrorManager.getError(res, 'INTERNAL_SERVER_ERROR');
+            return ErrorManager.getError(res, "INTERNAL_SERVER_ERROR", error.message);
         }
     },
+    
 
     AddMenuItem: async (req, res) => {
         try {
-            const restaurantId = req.params.restaurantId;
-            const { Item_id, name, price, popular } = req.body;
-
-            // Validate input
-            if (!Item_id || !name || !price) {
-                return ErrorManager.getError(res, 'INVALID_INPUT');
+            const restaurantId = req.query.rid;
+            const name = req.query.name;
+            const price = parseFloat(req.query.price); // Explicit parsing
+            const popular = req.query.popular === "true"; // Ensure boolean conversion
+    
+            if (!restaurantId || !name || isNaN(price)) {
+                return ErrorManager.getError(res, "INVALID_INPUT");
             }
-
-            // Call the service to add the new menu item
-            const newItem = await RestaurantService.addMenuItem(restaurantId, Item_id, name, price, popular);
-
-            // Return success response
-            res.status(201).json({ message: 'Item added successfully', newItem });
+    
+            const itemId = await CounterService.Get("Menu"); // Get or generate `itemId`
+            const newItem = await RestaurantService.addMenuItem(restaurantId, itemId, name, price, popular);
+            await CounterService.Inc("Menu"); 
+            res.status(201).json({ message: "Item added successfully", newItem });
         } catch (error) {
-            return ErrorManager.getError(res, 'INTERNAL_SERVER_ERROR');
+            return ErrorManager.getError(res, "INTERNAL_SERVER_ERROR", error.message);
         }
     },
+    
 
-    // New function to delete item from the menu
     DeleteMenuItem: async (req, res) => {
         try {
-            const { restaurantId, itemId } = req.params;
-            const deletedItem = await RestaurantService.deleteMenuItem(restaurantId, itemId);
-
-            if (!deletedItem) {
-                return ErrorManager.getError(res, 'ITEM_NOT_FOUND');
+            const restaurantId = req.query.rid;
+            const itemId = req.query.iid;
+    
+            if (!restaurantId || !itemId) {
+                return ErrorManager.getError(res, "INVALID_INPUT");
             }
-
-            res.status(200).json({ message: 'Item deleted successfully', deletedItem });
+    
+            const deletedItem = await RestaurantService.deleteMenuItem(restaurantId, itemId);
+            if (!deletedItem) return ErrorManager.getError(res, "ITEM_NOT_FOUND");
+    
+            res.status(200).json({ message: "Item deleted successfully", deletedItem });
         } catch (error) {
-            return ErrorManager.getError(res, 'INTERNAL_SERVER_ERROR'); 
+            return ErrorManager.getError(res, "INTERNAL_SERVER_ERROR", error.message);
         }
     },
+    
+
     EditMenuItem: async (req, res) => {
         try {
-            const { restaurantId, itemId } = req.params;
-            const updateData = req.body; // Data to update (e.g., name, price, popular)
+            const restaurantId = req.query.rid;
+            const itemId = req.query.iid;
+            const updateData = req.query.updateData ? JSON.parse(req.query.updateData) : {}; // Parse safely
+    
+            if (!restaurantId || !itemId || Object.keys(updateData).length === 0) {
+                return ErrorManager.getError(res, "INVALID_INPUT");
+            }
     
             const updatedItem = await RestaurantService.editMenuItem(restaurantId, itemId, updateData);
+            if (!updatedItem) return ErrorManager.getError(res, "ITEM_NOT_FOUND");
     
-            if (!updatedItem) {
-                return ErrorManager.getError(res, 'ITEM_NOT_FOUND');
-            }
-    
-            res.status(200).json({ message: 'Item updated successfully', updatedItem });
+            res.status(200).json({ message: "Item updated successfully", updatedItem });
         } catch (error) {
-            return ErrorManager.getError(res, 'INTERNAL_SERVER_ERROR');
+            return ErrorManager.getError(res, "INTERNAL_SERVER_ERROR", error.message);
         }
     },
+    
+    
+
     GetActiveOrders: async (req, res) => {
         try {
-            const restaurantId = req.params.restaurantId;
+            const restaurantId  = req.query.rid;
+            if (!restaurantId) return ErrorManager.getError(res, "RESTAURANT_ID_REQUIRED");
+
             const activeOrders = await RestaurantService.getActiveOrders(restaurantId);
-
-            if (!activeOrders || activeOrders.length === 0) {
-                return ErrorManager.getError(res, 'NO_ACTIVE_ORDERS');
-            }
-
             res.status(200).json({ activeOrders });
         } catch (error) {
-            return ErrorManager.getError(res, 'INTERNAL_SERVER_ERROR', error.message);
+            return ErrorManager.getError(res, "INTERNAL_SERVER_ERROR", error.message);
         }
     },
 
     SetOrderReady: async (req, res) => {
         try {
-            const { orderId } = req.params; // Get order ID from route params
-    
-            // Call service to update the order
+            const orderId  = req.query.oid;
+            if (!orderId) return ErrorManager.getError(res, "ORDER_ID_REQUIRED");
+
             const updatedOrder = await RestaurantService.setOrderReady(orderId);
-    
-            if (!updatedOrder) {
-                return res.status(404).json({ error: 'Order not found or already updated' });
-            }
-    
-            res.status(200).json({
-                message: 'Order marked as ready successfully',
-                order: updatedOrder
-            });
+            if (!updatedOrder) return ErrorManager.getError(res, "ORDER_NOT_FOUND");
+
+            res.status(200).json({ message: "Order marked as ready", updatedOrder });
         } catch (error) {
-            return ErrorManager.getError(res, 'INTERNAL_SERVER_ERROR');
+            return ErrorManager.getError(res, "INTERNAL_SERVER_ERROR", error.message);
         }
     },
 
     createDiscountVoucher: async (req, res) => {
         try {
-          const discountData = req.body;
+            const restaurantId = req.query.rid;
+            const name = req.query.name || "Default Voucher";
+            const cap = req.query.cap ? parseFloat(req.query.cap) : null;
+            const percentage = req.query.percentage ? parseFloat(req.query.percentage) : null;
     
-          // Call the service to create the discount voucher
-          const newDiscount = await RestaurantService.createDiscountVoucher(discountData);
+            if (!restaurantId || isNaN(percentage)) return ErrorManager.getError(res, "INVALID_INPUT");
     
-          // Respond with success
-          return res.status(201).json({
-            message: 'Discount voucher created successfully',
-            discount: newDiscount,
-          });
+            const discountId = await CounterService.Get("Discounts");
+            const newDiscount = await RestaurantService.createDiscountVoucher({
+                Discount_id: discountId,
+                Restaurant_id: restaurantId,
+                name,
+                cap,
+                percentage,
+            });
+            await CounterService.Inc("Discounts");
+            res.status(201).json({ message: "Discount voucher created successfully", newDiscount });
         } catch (error) {
-          console.error('Error creating discount voucher:', error.message);
-          return ErrorManager.getError(res, 'INTERNAL_SERVER_ERROR', error.message);
+            return ErrorManager.getError(res, "INTERNAL_SERVER_ERROR", error.message);
         }
-      },
+    },
+    
 
     getRestaurantReports: async (req, res) => {
         try {
-          const { restaurantId } = req.params;
-    
-          if (!restaurantId) {
-            return ErrorManager.getError(res, 'BAD_REQUEST', 'Restaurant ID is required');
-          }
-    
-          // Fetch restaurant reports from the service
-          const reports = await RestaurantService.getRestaurantReports(restaurantId);
-    
-          return res.status(200).json({
-            message: 'Reports fetched successfully',
-            reports,
-          });
+            const restaurantId = req.query.rid;
+            if (!restaurantId) return ErrorManager.getError(res, "RESTAURANT_ID_REQUIRED");
+
+            const reports = await RestaurantService.getRestaurantReports(restaurantId);
+            res.status(200).json({ message: "Reports fetched successfully", reports });
         } catch (error) {
-          console.error('Error in getRestaurantReports:', error.message);
-          return ErrorManager.getError(res, 'INTERNAL_SERVER_ERROR', error.message);
+            return ErrorManager.getError(res, "INTERNAL_SERVER_ERROR", error.message);
         }
-      },
-    
-    
-    
+    },
 };
- 

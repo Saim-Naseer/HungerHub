@@ -4,7 +4,7 @@ const RiderModel = require('../models/Rider');
 const OrderModel = require('../models/Order');
 const CartModel = require('../models/Cart');
 const Discounts  = require('../models/Discounts');
-const RestaurantReport = require('../models/RestaurantReport')
+const RestaurantReport = require('../models/RestaurantReport');
 
 module.exports = {
     // Function to get all menu items for a restaurant
