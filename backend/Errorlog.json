@@ -49,5 +49,101 @@
     "time": 1732953587833,
     "message": "Cannot read properties of undefined (reading 'User')",
     "stack": "TypeError: Cannot read properties of undefined (reading 'User')\n    at GetActiveOrders (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\controllers\\RiderController.js:13:38)\n    at Layer.handle [as handle_request] (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:175:3)\n    at router (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:47:12)"
+  },
+  {
+    "id": 7,
+    "time": 1732967788312,
+    "message": "reuire is not defined",
+    "stack": "ReferenceError: reuire is not defined\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\models\\RiderReport.js:1:18)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\services\\RiderServices.js:7:21)"
+  },
+  {
+    "id": 8,
+    "time": 1732971369847,
+    "message": "reuire is not defined",
+    "stack": "ReferenceError: reuire is not defined\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\models\\RiderReport.js:1:18)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\services\\RiderServices.js:7:21)"
+  },
+  {
+    "id": 9,
+    "time": 1732972009811,
+    "message": "reuire is not defined",
+    "stack": "ReferenceError: reuire is not defined\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\models\\RiderReport.js:1:18)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\services\\RiderServices.js:7:21)"
+  },
+  {
+    "id": 10,
+    "time": 1732972041869,
+    "message": "reuire is not defined",
+    "stack": "ReferenceError: reuire is not defined\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\models\\RiderReport.js:1:18)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\services\\RiderServices.js:7:21)"
+  },
+  {
+    "id": 11,
+    "time": 1732972057648,
+    "message": "reuire is not defined",
+    "stack": "ReferenceError: reuire is not defined\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\models\\RiderReport.js:1:18)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\services\\RiderServices.js:7:21)"
+  },
+  {
+    "id": 12,
+    "time": 1732972141202,
+    "message": "reuire is not defined",
+    "stack": "ReferenceError: reuire is not defined\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\models\\RiderReport.js:1:18)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\services\\RiderServices.js:7:21)"
+  },
+  {
+    "id": 13,
+    "time": 1732972748965,
+    "message": "reuire is not defined",
+    "stack": "ReferenceError: reuire is not defined\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\models\\RiderReport.js:1:18)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\services\\RiderServices.js:7:21)"
+  },
+  {
+    "id": 14,
+    "time": 1732981636189,
+    "message": "OrderController is not defined",
+    "stack": "ReferenceError: OrderController is not defined\n    at module.exports (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\api\\RiderRoute.js:11:35)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\config\\server.js:47:52)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)"
+  },
+  {
+    "id": 15,
+    "time": 1732987265811,
+    "message": "Invalid schema configuration: `Int32Array` is not a valid type at path `Restaurant_id`. See https://bit.ly/mongoose-schematypes for a list of valid schema types.",
+    "stack": "TypeError: Invalid schema configuration: `Int32Array` is not a valid type at path `Restaurant_id`. See https://bit.ly/mongoose-schematypes for a list of valid schema types.\n    at Schema.interpretAsType (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\schema.js:1477:11)\n    at Schema.path (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\schema.js:1087:27)\n    at Schema.add (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\schema.js:781:14)\n    at new Schema (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\schema.js:142:10)\n    at Mongoose.Schema (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\schema.js:106:12)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\models\\Restaurant.js:4:29)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)"
+  },
+  {
+    "id": 16,
+    "time": 1733032728067,
+    "message": "Missing catch or finally after try",
+    "stack": "D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\services\\RiderServices.js:85\n    }\n    ^\n\nSyntaxError: Missing catch or finally after try\n    at wrapSafe (node:internal/modules/cjs/loader:1469:18)\n    at Module._compile (node:internal/modules/cjs/loader:1491:20)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\controllers\\RiderController.js:2:17)"
+  },
+  {
+    "id": 17,
+    "time": 1733040898769,
+    "message": "reuire is not defined",
+    "stack": "ReferenceError: reuire is not defined\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\models\\RiderReport.js:1:18)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\services\\RiderServices.js:7:21)"
+  },
+  {
+    "id": 18,
+    "time": 1733041057561,
+    "message": "reuire is not defined",
+    "stack": "ReferenceError: reuire is not defined\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\models\\RiderReport.js:1:18)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\services\\RiderServices.js:7:21)"
+  },
+  {
+    "id": 19,
+    "time": 1733041220318,
+    "message": "True is not defined",
+    "stack": "ReferenceError: True is not defined\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\models\\RiderReport.js:6:17)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\services\\RiderServices.js:7:21)"
+  },
+  {
+    "id": 20,
+    "time": 1733041262054,
+    "message": "True is not defined",
+    "stack": "ReferenceError: True is not defined\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\models\\RiderReport.js:6:18)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\services\\RiderServices.js:7:21)"
+  },
+  {
+    "id": 21,
+    "time": 1733041291155,
+    "message": "True is not defined",
+    "stack": "ReferenceError: True is not defined\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\models\\RiderReport.js:6:18)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\services\\RiderServices.js:7:21)"
+  },
+  {
+    "id": 22,
+    "time": 1733041306953,
+    "message": "updateRiderInfo is not defined",
+    "stack": "ReferenceError: updateRiderInfo is not defined\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\services\\RiderServices.js:224:5)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\controllers\\RiderController.js:1:17)"
   }
 ]

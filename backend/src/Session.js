@@ -1,6 +1,6 @@
 const Session = {
     users: {
-        "User": { id: "101", name: "John Doe", email: "john@example.com", location: "New York" },
+        "User": { id: "1", name: "John Doe", email: "john@example.com", location: "Lahore" },
     },
 };
 

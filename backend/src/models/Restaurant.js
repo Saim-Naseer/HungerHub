@@ -24,8 +24,29 @@ const Restaurant = Mongoose.Schema({
         type:String,
         required:true
     },
+    cusine:{
+        type:String,
+        required:true
+    },
+    exact_address:{
+        type:String,
+    },
     description:{
         type:String
+    },
+    total_stars:{
+        type:Number,
+        default:0
+    },
+    total_ratings:{
+        type:Number,
+        default:0
+    },
+    image:{
+        type:String
+    },
+    phone:{
+        type:Number
     }
 });
 

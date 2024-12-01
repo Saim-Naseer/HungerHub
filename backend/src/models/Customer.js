@@ -23,6 +23,12 @@ const Customer = Mongoose.Schema({
     location:{
         type:String,
         required:true
+    },
+    phone:{
+        type:Number
+    },
+    exact_address:{
+        type:String
     }
 });
 
