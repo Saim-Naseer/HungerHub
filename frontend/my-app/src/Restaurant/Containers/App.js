@@ -13,10 +13,9 @@ const App = () => {
     return (
         <Router>
         <div className="app">
-          <NavbarTop/> 
+          
           <div className="main-content">
-            <Body/>
-            <NavbarLeft/>
+            <NavbarTop/> 
             <Routes>
               <Route path="/" element={<Orders />} />
               <Route path="/EditMenu" element={<EditMenu />} />
