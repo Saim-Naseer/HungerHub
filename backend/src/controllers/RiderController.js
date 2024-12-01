@@ -1,5 +1,4 @@
 const service = require("../services/RiderServices")
-const session = require("../Session")
 
 module.exports = {
     GetActiveOrders: async (req, res) => {
