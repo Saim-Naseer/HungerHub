@@ -15,7 +15,9 @@ const GetActiveOrders = async (userId) => {
             Rider_id: userId,
             completed: false
         });
-
+        if(activeOrders){
+            console.log("orders found")
+        }
         if (!activeOrders || activeOrders.length === 0) {
             throw new Error('No active orders found');
         }
@@ -50,13 +52,13 @@ const GetActiveOrders = async (userId) => {
                 // Return the required data
                 return {
                     orderId: order.Order_id,
-                    orderAmount: order.price,
+                    restaurantAddress: restaurant.location || 'Unknown',
                     customerAddress: customer.location || 'Unknown',
-                    restaurantAddress: restaurant.location || 'Unknown'
-                };
+                    orderAmount: order.price,
+                }; 
             })
         );
-
+        console.log(results)
         return results;
     } catch (error) {
         console.error('Error fetching active orders:', error.message);
@@ -99,7 +101,7 @@ const getOrderDetails = async (orderId) => {
         // Step 5: Return the formatted result
         return {
             orderId: order.Order_id,
-            orderTime: order.createdAt || 'Unknown',
+            orderTime: order.date || 'Unknown',
             orderAmount: order.price,
             customer: {
                 name: customer.name,
@@ -212,6 +214,28 @@ const getReports = async (Rider_id) => {
     }
 };
 
+
+const Get_Rider = async (riderId) => {
+    if (!riderId) {
+        throw new Error("Rider ID is required.");
+    }
+
+    try {
+        // Step 1: Find all reports by the given Rider_id
+        const reports = await Rider.find({ Rider_id: riderId });
+        
+        // If no reports are found, you can throw an error or handle it as needed
+        if (reports.length === 0) {
+            throw new Error("No reports found for the given Rider ID.");
+        }
+
+        return reports;
+    } catch (error) {
+        throw new Error(`Error fetching rider reports: ${error.message}`);
+    }
+};
+
+
 const getNewOrders = async (userLocation) => {
     try {
         // Step 1: Fetch orders where Rider_id is -1
@@ -231,9 +255,7 @@ const getNewOrders = async (userLocation) => {
                 const restaurant = await Restaurant.findOne({ Restaurant_id: cart.Restaurant_id });
                 
                 if (restaurant) {
-                    // Compare restaurant's location with user's location
-
-                   
+                    // Compare restaurant's location with user's location                  
                     if (restaurant.location === userLocation) {
                         // If locations match, add this order to the result
                         newOrders.push({
@@ -256,7 +278,7 @@ const getNewOrders = async (userLocation) => {
                 message: 'No new orders found for your location.'
             };
         }
-
+        console.log(newOrders)
         return {
             success: true,
             data: newOrders
@@ -342,7 +364,8 @@ module.exports = {
     getReports,
     getNewOrders,
     GetOrder,
-    completeOrder
+    completeOrder,
+    Get_Rider
 };
 
 

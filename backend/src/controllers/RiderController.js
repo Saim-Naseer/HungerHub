@@ -3,8 +3,9 @@ const session = require("../Session")
 
 module.exports = {
     GetActiveOrders: async (req, res) => {
+        const { riderId } = req.params;
         try{
-            const order = await service.GetActiveOrders(1)
+            const order = await service.GetActiveOrders(riderId)
             await res.send(order)
         }
         catch(e){
@@ -13,8 +14,9 @@ module.exports = {
     },
 
     GetOrderDetails: async (req, res) => {
+        const { orderId } = req.params;
         try{
-            const order = await service.getOrderDetails(1)
+            const order = await service.getOrderDetails(orderId)
             await res.send(order)
         }
         catch(e){
@@ -22,10 +24,13 @@ module.exports = {
         }
     },
 
+
     getOrdersHistory: async (req, res) => {
+        const { riderId } = req.params;
+       
         try {
-          const userId = session.users["User"].id
-          const ordersHistory = await service.getOrdersHistory(userId); // Call service method
+          
+          const ordersHistory = await service.getOrdersHistory(riderId); // Call service method
           return res.status(200).json({
             success: true,
             data: ordersHistory
@@ -62,8 +67,10 @@ module.exports = {
 
     getRiderReports: async (req, res) => {  
         try {
+            const { riderId } = req.params; 
+            console.log(riderId)
             // Call the service to get reports for the given Rider_id
-            const result = await service.getReports(session.users["User"].id);
+            const result = await service.getReports(riderId);
     
             // Return the result based on success or failure
             if (result.success) {
@@ -88,9 +95,10 @@ module.exports = {
     },
 
     getNewOrders: async (req, res) => {
+        const { riderLocation } = req.params; 
         try {
             // Call the service to get new orders for the given user location
-            const result = await service.getNewOrders(session.users["User"].location);
+            const result = await service.getNewOrders(riderLocation);
           
             // Return the result based on success or failure
             if (result.success) {
@@ -117,12 +125,12 @@ module.exports = {
 
 
     setRider: async (req, res) => {
-        const { orderId } = req.params; // Extract orderId and userId from the URL parameters
+        const { orderId, riderId } = req.params; // Extract orderId and userId from the URL parameters
         
     
         try {
             // Call the service to set the Rider_id for the given Order_id
-            const result = await service.GetOrder(orderId, session.users["User"].id);
+            const result = await service.GetOrder(orderId, riderId);
     
             if (result.success) {
                 return res.status(200).json({
@@ -168,7 +176,46 @@ module.exports = {
                 message: error.message || 'Server error. Please try again later.'
             });
         }
+    },
+
+    getRiderInfo: async (req, res) => {
+        try {
+            const riderId = req.params.riderId; // Extract riderId from request params
+            
+            if (!riderId) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Rider ID is required."
+                });
+            }
+    
+            // Call the service function to get reports for the rider
+            const reports = await service.Get_Rider(riderId);
+    
+            if (reports.length === 0) {
+                return res.status(404).json({
+                    success: false,
+                    message: "No reports found for the given Rider ID."
+                });
+            }
+    
+            // Return the reports if found
+            res.status(200).json({
+                success: true,
+                message: "Reports fetched successfully.",
+                data: reports
+            });
+    
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({
+                success: false,
+                message: `Error fetching rider reports: ${error.message}`
+            });
+        }
     }
+
+    
 }
 
 
