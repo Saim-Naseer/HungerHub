@@ -52,7 +52,7 @@ tbody td:first-child {
 }
 .message{
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: -2px;
 }
 .reports-input{
     display: flex;

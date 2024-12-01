@@ -1,13 +1,13 @@
-const Mongoose = reuire('mongoose')
+const Mongoose = require('mongoose')
 
 const RiderReport = Mongoose.Schema({
     Customer_id:{
         type:Number,
-        Reuired:True
+        Required:true
     },
     Rider_id:{
         type:Number,
-        Required:True
+        Required:true
     },
     Message:{
         type:String

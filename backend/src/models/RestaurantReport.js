@@ -1,13 +1,13 @@
-const Mongoose = reuire('mongoose')
+const Mongoose = require('mongoose')
 
 const RestaurantReport = Mongoose.Schema({
     Customer_id:{
         type:Number,
-        Reuired:True
+        Required:true
     },
     Restaurant_id:{
         type:Number,
-        Required:True
+        Required:true
     },
     Message:{
         type:String
@@ -18,4 +18,4 @@ const RestaurantReport = Mongoose.Schema({
 })
 
 
-module.exports = Mongoose.model("RiderReport",RestaurantReport)
+module.exports = Mongoose.model("RestaurantReport",RestaurantReport)
