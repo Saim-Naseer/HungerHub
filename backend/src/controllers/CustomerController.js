@@ -183,6 +183,13 @@ module.exports = {
             console.error("Error in FindUser:", e);
             res.status(500).send("Internal Server Error");
         }
+    },
+    Signup: async(req,res) =>{
+        try{
+
+        }catch(e){
+            
+        }
     }
     
       

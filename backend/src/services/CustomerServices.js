@@ -20,35 +20,30 @@ module.exports = {
     FindUser: async (email, pwd) => {
       let val;
   
-      // Check in Admins collection
       val = await Admin.findOne({ email, pwd });
       if (val) {
           console.log("admin", val);
           return val;
       }
   
-      // Check in Customers collection
       val = await Customers.findOne({ email, pwd });
       if (val) {
           console.log("customer", val);
           return val;
       }
   
-      // Check in Restaurants collection
       val = await Restaurants.findOne({ email, pwd });
       if (val) {
           console.log("restaurant", val);
           return val;
       }
   
-      // Check in Riders collection
       val = await Riders.findOne({ email, pwd });
       if (val) {
           console.log("rider", val);
           return val;
       }
   
-      // Return null if no user is found
       return null;
     },  
     GetPopularItems: async(Restaurant_id) =>{

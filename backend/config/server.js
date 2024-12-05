@@ -1,4 +1,5 @@
 const express = require("express");
+const fileUpload = require("express-fileupload")
 const bodyParser = require("body-parser");
 var cors = require("cors");
 const Logger = require("../src/utils/Logger");
@@ -36,6 +37,7 @@ app.use((err, req, res, next) => {
   }
 });
 
+app.use(fileUpload())
 
 const AuthRoute = require("../src/api/AuthRoute")();
 app.use("/auth/", AuthRoute);
