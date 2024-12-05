@@ -51,6 +51,9 @@ const Restaurant = Mongoose.Schema({
     type:{
         type:String,
         default:"restaurant"
+    },
+    forget_pwd:{
+        type:String
     }
     
 });

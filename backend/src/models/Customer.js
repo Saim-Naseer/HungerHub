@@ -36,6 +36,9 @@ const Customer = Mongoose.Schema({
     type:{
         type:String,
         default:"customer"
+    },
+    forget_pwd:{
+        type:String
     }
     
 });

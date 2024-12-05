@@ -41,6 +41,9 @@ const Rider = Mongoose.Schema({
     type:{
         type:String,
         default:"rider"
+    },
+    forget_pwd:{
+        type:String
     }
 
 });
