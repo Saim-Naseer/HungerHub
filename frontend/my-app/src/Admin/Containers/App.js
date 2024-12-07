@@ -12,6 +12,7 @@ import Main_Report from '../Pages/Reports/Main_Report/main_report.js';
 import Main_Resturant_Report from '../Pages/Reports/Resturants_Report/Main/main_resturants_report.js';
 import Main_Rider_Report from '../Pages/Reports/Riders_Report/Main/main_riders_report.js';
 import Main_Home from '../Pages/Home/Main/main_home.js'
+import Sign_In from "../../Signin/Signin.js"
 import './App.css'
 
 class App extends React.Component{
@@ -21,6 +22,7 @@ class App extends React.Component{
             <Router>
               <Routes>
                 <Route path="/" element={<Main_Home />} />
+                <Route path="/sign-in" element={<Sign_In />} />
                 <Route path="/background" element={<Background />} />
                 <Route path="/resturants" element={<Main_Resturant />} />
                 <Route path="/customers" element={<Main_Customer />} />

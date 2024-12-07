@@ -22,6 +22,9 @@ const Admin = Mongoose.Schema({
     type:{
         type:String,
         default:"admin"
+    },
+    forget_pwd:{
+        type:String
     }
 })
 
