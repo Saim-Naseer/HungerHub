@@ -1,3 +1,14 @@
+.signup_body{
+    position:fixed;
+    top:0px;
+    left:0px;
+    z-index: -5;
+    height:100vh;
+    width:100vw;
+    background-color: black;
+}
+
+
 .signup_background{
     height:100vh;
     width:100vw;
@@ -5,9 +16,10 @@
     background-size:cover;
     justify-content:center;
     align-items: center;
-    position: fixed;
-    top:0px;
+    position: relative;
+    bottom:0px;
     left: 0px;
+    display:inline-block
 }
 
 
@@ -15,11 +27,12 @@
     height:800px;
     width:1200px;
     background-color: #22476D;
-    position:fixed;
+    position:relative;
     top:30px;
     left:160px;
     opacity: 1;
     border-radius: 50px;
+    display:inline-block;
 }
 
 .signup_boxes{
@@ -38,6 +51,7 @@
     position: relative;
     left:560px;
     bottom:70px;
+    display:inline-block
 }
 
 
@@ -368,6 +382,7 @@
     position:relative;
     bottom:160px;
     left:480px;
+    display: inline-block;
 }
 
 .signup_signin{

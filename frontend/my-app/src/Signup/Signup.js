@@ -209,6 +209,7 @@ class Signup extends React.Component{
            
             content1 = (
                 <>
+                    <div className="signup_body"></div>
                     <div className="signup_background">
                         <div className="signup_box">
                             <p className="signup_title">Sign Up</p>
