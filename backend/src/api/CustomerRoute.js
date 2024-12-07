@@ -15,6 +15,7 @@ module.exports = () => {
     router.get("/waitingorder",CustomerController.GetWaitingOrders) 
     router.get("/discounts",CustomerController.ViewDiscounts)
     router.post("/applydiscount",CustomerController.ApplyDiscount)
+    router.post("/signup",CustomerController.Signup)
     return router
 }
 

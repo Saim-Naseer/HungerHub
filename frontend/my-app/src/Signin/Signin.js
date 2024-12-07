@@ -40,20 +40,22 @@ class Signin extends React.Component {
         Session.name=data2.name
         Session.email=data2.email
         Session.location=data2.location
+        Session.address=data2.exact_address
+        Session.phone=data2.phone
 
-        if(this.state.type==="customer")
+        if(data2.type==="customer")
         {
             Session.user_id=data2.Customer_id
         }
-        else if(this.state.type==="admin")
+        else if(data2.type==="admin")
         {
             Session.user_id=data2.Admin_id
         }
-        else if(this.state.type==="rider")
+        else if(data2.type==="rider")
         {
             Session.user_id=data2.Rider_id
         }
-        else if(this.state.type==="restaurant")
+        else if(data2.type==="restaurant")
         {
             Session.user_id=data2.Restaurant_id
         }

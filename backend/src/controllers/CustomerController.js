@@ -5,6 +5,7 @@ const MenuModel = require('../models/Menu')
 const service = require("../services/CustomerServices")
 const CounterServices = require("../services/CounterService")
 const DiscountModel  = require("../models/Discounts")
+const path = require("path");
 
 module.exports = {
     Create: async (req,res) => {
@@ -187,8 +188,77 @@ module.exports = {
     Signup: async(req,res) =>{
         try{
 
-        }catch(e){
+            let msg
+
+            console.log(req.body)
+            const name = req.body.name
+            const email = req.body.email
+            const phone = req.body.phone
+            const role = req.body.role
+
+            const location = req.body.region
+            const address = req.body.address
+
+            const pwd = req.body.pwd
+            const forget = req.body.forget
+
+            if(role==="Customer")
+            {
+                const msg2 = await service.check_email(role,email)
+
+                if(msg2==="Email already Exists")
+                {
+                    res.status(400).json({message:msg2})
+                }
+                else
+                {
+                    msg = await service.Signup_Customer(name,email,phone,location,address,pwd,forget)
+                    const val = await service.FindUser(email, pwd)
+                    res.status(200).json({message:msg,message2:val.Customer_id})
+                }
+
+            }
+            else if (role === "Restaurant") {
+                const image = req.files?.image; // Safely access req.files.image
+                const cusine = req.body.cusine;
+                const description = req.body.description;
             
+                const msg2 = await service.check_email(role,email)
+
+                if(msg2==="Email already Exists")
+                {
+                    res.status(400).json({message:msg2})
+                }
+                else
+                {   
+                    const image2 = await service.SaveImage(image)
+                    msg = await service.Signup_Restaurant(name, email, phone, location, address, pwd, forget, image2, cusine, description);
+                    const val = await service.FindUser(email, pwd);
+                    res.status(200).json({message:msg,message2:val.Restaurant_id})
+                }
+            }            
+            else if(role==="Rider")
+            {
+                const image = req.files.image
+
+                const msg2 = await service.check_email(role,email)
+
+                if(msg2==="Email already Exists")
+                {
+                    res.status(400).json({message:msg2})
+                }
+                else
+                {   
+                    const image2 = await service.SaveImage(image)
+                    msg = await service.Signup_Rider(name, email, phone, location, address, pwd, forget, image2);
+                    const val = await service.FindUser(email, pwd);
+                    res.status(200).json({message:msg,message2:val.Rider_id})
+                }
+            }
+
+
+        }catch(e){
+            res.status(400).json({message:"not successfull"})
         }
     }
     

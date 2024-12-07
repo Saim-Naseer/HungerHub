@@ -1,6 +1,10 @@
 import React from "react"
 import Signin from "../Signin/Signin"
-import Home from "../Customer/Containers/App"
+import Customer from "../Customer/Containers/App"
+import Rider from "../Rider/Containers/App"
+import Restaurant from "../Restaurant/Containers/App"
+import Session from "../Session"
+
 import "./Signup.css"
 
 class Signup extends React.Component{
@@ -18,10 +22,10 @@ class Signup extends React.Component{
             cpwd:"",
             forget:"",
             page:"signup",
-            res_image:"",
+            res_image:null,
             res_description:"",
             res_cuisine:"",
-            rid_image:"",
+            rid_image:null,
             borderColor:{
                 name:"#F8F8F8",
                 email:"#F8F8F8",
@@ -56,22 +60,81 @@ class Signup extends React.Component{
         borderColor1.cpwd = (this.state.cpwd==="") ? "red" : "#F8F8F8";
         borderColor1.forget = (this.state.forget==="") ? "red" : "#F8F8F8";
 
-        borderColor1.res_image = (this.state.res_image==="") ? "red" : "#F8F8F8";
+        borderColor1.res_image = (this.state.res_image===null) ? "red" : "#F8F8F8";
         borderColor1.res_cuisine = (this.state.res_cuisine==="") ? "red" : "#F8F8F8";
         borderColor1.res_description = (this.state.res_description==="") ? "red" : "#F8F8F8";
 
-        borderColor1.rid_image = (this.state.rid_image==="") ? "red" : "#F8F8F8";
+        borderColor1.rid_image = (this.state.rid_image===null) ? "red" : "#F8F8F8";
 
         this.setState({borderColor:borderColor1})
     }
 
 
     postUser = async() =>{
-        
+        const formData = new FormData();
+        formData.append('name', this.state.name)
+        formData.append('email', this.state.email)
+        formData.append('phone', this.state.phone)
+        formData.append('role', this.state.role)
+        formData.append('region', this.state.region)
+        formData.append('address', this.state.address)
+        formData.append('pwd', this.state.pwd)
+        formData.append('forget', this.state.forget)
+
+        if(this.state.role==="Restaurant")
+        {
+            formData.append('image', this.state.res_image)
+            formData.append('cusine', this.state.res_cuisine)
+            formData.append('description', this.state.res_description)
+        }
+        else if(this.state.role==="Rider")
+        {
+            formData.append('image', this.state.rid_image)
+        }
+
+        try {
+            // Send the file and additional data using fetch
+            const response = await fetch('http://localhost:5000/customer/signup', {
+                method: 'POST',
+                body: formData, // Send FormData
+            });
+    
+            const result = await response.json();
+            console.log('Upload response:', result);
+
+            alert(result.message)
+
+            if(result.message==="succesfull")
+            {
+                if(this.state.role==="Customer")
+                {
+                    this.setState({page:"customer"})
+                }
+                else if(this.state.role==="Rider")
+                {
+                    this.setState({page:"rider"})
+                }
+                else if(this.state.role==="Restaurant")
+                {
+                    this.setState({page:"restaurant"})
+                }
+
+                Session.user_id=result.message2
+                Session.name=this.state.name
+                Session.email=this.state.email
+                Session.location=this.state.region
+                Session.address=this.state.address
+                Session.phone=this.state.phone
+            }
+
+        } catch (error) {
+            console.error('Error uploading data:', error);
+        }
+
     }
 
 
-    checkInputs = () => {
+    checkInputs = async() => {
         if(this.state.name!=="" & this.state.email!=="" & this.state.phone!==-1 & this.state.role!=="-" & this.state.region!=="-" & this.state.address!=="" & this.state.pwd!=="" & this.state.cpwd!=="" & this.state.forget!=="")
         {
         
@@ -79,9 +142,9 @@ class Signup extends React.Component{
             {
                 if(this.state.pwd===this.state.cpwd)
                 {
-                    this.setState({page:"home"})
+                    //this.setState({page:"home"})
     
-                    //api post(user)
+                    await this.postUser()
                 }
                 else{
                     this.setState({match:false})
@@ -89,13 +152,14 @@ class Signup extends React.Component{
             }
             else if(this.state.role==="Restaurant")
             {
-                if(this.state.res_image!=="" & this.state.res_cuisine!=="" & this.state.res_description!=="")
+                if(this.state.res_image!==null & this.state.res_cuisine!=="" & this.state.res_description!=="")
                 {
                     if(this.state.pwd===this.state.cpwd)
                     {
-                        this.setState({page:"home"})
+                        //this.setState({page:"home"})
         
                         //api post(user)
+                        await this.postUser()
                     }
                     else{
                         this.setState({match:false})
@@ -104,13 +168,14 @@ class Signup extends React.Component{
             }
             else if(this.state.role==="Rider")
             {
-                if(this.state.rid_image!=="")
+                if(this.state.rid_image!==null)
                 {
                     if(this.state.pwd===this.state.cpwd)
                     {
-                        this.setState({page:"home"})
+                        //this.setState({page:"home"})
         
                         //api post(user)
+                        await this.postUser()
                     }
                     else{
                         this.setState({match:false})
@@ -350,7 +415,7 @@ class Signup extends React.Component{
                                     <div className="signup_rider">
                                         <p className="signup_title3_rider">Rider Info</p>
                                         <p className="signup_title2">Image</p>
-                                        <input type="file" accept="image/*" placeholder="Image" className="resimg1" style={{borderColor:this.state.borderColor.res_image}} onChange={(event)=>this.setState({res_image:event.target.files[0].name})}/>
+                                        <input type="file" accept="image/*" placeholder="Image" className="resimg1" style={{borderColor:this.state.borderColor.res_image}} onChange={(event)=>this.setState({res_image:event.target.files[0]})}/>
                                     </div>
 
                                 </div>
@@ -394,12 +459,25 @@ class Signup extends React.Component{
                 <Signin />
             )
         }
-        else if(this.state.page==="home")
+        else if(this.state.page==="customer")
         {
             content = (
-                <Home />
+                <Customer />
             )
         }
+        else if(this.state.page==="rider")
+        {
+            content = (
+                <Rider />
+            )
+        }
+        else if(this.state.page==="restaurant")
+        {
+            content = (
+                <Restaurant />
+            )
+        }
+
 
         return(
             <>

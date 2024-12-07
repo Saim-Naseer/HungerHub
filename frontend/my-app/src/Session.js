@@ -1,10 +1,12 @@
 
 
 const Session = {
-    user_id:1,
-    name:"saim",
-    email:"saim@gmail.com",
-    location:"DHA Phases 1-8, Lahore Cantt, Walton",
+    user_id:0,
+    name:"",
+    email:"",
+    location:"",
+    address:"",
+    phone:0
 }
 
 export default Session
