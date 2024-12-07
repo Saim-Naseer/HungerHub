@@ -47,6 +47,13 @@ const Restaurant = Mongoose.Schema({
     },
     phone:{
         type:Number
+    },
+    type:{
+        type:String,
+        default:"restaurant"
+    },
+    forget_pwd:{
+        type:String
     }
     
 });

@@ -1,75 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'; // Import axios for making API calls
 import '../Styles/OrderHistory.css'; // Add your CSS file for styling
+import Session from '../../Session.js'
+import { useParams } from 'react-router-dom';
 
 const OrderHistory = () => {
-  // Sample order data
-  const [orders] = useState([
-    {
-      id: 1,
-      orderNo: '001',
-      from: 'Lahori Restaurant',
-      fromAddress: 'Valencia Town, Lahore',
-      to: 'Customer Address',
-      date: '25/11/2024',
-      amount: 800,
-      timeElapsed: '45 minutes',
-    },
-    {
-      id: 2,
-      orderNo: '002',
-      from: 'Cheezious',
-      fromAddress: 'Johar Town, Lahore',
-      to: 'Customer Address',
-      date: '24/11/2024',
-      amount: 1200,
-      timeElapsed: '30 minutes',
-    },
-    {
-      id: 3,
-      orderNo: '003',
-      from: 'Pizza Hut',
-      fromAddress: 'DHA, Lahore',
-      to: 'Customer Address',
-      date: '15/10/2024',
-      amount: 1500,
-      timeElapsed: '50 minutes',
-    },
-    {
-      id: 4,
-      orderNo: '004',
-      from: 'McDonalds',
-      fromAddress: 'Gulberg, Lahore',
-      to: 'Customer Address',
-      date: '25/11/2023',
-      amount: 700,
-      timeElapsed: '40 minutes',
-    },
-  ]);
-
-
-  // State for filters
+  // State to store orders
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true); // State for loading
+  const [error, setError] = useState(null); // State for error handling
+  
+  // States for filters
   const [filterDay, setFilterDay] = useState('');
   const [filterMonth, setFilterMonth] = useState('');
   const [filterYear, setFilterYear] = useState('');
-  
+  const { id } = useParams();
+  // Fetch orders from the API
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/rider/orders-history/${id}`); // Replace with your API endpoint
+        console.log('API Response:', response.data); // Inspect the response
+        
+        if (response.data.success && Array.isArray(response.data.data)) {
+          setOrders(response.data.data); // Set the orders from the response
+        } else {
+          setError('Unexpected response format. Expected an array of orders.');
+        }
+
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching order history:', err);
+        setError('Failed to load order history. Please try again later.');
+        setLoading(false);
+      }
+    };
+
+    fetchOrders();
+  }, []); // Runs once when the component mounts
+
+  // Function to extract day, month, and year from the ISO date string
+  const extractDateParts = (date) => {
+    const dateObj = new Date(date); // Convert to Date object
+    const day = String(dateObj.getDate()).padStart(2, '0'); // Pad day to 2 digits
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0'); // Pad month to 2 digits
+    const year = String(dateObj.getFullYear()).padStart(2, '0');
+    return { day, month, year };
+
+  };
 
   // Filter orders based on user input
   const filteredOrders = orders.filter((order) => {
-    const [day, month, year] = order.date.split('/'); // Split the date into day, month, and year
-    return (
-      (!filterDay || day === filterDay) &&
-      (!filterMonth || month === filterMonth) &&
-      (!filterYear || year === filterYear)
-    );
+    const { day, month, year } = extractDateParts(order.orderDate); // Extract day, month, and year
+
+    // Compare the filter values (if they are not empty) with the extracted date parts
+    const isDayMatch = !filterDay || day === filterDay;
+    const isMonthMatch = !filterMonth || month === filterMonth;
+    const isYearMatch = !filterYear || year === filterYear;
+
+    return isDayMatch && isMonthMatch && isYearMatch;
   });
 
-
+  // Clear filters
   const clearFilters = () => {
     setFilterDay('');
     setFilterMonth('');
     setFilterYear('');
   };
-
 
   return (
     <div className="order-history">
@@ -78,17 +75,6 @@ const OrderHistory = () => {
       {/* Filter Bar */}
       <div className="filter-bar">
         <div className="date-picker">
-          <label htmlFor="day">Day:</label>
-          <input
-            type="text"
-            id="day"
-            placeholder="DD"
-            value={filterDay}
-            onChange={(e) => setFilterDay(e.target.value)}
-            className="date-picker-input"
-          />
-        </div>
-        <div className="date-picker">
           <label htmlFor="month">Month:</label>
           <input
             type="text"
@@ -96,6 +82,17 @@ const OrderHistory = () => {
             placeholder="MM"
             value={filterMonth}
             onChange={(e) => setFilterMonth(e.target.value)}
+            className="date-picker-input"
+          />
+        </div>
+        <div className="date-picker">
+          <label htmlFor="day">Day:</label>
+          <input
+            type="text"
+            id="day"
+            placeholder="DD"
+            value={filterDay}
+            onChange={(e) => setFilterDay(e.target.value)}
             className="date-picker-input"
           />
         </div>
@@ -114,32 +111,37 @@ const OrderHistory = () => {
       </div>
 
       {/* Orders List */}
-      <div className="orders">
-        {filteredOrders.length > 0 ? (
-          filteredOrders.map((order) => (
-            <div key={order.id} className="order-Card">
-              <div className="order-details">
-                <p><strong>Order No.:</strong> {order.orderNo}</p>
-                <p>
-                  <strong>From:</strong> {order.from}, {order.fromAddress}
-                </p>
-                <p>
-                  <strong>To:</strong> <a href="#">{order.to}</a>
-                </p>
-                <p>
-                  <strong>Date/Time:</strong> {order.date}
-                </p>
-                <p>
-                  <strong>Rs:</strong> {order.amount}/-
-                </p>
-                <p><strong>Completed in:</strong> {order.timeElapsed}</p>
+      {loading ? (
+        <p>Loading order history...</p>
+      ) : error ? (
+        <p className="error-message">{error}</p>
+      ) : (
+        <div className="orders">
+          {filteredOrders.length > 0 ? (
+            filteredOrders.map((order) => (
+              <div key={order.order_id} className="order-Card">
+                <div className="order-details">
+                  <p><strong>Order No.:</strong> {order.order_id}</p>
+                  <p>
+                    <strong>From:</strong> {order.restaurantName}
+                  </p>
+                  <p>
+                    <strong>To:</strong> <a href="#">{order.customerAddress}</a>
+                  </p>
+                  <p>
+                    <strong>Date:</strong> {new Date(order.orderDate).toLocaleDateString()}
+                  </p>
+                  <p>
+                    <strong>Rs:</strong> {order.orderAmount}/-
+                  </p>
+                </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <p className="no-orders-message">No completed orders found for the selected filters.</p>
-        )}
-      </div>
+            ))
+          ) : (
+            <p className="no-orders-message">No completed orders found for the selected filters.</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };

@@ -24,6 +24,9 @@ const Rider = Mongoose.Schema({
         type:String,
         required:true
     },
+    image:{
+        type:String
+    },
     total_stars:{
         type:Number,
         default:0
@@ -31,12 +34,16 @@ const Rider = Mongoose.Schema({
     total_ratings:{
         type:Number,
         default:0
-    },
-    image:{
-        type:String
-    },
+    },
     phone:{
         type:Number
+    },
+    type:{
+        type:String,
+        default:"rider"
+    },
+    forget_pwd:{
+        type:String
     }
 
 });

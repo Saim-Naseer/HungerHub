@@ -1,7 +1,12 @@
 import React from "react";
 import Signup from "../Signup/Signup";
-import Home from "../Customer/Containers/App"
 import "./Signin.css";
+import Session from "../Session"
+
+import Admin from "../Admin/Containers/App"
+import Customer from "../Customer/Containers/App"
+import Rider from "../Rider/Containers/App"
+import Restaurant from "../Restaurant/Containers/App"
 
 class Signin extends React.Component {
     constructor() {
@@ -24,11 +29,40 @@ class Signin extends React.Component {
         borderColor1.pwd = this.state.pwd === "" ? "red" : "#F8F8F8";
 
         this.setState({ borderColor: borderColor1 });
+        
     };
 
-    checkInputs = () => {
+    findUser =async()=>{
+        const data = await fetch(`http://localhost:5000/customer/signin?email=${this.state.email}&pwd=${this.state.pwd}`)
+        const data2 = await data.json()
+        this.setState({page:data2.type})
+
+        Session.name=data2.name
+        Session.email=data2.email
+        Session.location=data2.location
+
+        if(this.state.type==="customer")
+        {
+            Session.user_id=data2.Customer_id
+        }
+        else if(this.state.type==="admin")
+        {
+            Session.user_id=data2.Admin_id
+        }
+        else if(this.state.type==="rider")
+        {
+            Session.user_id=data2.Rider_id
+        }
+        else if(this.state.type==="restaurant")
+        {
+            Session.user_id=data2.Restaurant_id
+        }
+
+    }
+
+    checkInputs = async() => {
         if (this.state.email !== "" && this.state.pwd !== "") {
-            this.setState({ page: "home" });
+            await this.findUser()
         } else {
             this.enterField();
         }
@@ -43,14 +77,14 @@ class Signin extends React.Component {
 
         if (this.state.page === "signin") {
             content = (
-                <div className="background">
-                    <div className="box">
-                        <div className="left">
-                            <div className="logo1"></div>
-                            <p className="title">Hunger Hub</p>
+                <div className="background3">
+                    <div className="box3">
+                        <div className="left3">
+                            <div className="logo13"></div>
+                            <p className="title6">Hunger Hub</p>
                         </div>
-                        <div className="right">
-                            <h1 className="title2">Sign In</h1>
+                        <div className="right3">
+                            <h1 className="title23">Sign In</h1>
                             <form
                                 style={{
                                     display: "inline-block",
@@ -61,7 +95,7 @@ class Signin extends React.Component {
                                 <input
                                     type="email"
                                     placeholder="Email"
-                                    className="email"
+                                    className="email3"
                                     style={{
                                         borderColor: this.state.borderColor.email
                                     }}
@@ -74,7 +108,7 @@ class Signin extends React.Component {
                                 <input
                                     type="password"
                                     placeholder="Password"
-                                    className="pwd"
+                                    className="pwd3"
                                     style={{
                                         borderColor: this.state.borderColor.pwd
                                     }}
@@ -85,16 +119,16 @@ class Signin extends React.Component {
                                     }
                                 />
                                 <div
-                                    className="button"
+                                    className="button3"
                                     onClick={this.checkInputs}
                                 >
                                     Sign In
                                 </div>
                             </form>
-                            <p className="account">
+                            <p className="account3">
                                 Don't have an account{" "}
                                 <span
-                                    className="signup"
+                                    className="signup3"
                                     onClick={() =>
                                         this.changePage("signup")
                                     }
@@ -113,11 +147,35 @@ class Signin extends React.Component {
                 </>
             );
         }
-        else if(this.state.page === "home")
+        else if(this.state.page === "admin")
         {
             content = (
                 <>
-                  <Home />  
+                  <Admin />  
+                </>
+            )
+        }
+        else if(this.state.page === "customer")
+        {
+            content = (
+                <>
+                    <Customer />  
+                </>
+            )
+        }
+        else if(this.state.page === "rider")
+        {
+            content = (
+                <>
+                    <Rider />  
+                </>
+            )
+        }
+        else if(this.state.page === "restaurant")
+        {
+            content = (
+                <>
+                    <Restaurant />  
                 </>
             )
         }

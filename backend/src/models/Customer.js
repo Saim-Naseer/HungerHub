@@ -32,7 +32,15 @@ const Customer = Mongoose.Schema({
     },
     exact_address:{
         type:String
+    },
+    type:{
+        type:String,
+        default:"customer"
+    },
+    forget_pwd:{
+        type:String
     }
+    
 });
 
 module.exports = Mongoose.model("Customer",Customer);

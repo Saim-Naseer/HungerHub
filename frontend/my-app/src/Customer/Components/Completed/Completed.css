@@ -1,0 +1,9 @@
+.c_completed{
+    height:320px;
+    width:400px;
+    position:relative;
+    left:550px;
+    top:250px;
+    background-image:url("../Completed/Completed.png");
+    background-size:cover;
+}

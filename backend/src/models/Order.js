@@ -48,7 +48,19 @@ const Order = Mongoose.Schema({
     ATM:{
         type:Boolean,
         default:false
+    },
+    isPlaced:{
+        type:Boolean,
+        default:false
+    },
+    isReady:{
+        type:Boolean,
+        default:false
+    },
+    date:{
+        type:Date
     }
+
 })
 
 module.exports = Mongoose.model("Order",Order)

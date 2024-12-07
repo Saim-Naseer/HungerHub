@@ -3,11 +3,11 @@ const Mongoose = require('mongoose')
 const RiderReport = Mongoose.Schema({
     Customer_id:{
         type:Number,
-        Required:true
+        required:true
     },
     Rider_id:{
         type:Number,
-        Required:true
+        required:true
     },
     Message:{
         type:String
