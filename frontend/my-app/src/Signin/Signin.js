@@ -36,7 +36,7 @@ class Signin extends React.Component {
         const data = await fetch(`http://localhost:5000/customer/signin?email=${this.state.email}&pwd=${this.state.pwd}`)
         const data2 = await data.json()
         this.setState({page:data2.type})
-
+       
         Session.name=data2.name
         Session.email=data2.email
         Session.location=data2.location
@@ -59,7 +59,6 @@ class Signin extends React.Component {
         {
             Session.user_id=data2.Restaurant_id
         }
-
     }
 
     checkInputs = async() => {

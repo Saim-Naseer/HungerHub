@@ -116,7 +116,7 @@ const OrderHistory = () => {
       ) : error ? (
         <p className="error-message">{error}</p>
       ) : (
-        <div className="orders">
+        <div className="ordersHistory">
           {filteredOrders.length > 0 ? (
             filteredOrders.map((order) => (
               <div key={order.order_id} className="order-Card">

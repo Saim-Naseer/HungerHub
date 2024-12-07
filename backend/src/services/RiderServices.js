@@ -33,8 +33,7 @@ const GetActiveOrders = async (userId) => {
 
                 // Fetch the associated restaurant
                 const restaurant = await Restaurant.findOne(
-                    { Restaurant_id: cart.Restaurant_id },
-                    'location'
+                    { Restaurant_id: cart.Restaurant_id }
                 );
                 if (!restaurant) {
                     throw new Error(`Restaurant not found for Restaurant_id: ${cart.Restaurant_id}`);
@@ -42,8 +41,7 @@ const GetActiveOrders = async (userId) => {
 
                 // Fetch the associated customer
                 const customer = await Customer.findOne(
-                    { Customer_id: order.Customer_id },
-                    'location'
+                    { Customer_id: order.Customer_id }
                 );
                 if (!customer) {
                     throw new Error(`Customer not found for Customer_id: ${order.Customer_id}`);
@@ -53,6 +51,7 @@ const GetActiveOrders = async (userId) => {
                 return {
                     orderId: order.Order_id,
                     restaurantAddress: restaurant.location || 'Unknown',
+                    restaurantName: restaurant.name || 'Unknown',
                     customerAddress: customer.location || 'Unknown',
                     orderAmount: order.price,
                 }; 
@@ -226,12 +225,12 @@ const Get_Rider = async (riderId) => {
         
         // If no reports are found, you can throw an error or handle it as needed
         if (reports.length === 0) {
-            throw new Error("No reports found for the given Rider ID.");
+            throw new Error("No Rider data found");
         }
 
         return reports;
     } catch (error) {
-        throw new Error(`Error fetching rider reports: ${error.message}`);
+        throw new Error(`Error fetching rider data: ${error.message}`);
     }
 };
 
@@ -253,10 +252,13 @@ const getNewOrders = async (userLocation) => {
             if (cart) {
                 // Fetch the Restaurant based on Restaurant_id from Cart
                 const restaurant = await Restaurant.findOne({ Restaurant_id: cart.Restaurant_id });
-                
+                console.log('RiderLocation: ',userLocation);
+                console.log('restaurantLocation: ',restaurant.location);
                 if (restaurant) {
                     // Compare restaurant's location with user's location                  
-                    if (restaurant.location === userLocation) {
+                    if (userLocation.includes(restaurant.location)) {
+
+                    
                         // If locations match, add this order to the result
                         newOrders.push({
                             order_id: order.Order_id,
@@ -273,6 +275,7 @@ const getNewOrders = async (userLocation) => {
         
         // Step 3: Return the filtered new orders
         if (newOrders.length === 0) {
+            console.log("No new orders found")
             return {
                 success: false,
                 message: 'No new orders found for your location.'
@@ -284,6 +287,7 @@ const getNewOrders = async (userLocation) => {
             data: newOrders
         };
     } catch (error) {
+        console.log("Error in api")
         throw new Error(`Error fetching new orders: ${error.message}`);
     }
 };

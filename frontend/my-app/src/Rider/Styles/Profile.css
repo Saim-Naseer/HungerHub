@@ -19,7 +19,7 @@
   .user-img{
     margin: 5px;
   }
-  .actions {
+  .Rider-actions {
     display: flex;
     gap: 10px;
     justify-content: center;
@@ -94,7 +94,15 @@
     border: 1px solid #ccc;
     border-radius: 10px;
   }
-  
+  .modal-content select {
+    width: 95%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 99%;
+  }
+
   .modal-actions {
     display: flex;
     justify-content: right;
