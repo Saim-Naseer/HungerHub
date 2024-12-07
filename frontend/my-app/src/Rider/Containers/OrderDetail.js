@@ -68,7 +68,7 @@ const OrderDetail = () => {
 
   return (
     <div className="Rider-order-detail-page">
-      <button className="backbutton" onClick={() => navigate(`/${Session.user_id}`)}>back</button>
+      <button className="backbutton" onClick={() => navigate(`/`)}>back</button>
 
       {/* Error message */}
       {error && <p className="error-message">{error}</p>}

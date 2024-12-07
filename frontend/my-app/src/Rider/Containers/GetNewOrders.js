@@ -51,11 +51,11 @@ const GetNewOrders = () => {
     <div className="Driver-get-new-orders">
       <h2>Available Orders:</h2>
       {loading ? (
-        <p>Loading new orders...</p>
+        <p className="response">Loading new orders...</p>
       ) : error ? (
-        <p className="error-message">{error}</p>
+        <p className="response">{error}</p>
       ) : orders.length === 0 ? (
-        <p>No new orders available in your area.</p>
+        <p className="response">No new orders available in your area.</p>
       ) : (
         orders.map((order) => (
           <div key={order.order_id} className="order-card1">

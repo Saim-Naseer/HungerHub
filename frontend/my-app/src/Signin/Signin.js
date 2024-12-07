@@ -36,28 +36,27 @@ class Signin extends React.Component {
         const data = await fetch(`http://localhost:5000/customer/signin?email=${this.state.email}&pwd=${this.state.pwd}`)
         const data2 = await data.json()
         this.setState({page:data2.type})
-
+       
         Session.name=data2.name
         Session.email=data2.email
         Session.location=data2.location
 
-        if(this.state.type==="customer")
+        if(data2.type==="customer")
         {
             Session.user_id=data2.Customer_id
         }
-        else if(this.state.type==="admin")
+        else if(data2.type==="admin")
         {
             Session.user_id=data2.Admin_id
         }
-        else if(this.state.type==="rider")
+        else if(data2.type==="rider")
         {
             Session.user_id=data2.Rider_id
         }
-        else if(this.state.type==="restaurant")
+        else if(data2.type==="restaurant")
         {
             Session.user_id=data2.Restaurant_id
         }
-
     }
 
     checkInputs = async() => {

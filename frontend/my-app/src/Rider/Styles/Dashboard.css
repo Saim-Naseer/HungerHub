@@ -9,7 +9,7 @@
     margin-left: auto;
   }
   /* Sidebar styling */
-  .sidebar {
+  .Ridersidebar {
     align-items: center;
     background-color: #43A7B7;
     color: #fff;
@@ -92,7 +92,7 @@
   
 
   /* Message for no orders */
-.no-orders-message {
+.response {
     font-size: 1.2rem;
     color: #666;
     text-align: center;
