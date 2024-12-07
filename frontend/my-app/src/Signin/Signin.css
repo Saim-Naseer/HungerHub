@@ -132,4 +132,12 @@
 .account3{
     position:relative;
     bottom:25px;
+    left:60px;
+}
+
+.forget_pwd{
+    position:relative;
+    bottom:100px;
+    left:50px;
+    color:red;
 }

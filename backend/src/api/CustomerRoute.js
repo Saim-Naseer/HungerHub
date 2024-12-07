@@ -5,6 +5,7 @@ module.exports = () => {
     
     router.post("/create",CustomerController.Create)
     router.get("/signin",CustomerController.FindUser)
+    router.get("/signin2",CustomerController.FindUser2)
     router.get("/restaurants",CustomerController.GetRestaurants)
     router.get("/popularitems",CustomerController.GetPopularItems)
     router.get("/items",CustomerController.GetItems)
