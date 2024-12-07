@@ -178,7 +178,7 @@ module.exports = {
                 res.status(200).send(val);
             } else {
                 res.status(404).send("User not found");
-            }
+            } 
         } catch (e) {
             console.error("Error in FindUser:", e);
             res.status(500).send("Internal Server Error");

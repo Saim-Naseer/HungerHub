@@ -29,7 +29,7 @@ module.exports = {
       val = await Customers.findOne({ email, pwd });
       if (val) {
           console.log("customer", val);
-          return val;
+          return val; 
       }
   
       val = await Restaurants.findOne({ email, pwd });

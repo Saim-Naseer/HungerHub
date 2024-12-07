@@ -12,7 +12,7 @@ module.exports = () => {
     router.get("/cart",CustomerController.ViewCart)
     router.get("/activeorder",CustomerController.GetActiveOrder)
     router.get("/pastorders",CustomerController.GetPastOrders)
-    router.get("/waitingorder",CustomerController.GetWaitingOrders)
+    router.get("/waitingorder",CustomerController.GetWaitingOrders) 
     router.get("/discounts",CustomerController.ViewDiscounts)
     router.post("/applydiscount",CustomerController.ApplyDiscount)
     return router

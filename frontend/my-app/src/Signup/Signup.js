@@ -65,6 +65,12 @@ class Signup extends React.Component{
         this.setState({borderColor:borderColor1})
     }
 
+
+    postUser = async() =>{
+        
+    }
+
+
     checkInputs = () => {
         if(this.state.name!=="" & this.state.email!=="" & this.state.phone!==-1 & this.state.role!=="-" & this.state.region!=="-" & this.state.address!=="" & this.state.pwd!=="" & this.state.cpwd!=="" & this.state.forget!=="")
         {
@@ -135,61 +141,63 @@ class Signup extends React.Component{
 
         if(this.state.role==="-" || this.state.role==="Customer")
         {
+           
             content1 = (
                 <>
                     <div className="signup_background">
                         <div className="signup_box">
                             <p className="signup_title">Sign Up</p>
     
-                            
-                            <div className="signup_personal">
-                                <p className="signup_title3_personal">Personal Info</p>
-                                <p className="signup_title2">Name</p> 
-                                <input type="text" placeholder="Name"  className="name1" style={{borderColor:this.state.borderColor.name}} onChange={(event)=>this.setState({name:event.target.value})}/>
-                                <p className="signup_title2">Email</p>
-                                <input type="email" placeholder="Email"  className="email1" style={{borderColor:this.state.borderColor.email}} onChange={(event)=>this.setState({email:event.target.value})}/>
-                                <p className="signup_title2">Phone no.</p>
-                                <input type="number" placeholder="Phone No."  className="phone1" style={{borderColor:this.state.borderColor.phone}} onChange={(event)=>this.setState({phone:event.target.value})}/>
-                                <p className="signup_title2">Role</p>
-                                <select className="role" style={{borderColor:this.state.borderColor.role}} onChange={(event)=>this.setState({role:event.target.value})}>
-                                    <option>-</option>
-                                    <option>Customer</option>
-                                    <option>Restaurant</option>
-                                    <option>Rider</option>
-                                </select>
-                            </div>
-    
-                            
-                            <div className="signup_address">
-                                <p className="signup_title3_location">Location Info</p>
-                                <p className="signup_title2">Region</p>
-                                <select className="region" style={{borderColor:this.state.borderColor.region}} onChange={(event)=>this.setState({region:event.target.value})}>
-                                    <option>-</option>
-                                    <option>Shahdara, Badami Bagh, Ravi Town</option>
-                                    <option>Inner Lahore, Anarkali, Data Darbar, Circular Road</option>
-                                    <option>Liberty Market, MM Alam Road, Ghalib Market, Main Boulevard</option>
-                                    <option>Model Town, Garden Town, Faisal Town, Township</option>
-                                    <option>DHA Phases 1-8, Lahore Cantt, Walton</option>
-                                    <option>Johar Town, Wapda Town, Valencia Town</option>
-                                    <option>Allama Iqbal Town, Sabzazar, Samanabad</option>
-                                    <option>Bahria Town, NFC Society, Canal Road extensions</option>
-                                </select>
-                                <p className="signup_title2">Exact Address</p>
-                                <input type="text" placeholder="Exact Address"  className="address1" style={{borderColor:this.state.borderColor.address}} onChange={(event)=>this.setState({address:event.target.value})}/>
-                            </div>
-    
-    
-                            
-                            <div className="signup_pwd">
-                                <p className="signup_title3_security">Security Info</p>
-                                <p className="signup_title2">Password</p>
-                                <input type="password" placeholder="Password" className="pwd1" style={{borderColor:this.state.borderColor.pwd}} onChange={(event)=>this.setState({pwd:event.target.value})}/>
-                                <p className="signup_title2">Confirm Password</p>
-                                <input type="password" placeholder="Confirm Password" className="pwd2" style={{borderColor:this.state.borderColor.cpwd}} onChange={(event)=>this.setState({cpwd:event.target.value})}/>
-                                <p className="signup_title2">Favourite Meal</p>
-                                <input type="text" placeholder="Favourite Meal"  className="forget1" style={{borderColor:this.state.borderColor.forget}} onChange={(event)=>this.setState({forget:event.target.value})}/>
-                            </div>
-    
+                            <div className="signup_boxes">
+                                <div className="signup_personal">
+                                    <p className="signup_title3_personal">Personal Info</p>
+                                    <p className="signup_title2">Name</p> 
+                                    <input type="text" placeholder="Name"  className="name1" style={{borderColor:this.state.borderColor.name}} onChange={(event)=>this.setState({name:event.target.value})}/>
+                                    <p className="signup_title2">Email</p>
+                                    <input type="email" placeholder="Email"  className="email1" style={{borderColor:this.state.borderColor.email}} onChange={(event)=>this.setState({email:event.target.value})}/>
+                                    <p className="signup_title2">Phone no.</p>
+                                    <input type="number" placeholder="Phone No."  className="phone1" style={{borderColor:this.state.borderColor.phone}} onChange={(event)=>this.setState({phone:event.target.value})}/>
+                                    <p className="signup_title2">Role</p>
+                                    <select className="role" style={{borderColor:this.state.borderColor.role}} onChange={(event)=>this.setState({role:event.target.value})}>
+                                        <option>-</option>
+                                        <option>Customer</option>
+                                        <option>Restaurant</option>
+                                        <option>Rider</option>
+                                    </select>
+                                </div>
+        
+                                      
+                                <div className="signup_pwd">
+                                    <p className="signup_title3_security">Security Info</p>
+                                    <p className="signup_title2">Password</p>
+                                    <input type="password" placeholder="Password" className="pwd1" style={{borderColor:this.state.borderColor.pwd}} onChange={(event)=>this.setState({pwd:event.target.value})}/>
+                                    <p className="signup_title2">Confirm Password</p>
+                                    <input type="password" placeholder="Confirm Password" className="pwd2" style={{borderColor:this.state.borderColor.cpwd}} onChange={(event)=>this.setState({cpwd:event.target.value})}/>
+                                    <p className="signup_title2">Favourite Meal</p>
+                                    <input type="text" placeholder="Favourite Meal"  className="forget1" style={{borderColor:this.state.borderColor.forget}} onChange={(event)=>this.setState({forget:event.target.value})}/>
+                                </div>
+
+                                <div className="signup_address">
+                                    <p className="signup_title3_location">Location Info</p>
+                                    <p className="signup_title2">Region</p>
+                                    <select className="region" style={{borderColor:this.state.borderColor.region}} onChange={(event)=>this.setState({region:event.target.value})}>
+                                        <option>-</option>
+                                        <option>Shahdara, Badami Bagh, Ravi Town</option>
+                                        <option>Inner Lahore, Anarkali, Data Darbar, Circular Road</option>
+                                        <option>Liberty Market, MM Alam Road, Ghalib Market, Main Boulevard</option>
+                                        <option>Model Town, Garden Town, Faisal Town, Township</option>
+                                        <option>DHA Phases 1-8, Lahore Cantt, Walton</option>
+                                        <option>Johar Town, Wapda Town, Valencia Town</option>
+                                        <option>Allama Iqbal Town, Sabzazar, Samanabad</option>
+                                        <option>Bahria Town, NFC Society, Canal Road extensions</option>
+                                    </select>
+                                    <p className="signup_title2">Exact Address</p>
+                                    <input type="text" placeholder="Exact Address"  className="address1" style={{borderColor:this.state.borderColor.address}} onChange={(event)=>this.setState({address:event.target.value})}/>
+                                </div>
+ 
+        
+                            </div> 
+
                             <div className="logo2"></div>
                             
                             <div className="button1" onClick={()=>this.checkInputs()}>Sign Up</div>
@@ -210,87 +218,7 @@ class Signup extends React.Component{
                         <div className="signup_box">
                             <p className="signup_title">Sign Up</p>
     
-                            
-                            <div className="signup_personal">
-                                <p className="signup_title3_personal">Personal Info</p>
-                                <p className="signup_title2">Name</p> 
-                                <input type="text" placeholder="Name"  className="name1" style={{borderColor:this.state.borderColor.name}} onChange={(event)=>this.setState({name:event.target.value})}/>
-                                <p className="signup_title2">Email</p>
-                                <input type="email" placeholder="Email"  className="email1" style={{borderColor:this.state.borderColor.email}} onChange={(event)=>this.setState({email:event.target.value})}/>
-                                <p className="signup_title2">Phone no.</p>
-                                <input type="number" placeholder="Phone No."  className="phone1" style={{borderColor:this.state.borderColor.phone}} onChange={(event)=>this.setState({phone:event.target.value})}/>
-                                <p className="signup_title2">Role</p>
-                                <select className="role" style={{borderColor:this.state.borderColor.role}} onChange={(event)=>this.setState({role:event.target.value})}>
-                                    <option>-</option>
-                                    <option>Customer</option>
-                                    <option>Restaurant</option>
-                                    <option>Rider</option>
-                                </select>
-                            </div>
-    
-                            
-                            <div className="signup_address">
-                                <p className="signup_title3_location">Location Info</p>
-                                <p className="signup_title2">Region</p>
-                                <select className="region" style={{borderColor:this.state.borderColor.region}} onChange={(event)=>this.setState({region:event.target.value})}>
-                                    <option>-</option>
-                                    <option>Shahdara, Badami Bagh, Ravi Town</option>
-                                    <option>Inner Lahore, Anarkali, Data Darbar, Circular Road</option>
-                                    <option>Liberty Market, MM Alam Road, Ghalib Market, Main Boulevard</option>
-                                    <option>Model Town, Garden Town, Faisal Town, Township</option>
-                                    <option>DHA Phases 1-8, Lahore Cantt, Walton</option>
-                                    <option>Johar Town, Wapda Town, Valencia Town</option>
-                                    <option>Allama Iqbal Town, Sabzazar, Samanabad</option>
-                                    <option>Bahria Town, NFC Society, Canal Road extensions</option>
-                                </select>
-                                <p className="signup_title2">Exact Address</p>
-                                <input type="text" placeholder="Exact Address"  className="address1" style={{borderColor:this.state.borderColor.address}} onChange={(event)=>this.setState({address:event.target.value})}/>
-                            </div>
-    
-    
-                            
-                            <div className="signup_pwd">
-                                <p className="signup_title3_security">Security Info</p>
-                                <p className="signup_title2">Password</p>
-                                <input type="password" placeholder="Password" className="pwd1" style={{borderColor:this.state.borderColor.pwd}} onChange={(event)=>this.setState({pwd:event.target.value})}/>
-                                <p className="signup_title2">Confirm Password</p>
-                                <input type="password" placeholder="Confirm Password" className="pwd2" style={{borderColor:this.state.borderColor.cpwd}} onChange={(event)=>this.setState({cpwd:event.target.value})}/>
-                                <p className="signup_title2">Favourite Meal</p>
-                                <input type="text" placeholder="Favourite Meal"  className="forget1" style={{borderColor:this.state.borderColor.forget}} onChange={(event)=>this.setState({forget:event.target.value})}/>
-                            </div>
-    
-                            <div className="logo2"></div>
-                            
-                            <div className="button1" onClick={()=>this.checkInputs()}>Sign Up</div>
-                            <p className="account1">Already have an account <p className="signup_signin" onClick={()=> this.changePage("signin")}>SIGN IN</p></p>
-
-
-                            <div className="signup_restaurant">
-                                <p className="signup_title3_restaurant">Restaurant Info</p>
-                                <p className="signup_title2">Image</p>
-                                <input type="file" accept="image/*" placeholder="Image" className="resimg1" style={{borderColor:this.state.borderColor.res_image}} onChange={(event)=>this.setState({res_image:event.target.files[0].name})}/>
-                                <p className="signup_title2">Cuisine</p>
-                                <input type="text" placeholder="Cuisine"  className="cuisine1" style={{borderColor:this.state.borderColor.res_cuisine}} onChange={(event)=>this.setState({res_cuisine:event.target.value})}/>
-                                <p className="signup_title2">Description</p>
-                                <input type="text" placeholder="Description"  className="description1" style={{borderColor:this.state.borderColor.res_description}} onChange={(event)=>this.setState({res_description:event.target.value})}/>
-                            </div>
-                            
-
-                        </div>
-                    </div>
-                </>
-            )
-    
-        }
-        else if(this.state.role==="Rider")
-            {
-                content1 = (
-                    <>
-                        <div className="signup_background">
-                            <div className="signup_box">
-                                <p className="signup_title">Sign Up</p>
-        
-                                
+                            <div className="signup_boxes">
                                 <div className="signup_personal">
                                     <p className="signup_title3_personal">Personal Info</p>
                                     <p className="signup_title2">Name</p> 
@@ -307,7 +235,17 @@ class Signup extends React.Component{
                                         <option>Rider</option>
                                     </select>
                                 </div>
-        
+
+                                
+                                <div className="signup_pwd">
+                                    <p className="signup_title3_security">Security Info</p>
+                                    <p className="signup_title2">Password</p>
+                                    <input type="password" placeholder="Password" className="pwd1" style={{borderColor:this.state.borderColor.pwd}} onChange={(event)=>this.setState({pwd:event.target.value})}/>
+                                    <p className="signup_title2">Confirm Password</p>
+                                    <input type="password" placeholder="Confirm Password" className="pwd2" style={{borderColor:this.state.borderColor.cpwd}} onChange={(event)=>this.setState({cpwd:event.target.value})}/>
+                                    <p className="signup_title2">Favourite Meal</p>
+                                    <input type="text" placeholder="Favourite Meal"  className="forget1" style={{borderColor:this.state.borderColor.forget}} onChange={(event)=>this.setState({forget:event.target.value})}/>
+                                </div>
                                 
                                 <div className="signup_address">
                                     <p className="signup_title3_location">Location Info</p>
@@ -326,17 +264,95 @@ class Signup extends React.Component{
                                     <p className="signup_title2">Exact Address</p>
                                     <input type="text" placeholder="Exact Address"  className="address1" style={{borderColor:this.state.borderColor.address}} onChange={(event)=>this.setState({address:event.target.value})}/>
                                 </div>
+
+
+                                <div className="signup_restaurant">
+                                    <p className="signup_title3_restaurant">Restaurant Info</p>
+                                    <p className="signup_title2">Image</p>
+                                    <input type="file" accept="image/*" placeholder="Image" className="resimg1" style={{borderColor:this.state.borderColor.res_image}} onChange={(event)=>this.setState({res_image:event.target.files[0]})}/>
+                                    <p className="signup_title2">Cuisine</p>
+                                    <input type="text" placeholder="Cuisine"  className="cuisine1" style={{borderColor:this.state.borderColor.res_cuisine}} onChange={(event)=>this.setState({res_cuisine:event.target.value})}/>
+                                    <p className="signup_title2">Description</p>
+                                    <input type="text" placeholder="Description"  className="description1" style={{borderColor:this.state.borderColor.res_description}} onChange={(event)=>this.setState({res_description:event.target.value})}/>
+                                </div>
+    
+                            </div>
+
+                            <div className="logo2"></div>
+                            
+                            <div className="button1" onClick={()=>this.checkInputs()}>Sign Up</div>
+                            <p className="account1">Already have an account <p className="signup_signin" onClick={()=> this.changePage("signin")}>SIGN IN</p></p>
+
+                            
+
+                        </div>
+                    </div>
+                </>
+            )
+    
+        }
+        else if(this.state.role==="Rider")
+            {
+                content1 = (
+                    <>
+                        <div className="signup_background">
+                            <div className="signup_box">
+                                <p className="signup_title">Sign Up</p>
         
-        
-                                
-                                <div className="signup_pwd">
-                                    <p className="signup_title3_security">Security Info</p>
-                                    <p className="signup_title2">Password</p>
-                                    <input type="password" placeholder="Password" className="pwd1" style={{borderColor:this.state.borderColor.pwd}} onChange={(event)=>this.setState({pwd:event.target.value})}/>
-                                    <p className="signup_title2">Confirm Password</p>
-                                    <input type="password" placeholder="Confirm Password" className="pwd2" style={{borderColor:this.state.borderColor.cpwd}} onChange={(event)=>this.setState({cpwd:event.target.value})}/>
-                                    <p className="signup_title2">Favourite Meal</p>
-                                    <input type="text" placeholder="Favourite Meal"  className="forget1" style={{borderColor:this.state.borderColor.forget}} onChange={(event)=>this.setState({forget:event.target.value})}/>
+                                <div className="signup_boxes">
+                                    <div className="signup_personal">
+                                        <p className="signup_title3_personal">Personal Info</p>
+                                        <p className="signup_title2">Name</p> 
+                                        <input type="text" placeholder="Name"  className="name1" style={{borderColor:this.state.borderColor.name}} onChange={(event)=>this.setState({name:event.target.value})}/>
+                                        <p className="signup_title2">Email</p>
+                                        <input type="email" placeholder="Email"  className="email1" style={{borderColor:this.state.borderColor.email}} onChange={(event)=>this.setState({email:event.target.value})}/>
+                                        <p className="signup_title2">Phone no.</p>
+                                        <input type="number" placeholder="Phone No."  className="phone1" style={{borderColor:this.state.borderColor.phone}} onChange={(event)=>this.setState({phone:event.target.value})}/>
+                                        <p className="signup_title2">Role</p>
+                                        <select className="role" style={{borderColor:this.state.borderColor.role}} onChange={(event)=>this.setState({role:event.target.value})}>
+                                            <option>-</option>
+                                            <option>Customer</option>
+                                            <option>Restaurant</option>
+                                            <option>Rider</option>
+                                        </select>
+                                    </div>
+            
+                    
+                                    <div className="signup_pwd">
+                                        <p className="signup_title3_security">Security Info</p>
+                                        <p className="signup_title2">Password</p>
+                                        <input type="password" placeholder="Password" className="pwd1" style={{borderColor:this.state.borderColor.pwd}} onChange={(event)=>this.setState({pwd:event.target.value})}/>
+                                        <p className="signup_title2">Confirm Password</p>
+                                        <input type="password" placeholder="Confirm Password" className="pwd2" style={{borderColor:this.state.borderColor.cpwd}} onChange={(event)=>this.setState({cpwd:event.target.value})}/>
+                                        <p className="signup_title2">Favourite Meal</p>
+                                        <input type="text" placeholder="Favourite Meal"  className="forget1" style={{borderColor:this.state.borderColor.forget}} onChange={(event)=>this.setState({forget:event.target.value})}/>
+                                    </div>
+                                    
+                                    <div className="signup_address">
+                                        <p className="signup_title3_location">Location Info</p>
+                                        <p className="signup_title2">Region</p>
+                                        <select className="region" style={{borderColor:this.state.borderColor.region}} onChange={(event)=>this.setState({region:event.target.value})}>
+                                            <option>-</option>
+                                            <option>Shahdara, Badami Bagh, Ravi Town</option>
+                                            <option>Inner Lahore, Anarkali, Data Darbar, Circular Road</option>
+                                            <option>Liberty Market, MM Alam Road, Ghalib Market, Main Boulevard</option>
+                                            <option>Model Town, Garden Town, Faisal Town, Township</option>
+                                            <option>DHA Phases 1-8, Lahore Cantt, Walton</option>
+                                            <option>Johar Town, Wapda Town, Valencia Town</option>
+                                            <option>Allama Iqbal Town, Sabzazar, Samanabad</option>
+                                            <option>Bahria Town, NFC Society, Canal Road extensions</option>
+                                        </select>
+                                        <p className="signup_title2">Exact Address</p>
+                                        <input type="text" placeholder="Exact Address"  className="address1" style={{borderColor:this.state.borderColor.address}} onChange={(event)=>this.setState({address:event.target.value})}/>
+                                    </div>
+            
+
+                                    <div className="signup_rider">
+                                        <p className="signup_title3_rider">Rider Info</p>
+                                        <p className="signup_title2">Image</p>
+                                        <input type="file" accept="image/*" placeholder="Image" className="resimg1" style={{borderColor:this.state.borderColor.res_image}} onChange={(event)=>this.setState({res_image:event.target.files[0].name})}/>
+                                    </div>
+
                                 </div>
         
                                 <div className="logo2"></div>
@@ -344,13 +360,6 @@ class Signup extends React.Component{
 
                                 <div className="button1" onClick={()=>this.checkInputs()}>Sign Up</div>
                                 <p className="account1">Already have an account <p className="signup_signin" onClick={()=> this.changePage("signin")}>SIGN IN</p></p>
-
-
-                                <div className="signup_rider">
-                                    <p className="signup_title3_rider">Rider Info</p>
-                                    <p className="signup_title2">Image</p>
-                                    <input type="file" accept="image/*" placeholder="Image" className="resimg1" style={{borderColor:this.state.borderColor.res_image}} onChange={(event)=>this.setState({res_image:event.target.files[0].name})}/>
-                                </div>
 
                                 
                                 
