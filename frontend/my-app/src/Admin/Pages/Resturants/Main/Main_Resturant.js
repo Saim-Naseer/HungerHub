@@ -15,7 +15,6 @@ class Main_Resturant extends React.Component {
   fetchData = async() => {
     const restaurants = await fetch("http://localhost:5000/admin/restaurants");
     const data = await restaurants.json();
-    console.log(data);
     this.setState({ restaurants: data});
   }
 
