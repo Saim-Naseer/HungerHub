@@ -1,6 +1,8 @@
 /* Styles for the navigation bar */
 .navigation-bar {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display:relative;
+    bottom:250px;
   }
   
   .nav-header {
