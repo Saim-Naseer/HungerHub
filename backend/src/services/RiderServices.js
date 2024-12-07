@@ -252,10 +252,13 @@ const getNewOrders = async (userLocation) => {
             if (cart) {
                 // Fetch the Restaurant based on Restaurant_id from Cart
                 const restaurant = await Restaurant.findOne({ Restaurant_id: cart.Restaurant_id });
-                
+                console.log('RiderLocation: ',userLocation);
+                console.log('restaurantLocation: ',restaurant.location);
                 if (restaurant) {
                     // Compare restaurant's location with user's location                  
-                    if (restaurant.location.includes(userLocation)) {
+                    if (userLocation.includes(restaurant.location)) {
+
+                    
                         // If locations match, add this order to the result
                         newOrders.push({
                             order_id: order.Order_id,

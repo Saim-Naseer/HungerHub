@@ -61,14 +61,13 @@ const GetNewOrders = () => {
           <div key={order.order_id} className="order-card1">
             <div className="order-info1">
               <p>
-                <strong>From:</strong> {order.restaurantName}
+                <strong>From:</strong> {order.restaurantName}, {order.restaurantLocation}
               </p>
-              <p>{order.restaurantLocation}</p>
               <p>
                 <strong>To:</strong> {order.customerLocation}
               </p>
               <p>
-                <strong>Rs:</strong> {order.orderAmount}
+                <strong>Rs:</strong> {order.orderAmount}/-
               </p>
               <p>
                 <strong>Order Time:</strong> {new Date(order.orderDate).toLocaleString()}
