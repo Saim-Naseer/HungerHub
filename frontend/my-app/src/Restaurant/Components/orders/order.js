@@ -65,9 +65,6 @@ class Orders extends React.Component {
 
     return (
       <div className="orders">
-        <div className="logutbutton-div"onClick={() => window.location.reload()}>
-        <button className="logout-btn">Logout</button>
-      </div>
         <div>
         <h1 className="restaurant-name">"{Session.name}"</h1>
         </div>
