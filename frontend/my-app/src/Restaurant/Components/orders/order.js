@@ -1,6 +1,6 @@
 import React from "react";
 import "./order.css";
-
+import Session from "../../../Session";
 
 const Orders = () => {
   const order = {
@@ -18,10 +18,18 @@ const Orders = () => {
     timeRemaining: "15 mins",
   };
 
+  const handleCancel = () => {
+    // Display message when Cancel button is clicked
+    alert("You cannot cancel now, it's against our contract!");
+  };
+
   return (
     <div className="orders">
-      <h2 className="header">Active Orders</h2>
-      <div className="order-card">
+      <div>
+        <h1 className="restaurant-name">"{Session.name}"</h1>
+      </div>
+      <h2 className="heading">Active Orders</h2>
+      <div className="rest-order-card">
         <div className="order-info">
           <h3>Order #1</h3>
           <p>ID: {order.id}</p>
@@ -42,9 +50,8 @@ const Orders = () => {
         </div>
         <div className="actions">
           <button className="done-btn">Mark as Done</button>
-          <button className="cancel-btn">Cancel</button>
+          <button className="cancel-btn" onClick={handleCancel}>Cancel</button>
         </div>
-        <p className="time-remaining">Time Remaining: {order.timeRemaining}</p>
       </div>
     </div>
   );

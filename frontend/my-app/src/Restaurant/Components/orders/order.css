@@ -1,15 +1,22 @@
 .orders {
-    padding: 90px;
-    margin-left: 200px;
+    padding-left: 50px;
+    padding-right: 50px;
   }
   
-  .order-card {
+  .restaurant-name{
+    text-align: center;
+    font-style: italic;
+    color: rgb(108, 58, 8);
+    text-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
+  }
+  .rest-order-card {
     border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 15px;
+    border-radius: 15px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    background-color: rgb(181, 181, 181);
   }
   
   .order-info,
@@ -24,7 +31,7 @@
   }
   
   .done-btn {
-    background-color: green;
+    background-color: rgb(22, 178, 22);
     color: white;
     border: none;
     padding: 10px;
@@ -34,7 +41,7 @@
   }
   
   .cancel-btn {
-    background-color: red;
+    background-color: rgb(213, 56, 56);
     color: white;
     border: none;
     padding: 10px;
@@ -42,16 +49,20 @@
     cursor: pointer;
     margin-left: 200px;
   }
+
+  .cancel-btn:hover{
+    scale: 104%;
+    background-color: red;
+  }
+
+  .done-btn:hover{
+    scale: 104%;
+    background-color: green;
+  }
   
   .time-remaining {
     color: red;
     font-weight: bold;
   }
   
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin-left: 200px;
-  }
+ 

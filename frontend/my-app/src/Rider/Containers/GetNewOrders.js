@@ -7,7 +7,7 @@ import Session from '../../Session.js'
 const GetNewOrders = () => {
   // State to store orders
   const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); // Error state
   const navigate = useNavigate()
  const {id} = useParams()

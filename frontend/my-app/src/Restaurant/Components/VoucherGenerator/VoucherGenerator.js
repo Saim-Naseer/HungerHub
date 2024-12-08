@@ -10,28 +10,38 @@ const VoucherGenerator = () => {
   };
 
   return (
-    <div className="voucher-generator">
-      <h2 className="header">Generate Vouchers</h2>
-      <form>
-        <div className="form-group">
-          <label htmlFor="code">Code:</label>
+    <div className="voucher-generator-wrapper">
+      <h2 className="voucher-generator-header">Generate Vouchers</h2>
+      <form className="voucher-generator-form">
+        <div className="voucher-form-group">
+          <label htmlFor="code" className="voucher-form-label">
+            Voucher Name:
+          </label>
           <input
             type="text"
             id="code"
+            className="voucher-form-input"
             value={code}
             onChange={(e) => setCode(e.target.value)}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="discount">Discount %:</label>
+        <div className="voucher-form-group">
+          <label htmlFor="discount" className="voucher-form-label">
+            Discount %:
+          </label>
           <input
             type="number"
             id="discount"
+            className="voucher-form-input"
             value={discount}
             onChange={(e) => setDiscount(e.target.value)}
           />
         </div>
-        <button type="button" onClick={handleGenerate}>
+        <button
+          type="button"
+          className="voucher-generate-button"
+          onClick={handleGenerate}
+        >
           Generate
         </button>
       </form>
