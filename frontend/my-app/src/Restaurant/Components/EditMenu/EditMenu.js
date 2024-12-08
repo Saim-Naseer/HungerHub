@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./EditMenu.css";
+import Session from "../../../Session";
 
 const EditMenu = () => {
   const [menuData, setMenuData] = useState([]); // Dynamic data from API
@@ -11,7 +12,7 @@ const EditMenu = () => {
   useEffect(() => {
     const fetchMenuData = async () => {
       try {
-        const restaurantId = 1; // Replace with dynamic ID if needed
+        const restaurantId = Session.user_id; // Replace with dynamic ID if needed
         const response = await fetch(`http://localhost:5000/restaurant/menu?rid=${restaurantId}`);
         if (!response.ok) {
           throw new Error(`Error fetching menu data: ${response.statusText}`);
@@ -48,7 +49,7 @@ const EditMenu = () => {
     }
 
     try {
-      const restaurantId = 1; // Replace with dynamic restaurant ID if needed
+      const restaurantId = Session.user_id; // Replace with dynamic restaurant ID if needed
       const response = await fetch(
         `http://localhost:5000/restaurant/menu?rid=${restaurantId}&name=${newItem.name}&price=${newItem.price}&popular=${isFamous}`,
         {
@@ -96,7 +97,7 @@ const EditMenu = () => {
 const handleDeleteItem = async (categoryName, itemName, itemId) => {
   if (window.confirm("Are you sure you want to delete this item?")) {
     try {
-      const restaurantId = 1; // Replace with dynamic restaurant ID if needed
+      const restaurantId = Session.user_id; // Replace with dynamic restaurant ID if needed
       const response = await fetch(
         `http://localhost:5000/restaurant/menu?rid=${restaurantId}&iid=${itemId}`,
         {
