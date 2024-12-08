@@ -1,5 +1,6 @@
 import React from "react";
 import "./Reports.css";
+import Session from "../../../Session";
 
 class Reports extends React.Component {
   constructor() {
@@ -14,7 +15,8 @@ class Reports extends React.Component {
   // Fetch reports data from the server
   fetchReports = async () => {
     try {
-      const response = await fetch("http://localhost:5000/restaurant/reports?rid=1"); // Ensure correct restaurant ID
+
+      const response = await fetch(`http://localhost:5000/restaurant/reports?rid=${Session.user_id}`); // Ensure correct restaurant ID
       const data = await response.json();
 
       // Handle success response
@@ -37,30 +39,29 @@ class Reports extends React.Component {
 
   render() {
     const { reports, loading, error } = this.state; // Destructure state
-
-    if (loading) {
-      return <div>Loading reports...</div>;
-    }
-
+  
     if (error) {
       return <div>Error: {error}</div>;
     }
-
+  
     return (
       <div className="reports">
         <h2 className="header">Restaurant Reports</h2>
-        {reports.length > 0 ? (
+        {loading ? (
+          <p>Loading...</p> // Show loading text while fetching
+        ) : reports.length > 0 ? (
           reports.map((report, index) => (
             <div key={index} className="report-card">
               <p><strong>Message:</strong> {report.Message}</p> {/* Display the Message */}
             </div>
           ))
         ) : (
-          <p>No reports available.</p>
+          <p>No reports found.</p> // Show this when there are no reports
         )}
       </div>
     );
   }
+  
 }
 
 export default Reports;

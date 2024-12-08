@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Res_Profile.css";
-import Session from "../../../Session";
-
+import Session from "../../../Session"; // Assuming Session stores user data
 
 const Res_Profile = () => {
   // State for restaurant data
@@ -17,15 +16,30 @@ const Res_Profile = () => {
 
   // Simulate fetching restaurant information
   useEffect(() => {
-    const fetchRestaurantInfo = () => {
+    const fetchRestaurantInfo = async () => {
       try {
-        // Sample restaurant data
-        const data = {
+        const Restaurant_id = Session.user_id;
+
+        // Fetch restaurant data
+        const restaurantDataResponse = {
           name: `${Session.name}`,
-          rating: 4.5,
-          contactNo: `${Session.contactNo}`,
+          contactNo: `${Session.phone}`,
           email: `${Session.email}`,
-          password: "restaurant123",
+        };
+
+        // Fetch ratings
+        const ratingsResponse = await fetch(`http://localhost:5000/restaurant/ratings?Restaurant_id=${Restaurant_id}`);
+        const ratings = await ratingsResponse.json();
+
+        // Fetch password securely
+        const passwordResponse = await fetch(`http://localhost:5000/restaurant/password?Restaurant_id=${Restaurant_id}`);
+        const passwords = await passwordResponse.json();
+
+        // Combine all fetched data
+        const data = {
+          ...restaurantDataResponse,
+          rating: ratings.ratings ? ratings.ratings.totalStars : null,
+          password: passwords.password, // Use password securely
         };
 
         setRestaurantData(data);
@@ -40,11 +54,43 @@ const Res_Profile = () => {
     fetchRestaurantInfo();
   }, []);
 
-  // Save updated data
-  const handleUpdate = () => {
-    setRestaurantData({ ...tempData });
-    setIsModalOpen(false);
-    alert("Profile updated successfully.");
+  // API call to update restaurant information
+  const handleUpdate = async () => {
+    try {
+      const restaurantId = Session.user_id; // Assuming restaurantId is stored in session
+      const updatedData = {
+        name: tempData.name,
+        phone: tempData.contactNo,
+        email: tempData.email,
+        pwd: tempData.password,
+      };
+
+      // Sending a PUT request to the backend to update the restaurant information
+      const response = await fetch(
+        `http://localhost:5000/restaurant/update?Restaurant_id=${restaurantId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedData),
+        }
+      );
+
+      if (response.ok) {
+        // If the response is successful, update the local state
+        setRestaurantData({ ...tempData });
+        setIsModalOpen(false);
+        alert("Profile updated successfully.");
+      } else {
+        // Handle any errors
+        const errorData = await response.json();
+        setError(errorData.message || "Failed to update profile.");
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      setError("Failed to update profile.");
+    }
   };
 
   // Loading and error handling
@@ -53,7 +99,6 @@ const Res_Profile = () => {
 
   return (
     <div className="profile-page">
-     
       <h1>Restaurant Profile</h1>
 
       {/* Display Restaurant Info */}
@@ -75,9 +120,9 @@ const Res_Profile = () => {
             <strong>Password:</strong> {restaurantData.password}
           </p>
         </div>
-        <div className="logut-div"onClick={() => window.location.reload()}>
-        <button className="logout-btn">Logout</button>
-      </div>
+        <div className="logut-div" onClick={() => window.location.reload()}>
+          <button className="logout-btn">Logout</button>
+        </div>
       </div>
 
       {/* Action Buttons */}
