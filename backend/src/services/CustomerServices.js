@@ -23,6 +23,24 @@ module.exports = {
         const customer =  await Customers.findOne({Customer_id})
         return customer ? customer.location : null
     },
+    FindOrder: async(Order_id,Customer_id) =>{
+      return await Orders.findOne({Order_id,Customer_id})
+    },
+    FindRestaurant: async(Restaurant_id) =>{
+      return await Restaurants.findOne({Restaurant_id})
+    },
+    UpdateUser: async(Customer_id,name,email,phone,address,location)=>{
+      await Customers.findOneAndUpdate({Customer_id},
+        {
+          name,
+          email,
+          phone,
+          exact_address:address,
+          location
+        },
+        {new:true}
+      )
+    },
     FindUser: async (email, pwd) => {
       let val;
   
@@ -286,7 +304,7 @@ module.exports = {
       } catch (error) {
         console.error("Error fetching reports for customer:", error);
         throw error;
-      }
+      } 
     },
     GetRiderReportsByCustomerId: async (customerId) => {
       try {

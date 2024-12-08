@@ -7,25 +7,45 @@ const CounterServices = require("../services/CounterService")
 const DiscountModel  = require("../models/Discounts")
 const path = require("path");
 const utils = require("../utils/utils")
+const RestaurantReportModel = require("../models/RestaurantReport")
+const CartModel = require("../models/Cart")
 
-module.exports = {
+
+module.exports = { 
     Create: async (req,res) => {
 
         try{
 
-            await CustomerModel.findOneAndUpdate(
-                {Customer_id:1},
-                {type:"customer"},
-                {new: true}
-            )
+            const val = await CartModel({
+                Restaurant_id:1,
+                Item_id:1,
+                Order_id:1,
+                Cart_id:2
+            })
 
-            //await counter.save()
+            await val.save()
 
             res.send("done")
 
-        }catch(e){
+        }catch(e){ 
 
             res.send("not done")
+        }
+    },
+    UpdateInfo: async(req,res) =>{
+        try{
+            const Customer_id = req.query.uid
+            const name = req.query.name
+            const email = req.query.email
+            const phone = req.query.phone
+            const address = req.query.phone
+            const location = req.query.region
+
+            await service.UpdateUser(Customer_id,name,email,phone,address,location)
+
+            res.send({msg:"done"})
+        }catch(e){
+            res.send({msg:"not done"+e})
         }
     },
     GetRestaurants: async(req,res) =>{
@@ -40,6 +60,23 @@ module.exports = {
 
         }catch(e){
             res.send("not found")
+        }
+    },
+    FindRestaurant: async(req,res) =>{
+        try{
+            const Order_id = req.query.oid
+            const Customer_id = req.query.uid
+
+            const order = await service.FindOrder(Order_id,Customer_id)
+
+            const Restaurant_id = order.Restaurant_id
+
+            const restaurant = await service.FindRestaurant(Restaurant_id)
+
+            await res.send(restaurant)
+
+        }catch(e){
+            res.send("not done"+e)
         }
     },
     GetPopularItems: async(req,res)=>{
@@ -123,6 +160,30 @@ module.exports = {
             res.send("not done")
         }
     },
+    ViewCart2: async(req,res) =>{
+        try{
+            const Customer_id = req.query.uid
+            const Order_id = req.query.oid
+
+            let customerOrder = await service.FindOrder(Order_id,Customer_id)
+
+            //console.log(customerOrder)
+
+            if(customerOrder===null)
+            {
+                res.status(200).send([])
+            }
+            else
+            {
+                const val = await service.GetCartItems(customerOrder)
+
+                res.status(200).send(val)
+            }
+            
+        }catch(e){
+            res.send("not done")
+        }
+    },    
     ViewDiscounts: async(req,res) =>{
         try{
             const Customer_id = req.query.uid

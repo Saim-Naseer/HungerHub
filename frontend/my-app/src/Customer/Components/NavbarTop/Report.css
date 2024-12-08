@@ -1,0 +1,84 @@
+.search_box_customer_report {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    position:relative;
+    top:200px;
+}
+
+.search_box_customer_report input {
+    width: 400px;
+    background-color: rgb(6, 48, 90);
+    height: 35px;
+    font-size: 15px;
+    text-align: center;
+    border-radius: 15px; /* Round the corners */
+    border: 2px solid rgb(0, 15, 80); /* Optional: Add a border */
+    outline: none; /* Optional: Remove default outline on focus */
+    transition: all 0.3s ease;
+    color: aliceblue;
+    font-weight: bold;
+    margin-top: 14px;
+}
+
+.search_box_customer_report input::placeholder {
+    color: white;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.report-list {
+    display: flex;
+    flex-wrap: wrap; /* Allows the reports to wrap in rows */
+    justify-content: center;
+    gap: 30px; /* Adds space between report items */
+    margin: 40px auto; /* Centers horizontally and adds space at the top */
+    max-width: 1250px; /* Restricts the width */
+    width: 100%; /* Ensures it scales for smaller screens */
+    position:relative;
+    top:200px;
+}
+
+.report-item {
+    background-color: #9eb5cc; /* Light blue background */
+    border: 15px solid rgb(202, 207, 231); /* Soft border color */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px;
+    border-width: 15px;
+    display: flex;
+    flex-direction: column; /* Ensures the text stacks vertically */
+    align-items: flex-start; /* Align items to the left for message/reply */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    width: calc(50% - 16px); /* Makes each report item take 50% width */
+    box-sizing: border-box;
+}
+
+.report-item h3 {
+    margin:-2px 0px 9px 0px; /* Removes default margin */
+    font-size: 1.5em; /* Adjust font size */
+    font-weight: bold;
+    color: black; /* Dark color for title */
+    text-align: center; /* Centers the h3 text */
+    width: 100%;
+}
+
+.report-item p {
+    margin: 3px 0; /* Space between paragraphs */
+    line-height: 1.5; /* Improves readability */
+    word-wrap: break-word; /* Ensures long text wraps properly */
+    text-align: left; /* Keeps p text aligned to the left */
+    display:flex;
+}
+.report-item p .report-message{
+    font-weight: 600;
+    font-size: large;
+    margin-right: 11px;
+    margin-top: -1px;
+}
+.report-item p .report-reply{
+    font-weight: 600;
+    font-size: large;
+    margin-right: 39px;
+    margin-left: 0px;
+    margin-top: -1px;
+}

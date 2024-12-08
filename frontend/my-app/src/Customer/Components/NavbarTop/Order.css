@@ -1,0 +1,41 @@
+.order-img5{
+    height:50px;
+    width:50px;
+    border: 2px solid black;
+    z-index: 0;
+}
+
+.order-items5{
+    position:relative;
+    left:200px;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    z-index: 0;
+}
+
+.order-card5 {
+    display: flex;
+    align-items: left;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #dedede;
+    text-decoration: none; /* Remove link underline */
+    color: inherit; /* Inherit text color */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    z-index: 0;
+}
+
+.order-card5:hover {
+    background-color: rgb(170, 176, 181);
+    transform: scale(1.02);
+    z-index: 0;
+}
+
+.order_p{
+    display:inline-flex;
+    margin: 0px;
+    z-index: 0;
+}

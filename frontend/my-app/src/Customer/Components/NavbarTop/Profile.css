@@ -6,3 +6,34 @@
     top:200px;
     left:300px;
 }
+
+
+.orders-container1{
+    position:relative;
+    top:400px;
+    left:300px;
+    width:1000px;
+    z-index: -1;
+}
+
+.orders-container2{
+    position:relative;
+    top:200px;
+    left:300px;
+    width:1000px;
+    z-index: -1;
+}
+
+.profile_waith{
+    position:relative;
+    top:200px;
+    left:280px;
+    z-index: -1;
+}
+
+.profile_pasth{
+    position:relative;
+    top:400px;
+    left:280px;
+    z-index: -1;
+}

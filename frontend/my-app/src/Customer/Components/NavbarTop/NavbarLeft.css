@@ -17,13 +17,64 @@
 }
 
 .navbar_update{
-    font-size: 25px;
+    font-size: 17px;
     background-color: #4CA9A9;
-    width:175px;
+    width:200px;
+    height:30px;
     display:flex;
     justify-content: center;
     align-items:center;
     position:relative;
-    top:250px;
-    left:20px;
+    top:180px;
+    left:13px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor:pointer;
+}
+.navbar_restaurantreport{
+    font-size: 17px;
+    background-color: #4CA9A9;
+    width:200px;
+    height:30px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    position:relative;
+    top:180px;
+    left:13px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor:pointer;
+}
+
+.navbar_riderreport{
+    font-size: 17px;
+    background-color: #4CA9A9;
+    width:200px;
+    height:30px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    position:relative;
+    top:180px;
+    left:13px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor:pointer;
+}
+
+.navbar_logout{
+    font-size: 17px;
+    background-color: red;
+    width:200px;
+    height:30px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    position:relative;
+    top:180px;
+    left:13px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor:pointer;
 }
