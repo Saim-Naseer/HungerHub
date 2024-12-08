@@ -13,7 +13,7 @@ class Orders extends React.Component {
   // Fetch data from the server
   fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/restaurant/active-orders?rid=1`);
+      const response = await fetch(`http://localhost:5000/restaurant/active-orders?rid=${Session.user_id}`);
       const data = await response.json();
 
       // Check if activeOrders is present in the response
