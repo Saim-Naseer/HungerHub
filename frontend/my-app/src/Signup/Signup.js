@@ -137,11 +137,13 @@ class Signup extends React.Component{
     checkInputs = async() => {
         if(this.state.name!=="" & this.state.email!=="" & this.state.phone!==-1 & this.state.role!=="-" & this.state.region!=="-" & this.state.address!=="" & this.state.pwd!=="" & this.state.cpwd!=="" & this.state.forget!=="")
         {
-        
+            console.log("1")
             if(this.state.role==="-" || this.state.role==="Customer")
             {
+                console.log("2-customer")
                 if(this.state.pwd===this.state.cpwd)
                 {
+                    console.log("3-passwords match")
                     //this.setState({page:"home"})
     
                     await this.postUser()
@@ -152,12 +154,13 @@ class Signup extends React.Component{
             }
             else if(this.state.role==="Restaurant")
             {
+                console.log("2-restaurant")
                 if(this.state.res_image!==null & this.state.res_cuisine!=="" & this.state.res_description!=="")
                 {
                     if(this.state.pwd===this.state.cpwd)
                     {
                         //this.setState({page:"home"})
-        
+                        console.log("3-passwords match")
                         //api post(user)
                         await this.postUser()
                     }
@@ -168,16 +171,18 @@ class Signup extends React.Component{
             }
             else if(this.state.role==="Rider")
             {
+                console.log("2-rider")
                 if(this.state.rid_image!==null)
                 {
                     if(this.state.pwd===this.state.cpwd)
                     {
                         //this.setState({page:"home"})
-        
+                        console.log("3-passwords match")
                         //api post(user)
                         await this.postUser()
                     }
                     else{
+                        console.log("3-passwords dont match")
                         this.setState({match:false})
                     }
                 }
@@ -416,7 +421,7 @@ class Signup extends React.Component{
                                     <div className="signup_rider">
                                         <p className="signup_title3_rider">Rider Info</p>
                                         <p className="signup_title2">Image</p>
-                                        <input type="file" accept="image/*" placeholder="Image" className="resimg1" style={{borderColor:this.state.borderColor.res_image}} onChange={(event)=>this.setState({res_image:event.target.files[0]})}/>
+                                        <input type="file" accept="image/*" placeholder="Image" className="resimg1" style={{borderColor:this.state.borderColor.rid_image}} onChange={(event)=>this.setState({rid_image:event.target.files[0]})}/>
                                     </div>
 
                                 </div>

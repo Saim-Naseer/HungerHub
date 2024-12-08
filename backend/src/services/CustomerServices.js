@@ -26,6 +26,13 @@ module.exports = {
     FindOrder: async(Order_id,Customer_id) =>{
       return await Orders.findOne({Order_id,Customer_id})
     },
+    PlaceOrder: async(Customer_id,Restaurant_id)=>{
+      await Orders.findOneAndUpdate(
+        {Customer_id,Restaurant_id,isPlaced:false},
+        {$set : {isPlaced:true}, $set:{date:new Date()}},
+        {new:true}
+      )
+    },
     FindRestaurant: async(Restaurant_id) =>{
       return await Restaurants.findOne({Restaurant_id})
     },
@@ -36,7 +43,7 @@ module.exports = {
           email,
           phone,
           exact_address:address,
-          location
+          location 
         },
         {new:true}
       )
@@ -106,14 +113,17 @@ module.exports = {
     GetItems: async(Restaurant_id) =>{
         return await Menu.find({Restaurant_id})
     },
-    GetActiveOrders: async(Customer_id,Restaurant_id) =>{
-        return await Orders.findOne({Customer_id,Restaurant_id,isPlaced:false})
-    },
+    GetActiveOrders: async (Customer_id, Restaurant_id) => {
+      return await Orders.findOne({ Customer_id, Restaurant_id, isPlaced: false }) || null;
+    },  
     GetPastOrders: async(Customer_id) =>{
       return await Orders.find({Customer_id,completed:true})
     },
     GetWaitingOrders: async(Customer_id) =>{
       return await Orders.find({Customer_id,isPlaced:true,completed:false})
+    },
+    GetWaitingOrder2: async(Customer_id,Restaurant_id) =>{
+      return await Orders.findOne({Customer_id,Restaurant_id,isPlaced:true,completed:false})
     },
     CreateOrder: async(Customer_id,Restaurant_id) =>{
         const orderId = await CounterServices.Get("Order");

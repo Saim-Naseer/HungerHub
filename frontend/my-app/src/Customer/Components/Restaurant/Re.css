@@ -1,0 +1,72 @@
+/* Overlay for background dimming */
+.re_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Popup container styling */
+  .re_container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 400px;
+  }
+  
+  /* Heading style */
+  .re_heading {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  /* Input field style */
+  .re_input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  /* Button container for layout */
+  .re_buttonContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* Report button styling */
+  .re_reportButton {
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 45%;
+  }
+  
+  /* Cancel button styling */
+  .re_cancelButton {
+    background-color: #ccc;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 45%;
+  }
+  

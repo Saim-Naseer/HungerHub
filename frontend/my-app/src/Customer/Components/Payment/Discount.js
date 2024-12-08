@@ -26,8 +26,8 @@ class Discount extends React.Component {
         throw new Error(`Error! Status: ${response.status}`);
       }
 
-      const responseText = await response.text(); 
-      console.log("Server response:", responseText);
+      // const responseText = await response.text(); 
+      // console.log("Server response:", responseText);
 
       // Add discount to the used list
       this.setState((prevState) => ({

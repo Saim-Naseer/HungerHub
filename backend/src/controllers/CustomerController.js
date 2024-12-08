@@ -43,9 +43,9 @@ module.exports = {
 
             await service.UpdateUser(Customer_id,name,email,phone,address,location)
 
-            res.send({msg:"done"})
+            res.status(200).send({msg:"done"})
         }catch(e){
-            res.send({msg:"not done"+e})
+            res.status(400).send({msg:"not done"+e})
         }
     },
     GetRestaurants: async(req,res) =>{
@@ -59,7 +59,7 @@ module.exports = {
             await res.send(restaurant)
 
         }catch(e){
-            res.send("not found")
+            res.status(400).send({msg:"not found"})
         }
     },
     FindRestaurant: async(req,res) =>{
@@ -76,7 +76,7 @@ module.exports = {
             await res.send(restaurant)
 
         }catch(e){
-            res.send("not done"+e)
+            res.status(400).send({msg:"not done "+e})
         }
     },
     GetPopularItems: async(req,res)=>{
@@ -87,7 +87,7 @@ module.exports = {
 
             await res.send(items)
         }catch(e){
-            res.send("not found")
+            res.status(400).send({msg:"not found"})
         }
     },
     GetItems: async(req,res)=>{
@@ -98,22 +98,37 @@ module.exports = {
 
             await res.send(items)
         }catch(e){
-            res.send("not found")
+            res.status(400).send({msg:"not found"})
         }
     },
-    GetActiveOrder: async(req,res)=>{
+    GetActiveOrder: async (req, res) => {
+        try {
+            const Customer_id = req.query.uid;
+            const Restaurant_id = req.query.rid;
+    
+            const order = await service.GetActiveOrders(Customer_id, Restaurant_id);
+    
+            // Ensure a response is always sent
+            if (order) {
+                res.status(200).json(order);  // Send as JSON
+            } else {
+                res.status(200).json({}); // Return an empty JSON object if no order is found
+            }
+        } catch (e) {
+            console.error("Error in GetActiveOrder:", e.message);
+            res.status(500).json({ msg: "Server Error" });  // Use JSON for error message
+        }
+    },    
+    PlaceOrder: async(req,res)=>{
         try{
-            
             const Customer_id = req.query.uid
             const Restaurant_id = req.query.rid
 
+            await service.PlaceOrder(Customer_id,Restaurant_id)
 
-            const order = await service.GetActiveOrders(Customer_id,Restaurant_id)
-
-            await res.status(200).send(order)
-
+            res.status(200).send({msg:"done"})
         }catch(e){
-            res.send("not done")
+            res.status(400).send({msg:"not done"})
         }
     },
     AddToCart: async (req, res) => {
@@ -132,10 +147,10 @@ module.exports = {
           await service.AddToCart({ customerOrder, Restaurant_id, Item_id })
 
           
-          res.status(200).send("ok")
+          res.status(200).send({msg:"ok"})
         
         } catch (e){
-          res.status(400).send("not found")
+          res.status(400).send({msg:"not found"})
         }
     },
     ViewCart: async(req,res) =>{
@@ -157,7 +172,7 @@ module.exports = {
             }
             
         }catch(e){
-            res.send("not done")
+            res.status(400).send({msg:"done"})
         }
     },
     ViewCart2: async(req,res) =>{
@@ -181,7 +196,7 @@ module.exports = {
             }
             
         }catch(e){
-            res.send("not done")
+            res.status(400).send({msg:"not found"})
         }
     },    
     ViewDiscounts: async(req,res) =>{
@@ -205,7 +220,7 @@ module.exports = {
             }
             
         }catch(e){
-            res.send("not done")
+            res.status(400).send({msg:"not done"})
         }
     },
     ApplyDiscount: async (req, res) => {
@@ -218,9 +233,9 @@ module.exports = {
     
             const val = await service.ApplyDiscount({ Restaurant_id, Discount_id, customerOrder });
     
-            res.status(200).send("ok") // Send JSON response
+            res.status(200).send({msg:"ok"}) // Send JSON response
         } catch (e) {
-            res.status(400).send("not found")// Send error as JSON
+            res.status(400).send({msg:"not found"})// Send error as JSON
         }
     },
     GetPastOrders: async(req,res)=>{
@@ -233,7 +248,7 @@ module.exports = {
             res.status(200).send(order)
 
         }catch(e){
-            res.send("not done")
+            res.status(400).send({msg:"not found"})
         }
     },
     GetWaitingOrders: async(req,res)=>{
@@ -246,7 +261,21 @@ module.exports = {
             res.status(200).send(order)
 
         }catch(e){
-            res.send("not done")
+            res.status(400).send({msg:"not found"})
+        }
+    },
+    GetWaitingOrder2: async(req,res)=>{
+        try{
+            
+            const Customer_id = req.query.uid
+            const Restaurant_id = req.query.rid
+
+            const order = await service.GetWaitingOrder2(Customer_id,Restaurant_id)
+
+            res.status(200).send(order)
+
+        }catch(e){
+            res.status(400).send({msg:"not found"})
         }
     },
     FindUser: async (req, res) => {
@@ -267,7 +296,7 @@ module.exports = {
             } 
         } catch (e) {
             console.error("Error in FindUser:", e);
-            res.status(500).send("Internal Server Error");
+            res.status(400).send({msg:"Internal server error"});
         }
     },
     FindUser2: async (req, res) => {
@@ -288,7 +317,7 @@ module.exports = {
             } 
         } catch (e) {
             console.error("Error in FindUser:", e);
-            res.status(500).send("Internal Server Error");
+            res.status(400).send({msg:"Internal Server Error"})
         }
     },
     Signup: async(req,res) =>{

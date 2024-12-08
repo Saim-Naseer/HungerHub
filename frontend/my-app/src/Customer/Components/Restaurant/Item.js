@@ -37,8 +37,8 @@ class Item extends React.Component {
                 throw new Error(`Error! Status: ${response.status}`);
             }
 
-            const responseText = await response.text(); // Parse the response as plain text
-            console.log("Server response:", responseText);
+            // const responseText = await response.text(); // Parse the response as plain text
+            // console.log("Server response:", responseText);
 
             // Trigger context update
             this.context.triggerFetch();

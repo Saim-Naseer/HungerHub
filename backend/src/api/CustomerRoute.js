@@ -13,9 +13,10 @@ module.exports = () => {
     router.post("/addtocart",CustomerController.AddToCart)
     router.get("/cart",CustomerController.ViewCart)
     router.get("/cartitems",CustomerController.ViewCart2)
-    router.get("/activeorder",CustomerController.GetActiveOrder)
+    router.get("/activeorder",CustomerController.GetActiveOrder) 
     router.get("/pastorders",CustomerController.GetPastOrders)
-    router.get("/waitingorder",CustomerController.GetWaitingOrders) 
+    router.get("/waitingorder",CustomerController.GetWaitingOrders)
+    router.get("/placedwaitingorder",CustomerController.GetWaitingOrder2)  
     router.get("/discounts",CustomerController.ViewDiscounts) 
     router.post("/applydiscount",CustomerController.ApplyDiscount)
     router.get("/restaurantreports", CustomerController.GetRestaurantReports);
@@ -24,6 +25,7 @@ module.exports = () => {
     router.get("/getrestaurant",CustomerController.FindRestaurant)
     router.post("/writerestaurantreport", CustomerController.WriteRestaurantReport);
     router.post("/writeriderreport", CustomerController.WriteRiderReport);
+    router.get("/placeorder",CustomerController.PlaceOrder)
     return router
 }
 

@@ -1,82 +1,116 @@
-import React from "react"
-import StatusBar from "./StatusBar4"
-import Session from "../../../Session"
-import Completed from "../../Containers/Completed"
-import Preparing from "./Preparing"
-import Delivering from "./Delivering"
-import R_Session from "../Restaurant/Session"
+import React from "react";
+import StatusBar from "./StatusBar4";
+import Session from "../../../Session";
+import Completed from "../../Containers/Completed";
+import Preparing from "./Preparing";
+import Delivering from "./Delivering";
+import R_Session from "../Restaurant/Session";
 
-class Body extends React.Component{
-    constructor()
-    {
-        super()
-        this.state={
-            isReady:false,
-            completed:false,
-            page:"waiting"
-        }
+class Body extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isReady: false,
+      completed: false,
+    };
+    this.fetchInterval = null; // Store interval ID for later clearing
+  }
+
+  componentDidMount() {
+    // Fetch data once on mount
+    this.fetchData();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // Only fetch data if the state or props that trigger fetching have changed
+    if (this.state.isReady !== prevState.isReady || this.state.completed !== prevState.completed) {
+      this.fetchDataDebounced();
+    }
+  }
+
+  fetchData = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/customer/placedwaitingorder?uid=${Session.user_id}&rid=${R_Session.restaurant_id}`
+      );
+      
+      if (!response.ok) {
+        throw new Error(`HTTP Error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (Object.keys(data).length > 0) {
+        this.setState({
+          isReady: data.isReady || false,
+          completed: data.completed || false,
+        });
+      } else {
+        console.warn("No active orders found.");
+        this.setState({
+          isReady: false,
+          completed: false,
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error.message);
+    }
+  };
+
+  // Debounced fetch function
+  fetchDataDebounced = (() => {
+    let timeout;
+    return () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(this.fetchData, 500); // Delay fetch by 500ms to prevent rapid requests
+    };
+  })();
+
+  componentWillUnmount() {
+    // Clean up the interval on unmount
+    if (this.fetchInterval) {
+      clearInterval(this.fetchInterval);
+    }
+  }
+
+  // Method to manually trigger state change (which will trigger componentDidUpdate)
+  triggerStateChange = () => {
+    // Toggle the `isReady` state to simulate a change
+    this.setState((prevState) => ({
+      isReady: !prevState.isReady,
+    }));
+  };
+
+  render() {
+    let content;
+
+    // Render different components based on the state
+    if (!this.state.isReady) {
+      content = (
+        <>
+          <StatusBar />
+          <Preparing />
+        </>
+      );
+    } else if (this.state.isReady && !this.state.completed) {
+      content = (
+        <>
+          <StatusBar />
+          <Delivering />
+        </>
+      );
+    } else {
+      content = <Completed />;
     }
 
-    fetchData=async()=>{
-        const data3 = await fetch(`http://localhost:5000/customer/activeorder?uid=${Session.user_id}&rid=${R_Session.restaurant_id}`)
-        const data4 = await data3.json()
-        this.setState({isReadt:data4.isReady})
-        this.setState({completed:data4.completed})
-
-    }
-
-    changePage=(pageName)=>{
-        this.setState({page:pageName})
-    }
-    
-    componentDidMount() 
-    {
-        this.fetchData();
-
-        this.interval = setInterval(this.fetchData, 3000);
-    }
-    
-    componentWillUnmount() 
-    {
-        clearInterval(this.interval);
-    }
-
-    render()
-    {
-          let content
-
-          if(this.state.isReady===false)
-          {
-            content = (
-                <>
-                    <StatusBar/>
-                    <Preparing/>
-                </>
-            )
-          }
-          else if(this.state.isReady===true & this.state.completed===false)
-          {
-            content = (
-                <>
-                    <StatusBar/>
-                    <Delivering/>
-                </>
-            )
-          }
-          else{
-                content = (
-                    <>
-                        <Completed/>
-                    </>
-                )
-          }
-
-        return (
-            <>
-                {content}
-            </>
-        )
-    }
+    return (
+      <>
+        {content}
+        {/* Button to manually trigger the state change and thus componentDidUpdate */}
+        <button onClick={this.triggerStateChange} style={{position:"relative",top:"150px",left:"800px"}}>Trigger State Change</button>
+      </>
+    );
+  }
 }
 
-export default Body
+export default Body;
