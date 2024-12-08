@@ -8,10 +8,14 @@ class NavbarLeft extends React.Component{
     {
         return(
             <div className="navbar1">
-                <p>Name : {Session.name} </p>
-                <p>Email : {Session.email}</p>
-                <p>Phone : </p>
-                <p>Address : </p>
+                <div className="navbar_profile">
+                    <p><b>Name : </b>{Session.name} </p>
+                    <p><b>Email :</b>{Session.email}</p>
+                    <p><b>Phone : </b>0{Session.phone}</p>
+                    <p><b>Address :</b>{Session.address}</p>
+                    <p><b>Region :</b>{Session.location}</p>
+                </div>
+                <div className="navbar_update">Edit Info</div>
             </div>
         )
     }

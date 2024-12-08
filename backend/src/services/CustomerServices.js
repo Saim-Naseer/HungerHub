@@ -295,7 +295,7 @@ module.exports = {
         console.error("Error fetching reports for customer:", error);
         throw error;
       }
-
+    },
     check_email: async(role,email)=>{
       let val
       if(role==="Customer")

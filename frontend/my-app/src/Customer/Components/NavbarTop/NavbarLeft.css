@@ -4,11 +4,26 @@
     background-color:#22476D;
     position:fixed;
     top:148px;
-    left:0px;
-    justify-content: center;
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    left:0px;;
     color:white;
     align-items: center;
+}
+
+.navbar_profile{
+    position:relative;
+    top:100px;
+    left:5px;
+    font-size: 20px;;
+}
+
+.navbar_update{
+    font-size: 25px;
+    background-color: #4CA9A9;
+    width:175px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    position:relative;
+    top:250px;
+    left:20px;
 }
