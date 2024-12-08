@@ -4,6 +4,7 @@ import "./VoucherGenerator.css";
 const VoucherGenerator = () => {
   const [code, setCode] = useState("");
   const [discount, setDiscount] = useState("");
+  const [cap, setCap] = useState("");
 
   const handleGenerate = () => {
     alert(`Voucher Code: ${code}\nDiscount: ${discount}%`);
@@ -35,6 +36,18 @@ const VoucherGenerator = () => {
             className="voucher-form-input"
             value={discount}
             onChange={(e) => setDiscount(e.target.value)}
+          />
+        </div>
+        <div className="voucher-form-group">
+          <label htmlFor="cap" className="voucher-form-label">
+            Capital:
+          </label>
+          <input
+            type="number"
+            id="capital"
+            className="voucher-form-input"
+            value={cap}
+            onChange={(e) => setCap(e.target.value)}
           />
         </div>
         <button
