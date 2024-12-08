@@ -18,7 +18,9 @@ const NavbarTop = () => {
           <Link to="/" className="nav-button">Orders</Link>
           <Link to="/EditMenu" className="nav-button">Edit Menu</Link>
           <Link to="/VoucherGenerator" className="nav-button">Generate Voucher</Link>
-          <Link to="/Reports" className="nav-button">Reports</Link>
+          <Link to="/Reports" className="nav-button">Check Reports</Link>
+          <Link to="/orderHistory" className="nav-button">Orders History</Link>
+          <Link to="/Res_Profile" className="nav-button">Profile</Link>
         </div>
       </div>
     );

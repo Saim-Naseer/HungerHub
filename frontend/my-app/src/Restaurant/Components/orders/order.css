@@ -2,7 +2,29 @@
     padding-left: 50px;
     padding-right: 50px;
   }
-  
+  .logout-btn{
+    margin-top: 10px;
+    background-color: #dd3833;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+   
+  }
+
+  .logutbutton-div{
+    display: flex;
+    justify-content: end;
+  }
+
+  .logout-btn:hover{
+    background-color: #f5211a;
+    scale: 104%;
+  }
   .restaurant-name{
     text-align: center;
     font-style: italic;
