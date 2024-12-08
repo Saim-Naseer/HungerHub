@@ -25,6 +25,7 @@
 .search_box_customer input::placeholder {
     color: white;  
     font-style: italic;  
+    font-weight: normal;
 }
 
 

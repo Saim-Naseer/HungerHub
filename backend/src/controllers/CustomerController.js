@@ -190,8 +190,44 @@ module.exports = {
         }catch(e){
             
         }
-    }
+    },
+    GetRestaurantReports: async (req, res) => {
+        try {
+          const customerId = req.query.uid; 
+          if (!customerId) {
+            return res.status(400).send({ message: "Customer not logged in" });
+          }
+
+          const reports = await service.GetRestaurantReportsByCustomerId(customerId);
     
-      
+          if (reports.length === 0) {
+            return res.status(404).send({ message: "No reports found for this customer" });
+          }
+    
+          res.status(200).send(reports);
+        } catch (error) {
+          console.error("Error fetching customer reports:", error);
+          res.status(500).send({ message: "Failed to fetch customer reports" });
+        }
+    },
+    GetRiderReports: async (req, res) => {
+        try {
+          const customerId = req.query.uid; 
+          if (!customerId) {
+            return res.status(400).send({ message: "Customer not logged in" });
+          }
+
+          const reports = await service.GetRiderReportsByCustomerId(customerId);
+    
+          if (reports.length === 0) {
+            return res.status(404).send({ message: "No reports found for this customer" });
+          }
+    
+          res.status(200).send(reports);
+        } catch (error) {
+          console.error("Error fetching customer reports:", error);
+          res.status(500).send({ message: "Failed to fetch customer reports" });
+        }
+    }
 
 }
