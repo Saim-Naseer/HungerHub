@@ -7,6 +7,11 @@ const Carts = require("../models/Cart")
 const Discounts = require("../models/Discounts")
 const Admin = require("../models/Admin")
 const Riders = require("../models/Rider")
+
+const RestaurantReport = require("../models/RestaurantReport")
+const RiderReport = require("../models/RiderReport")
+
+
 const fs = require("fs");
 const path = require("path");
 
@@ -22,6 +27,7 @@ module.exports = {
       let val;
   
       val = await Admin.findOne({ email, pwd });
+    
       if (val) {
           console.log("admin", val);
           return val;
@@ -273,6 +279,23 @@ module.exports = {
             throw new Error("Error applying discount");
         }
     },
+
+    GetRestaurantReportsByCustomerId: async (customerId) => {
+      try {
+        return await RestaurantReport.find({ Customer_id: customerId });
+      } catch (error) {
+        console.error("Error fetching reports for customer:", error);
+        throw error;
+      }
+    },
+    GetRiderReportsByCustomerId: async (customerId) => {
+      try {
+        return await RiderReport.find({ Customer_id: customerId });
+      } catch (error) {
+        console.error("Error fetching reports for customer:", error);
+        throw error;
+      }
+
     check_email: async(role,email)=>{
       let val
       if(role==="Customer")
@@ -382,6 +405,7 @@ module.exports = {
       await val2.save()
 
       return "succesfull"
+
     }
     
       
