@@ -70,6 +70,8 @@ module.exports = {
     
             if (!cartItems || cartItems.length === 0) {
                 return []; // No cart items for the restaurant
+            }else{
+                console.log("cartfound")
             }
     
             // Extract relevant order IDs from cart items
@@ -86,7 +88,7 @@ module.exports = {
             if (!activeOrders || activeOrders.length === 0) {
                 return []; // No active orders found
             }
-    
+            console.log(activeOrders)
             // Prepare detailed response for each active order
             const detailedOrders = await Promise.all(
                 activeOrders.map(async (order) => {
@@ -125,7 +127,8 @@ module.exports = {
                         riderName: rider ? rider.name : 'Unknown',
                         items: items,
                         totalPrice: totalPrice,
-                        paymentMethod: paymentMethod
+                        paymentMethod: paymentMethod,
+                        date: order.date // Add the date field
                     };
                 })
             );
@@ -135,6 +138,7 @@ module.exports = {
             throw new Error('Error retrieving active orders: ' + error.message);
         }
     },
+    
 
     setOrderReady: async (orderId) => {
         try {

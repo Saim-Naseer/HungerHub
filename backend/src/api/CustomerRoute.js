@@ -22,6 +22,8 @@ module.exports = () => {
     router.get("/riderreports", CustomerController.GetRiderReports);
     router.post("/signup",CustomerController.Signup)
     router.get("/getrestaurant",CustomerController.FindRestaurant)
+    router.post("/writerestaurantreport", CustomerController.WriteRestaurantReport);
+    router.post("/writeriderreport", CustomerController.WriteRiderReport);
     return router
 }
 

@@ -424,7 +424,39 @@ module.exports = {
 
       return "succesfull"
 
-    }
+    },
+    CreateRestaurantReport: async (reportData) => {
+      try {
+          const newReport = new RestaurantReport({
+              Customer_id: reportData.customer_id,
+              Restaurant_id: reportData.restaurant_id,
+              Message: reportData.message,
+              Reply: "" // Initialize with an empty reply
+          });
+  
+          // Save the report to the database
+          return await newReport.save();
+      } catch (error) {
+          console.error("Error creating a restaurant report:", error);
+          throw error;
+      }  
+ `` },
+    CreateRiderReport: async (reportData) => {
+      try {
+          const newReport = new RiderReport({
+              Customer_id: reportData.customer_id,
+              Rider_id: reportData.rider_id,
+              Message: reportData.message,
+              Reply: "" // Initialize with an empty reply
+          });
+
+          // Save the report to the database
+          return await newReport.save();
+      } catch (error) {
+          console.error("Error creating a rider report:", error);
+          throw error;
+      }
+}  
     
       
 }

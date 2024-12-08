@@ -16,7 +16,6 @@ const Cart = Mongoose.Schema({
     Cart_id:{
         type:Number,
         required:true,
-
     },
     price:{
         type:Number,
