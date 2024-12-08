@@ -42,7 +42,7 @@
     border-radius: 4px;
   }
 
-  .orders {
+  .ordersHistory {
     display: flex;
     flex-wrap: wrap; /* Allow items to wrap to the next row */
     gap: 15px; /* Space between boxes */

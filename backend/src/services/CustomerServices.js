@@ -7,9 +7,13 @@ const Carts = require("../models/Cart")
 const Discounts = require("../models/Discounts")
 const Admin = require("../models/Admin")
 const Riders = require("../models/Rider")
+
 const RestaurantReport = require("../models/RestaurantReport")
 const RiderReport = require("../models/RiderReport")
 
+
+const fs = require("fs");
+const path = require("path");
 
 module.exports = {
     GetRestaurants: async(location) =>{
@@ -32,7 +36,7 @@ module.exports = {
       val = await Customers.findOne({ email, pwd });
       if (val) {
           console.log("customer", val);
-          return val;
+          return val; 
       }
   
       val = await Restaurants.findOne({ email, pwd });
@@ -48,6 +52,35 @@ module.exports = {
       }
   
       return null;
+    },
+    FindUser2: async (email, meal) => {
+      let val;
+  
+      val = await Admin.findOne({ email, forget_pwd:meal });
+      if (val) {
+          console.log("admin", val);
+          return val;
+      }
+  
+      val = await Customers.findOne({ email, forget_pwd:meal });
+      if (val) {
+          console.log("customer", val);
+          return val; 
+      }
+  
+      val = await Restaurants.findOne({ email, forget_pwd:meal });
+      if (val) {
+          console.log("restaurant", val);
+          return val;
+      }
+  
+      val = await Riders.findOne({ email, forget_pwd:meal });
+      if (val) {
+          console.log("rider", val);
+          return val;
+      }
+  
+      return null;
     },  
     GetPopularItems: async(Restaurant_id) =>{
         return await Menu.find({Restaurant_id,popular:true})
@@ -55,8 +88,8 @@ module.exports = {
     GetItems: async(Restaurant_id) =>{
         return await Menu.find({Restaurant_id})
     },
-    GetActiveOrders: async(Customer_id) =>{
-        return await Orders.findOne({Customer_id,isPlaced:false})
+    GetActiveOrders: async(Customer_id,Restaurant_id) =>{
+        return await Orders.findOne({Customer_id,Restaurant_id,isPlaced:false})
     },
     GetPastOrders: async(Customer_id) =>{
       return await Orders.find({Customer_id,completed:true})
@@ -64,13 +97,14 @@ module.exports = {
     GetWaitingOrders: async(Customer_id) =>{
       return await Orders.find({Customer_id,isPlaced:true,completed:false})
     },
-    CreateOrder: async({Customer_id}) =>{
+    CreateOrder: async(Customer_id,Restaurant_id) =>{
         const orderId = await CounterServices.Get("Order");
         const cartId = await CounterServices.Get("Cart");
 
 
         const newOrder = new Orders({
             Customer_id: Customer_id,
+            Restaurant_id:Restaurant_id,
             Order_id: orderId,
             Cart_id: cartId,
         });
@@ -162,17 +196,19 @@ module.exports = {
         ]);
 
       },
-      GetDiscounts: async(cart)=>{
-        const RestaurantIds = cart.map((x)=>{
-          return x.Restaurant_id
-        })
+      GetDiscounts: async(customerOrder)=>{
+        // const RestaurantIds = cart.map((x)=>{
+        //   return x.Restaurant_id
+        // })
+
+        const Restaurant_id=customerOrder.Restaurant_id
 
        // return await Discounts.find({Restaurant_id:{$in:RestaurantIds}})
 
         return await Discounts.aggregate([
           {
             $match: {
-              Restaurant_id:{$in:RestaurantIds}
+              Restaurant_id:Restaurant_id
             },
           },
           {
@@ -232,7 +268,7 @@ module.exports = {
 
 
             await Orders.findOneAndUpdate(
-              {Customer_id,Order_id},
+              {Customer_id,Order_id,Restaurant_id},
               {price:n_price},
               {new:true}
             )
@@ -243,6 +279,7 @@ module.exports = {
             throw new Error("Error applying discount");
         }
     },
+
     GetRestaurantReportsByCustomerId: async (customerId) => {
       try {
         return await RestaurantReport.find({ Customer_id: customerId });
@@ -258,6 +295,117 @@ module.exports = {
         console.error("Error fetching reports for customer:", error);
         throw error;
       }
+
+    check_email: async(role,email)=>{
+      let val
+      if(role==="Customer")
+      {
+        val = await Customers.findOne({email})
+      }
+      else if(role==="Restaurant")
+      {
+        val = await Restaurants.findOne({email})
+      }
+      else if(role==="Rider")
+      {
+        val = await Riders.findOne({email})
+      }
+
+      if(val!==null)
+      {
+        return "Email already Exists"
+      }
+      else{
+        return "found"
+      }
+
+    },
+    Signup_Customer: async(name,email,phone,location,address,pwd,forget) => {
+
+      const id = await CounterServices.Get("Customer")
+      await CounterServices.Inc("Customer")
+
+      const val2 = await new Customers({
+        Customer_id:id,
+        email:email,
+        pwd:pwd,
+        name:name,
+        location:location,
+        phone:Number(phone),
+        exact_address:address,
+        forget_pwd:forget
+      })
+
+      await val2.save()
+
+      return "succesfull"
+    },
+    SaveImage: async (imageFile) => {
+      console.log("in")
+      const uploadDir = path.join(__dirname, "../../../frontend/my-app/public/Images");
+
+      console.log(uploadDir)
+
+      // Ensure directory exists
+      if (!fs.existsSync(uploadDir)) {
+          fs.mkdirSync(uploadDir, { recursive: true });
+      }
+
+      const filePath = path.join(uploadDir, imageFile.name);
+
+      // Save the file to the local directory
+      await imageFile.mv(filePath);
+
+      return `/Images/${imageFile.name}`; // Relative path to access the file from the frontend
+    },
+    Signup_Restaurant: async(name,email,phone,location,address,pwd,forget,image2,cusine,description) => {
+      
+      const id = await CounterServices.Get("Restaurant")
+      await CounterServices.Inc("Restaurant")
+
+      const val2 = await new Restaurants({
+        Restaurant_id:id,
+        email:email,
+        pwd:pwd,
+        name:name,
+        location:location,
+        phone:Number(phone),
+        exact_address:address,
+        forget_pwd:forget,
+        image:image2,
+        cusine:cusine,
+        description:description
+      })
+
+      console.log(val2)
+
+      await val2.save()
+
+      return "succesfull"
+    },
+    Signup_Rider: async(name,email,phone,location,address,pwd,forget,image2) => {
+      
+      const id = await CounterServices.Get("Rider")
+      await CounterServices.Inc("Rider")
+
+      const val2 = await new Riders({
+        Rider_id:id,
+        email:email,
+        pwd:pwd,
+        name:name,
+        location:location,
+        phone:Number(phone),
+        exact_address:address,
+        forget_pwd:forget,
+        image:image2
+      })
+
+      console.log(val2)
+
+      await val2.save()
+
+      return "succesfull"
+
     }
     
       

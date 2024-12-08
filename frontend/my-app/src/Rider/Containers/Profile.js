@@ -1,44 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import riderProfile from '../Assets/Rider_img.png'; 
-import '../Styles/Profile.css'; // Add your CSS file for styling
+import '../Styles/Profile.css';
 import Session from '../../Session';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
 
   // State for user data
-  const [userData, setUserData] = useState(null); // Start with null to indicate loading
-  const [isLoading, setIsLoading] = useState(true); // Loading state for API call
-  const [error, setError] = useState(null); // Error state for API call
+  const [userData, setUserData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Temporary data for editing
   const [tempData, setTempData] = useState({});
-
+  
   // Fetch rider information
   useEffect(() => {
     const fetchRiderInfo = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/rider/get-rider-info/${Session.user_id}`); // Adjust the endpoint as needed
+        const response = await fetch(`http://localhost:5000/rider/get-rider-info/${Session.user_id}`);
         if (!response.ok) {
           throw new Error('Failed to fetch rider information');
         }
 
-        const data = await response.json(); // Get the response as JSON
-        
+        const data = await response.json();
         if (data.success && data.data.length > 0) {
-          // Extract the first item from the data array
           const riderInfo = data.data[0];
-          
-          setUserData(riderInfo); // Set the fetched rider data
-          setTempData(riderInfo); // Set the temporary data for the modal
+          setUserData(riderInfo);
+          setTempData(riderInfo);
         } else {
           throw new Error('No rider data found');
         }
-
         setIsLoading(false);
       } catch (err) {
         setError(err.message);
@@ -49,26 +45,46 @@ const ProfilePage = () => {
     fetchRiderInfo();
   }, []);
 
-  // Handle input change in the modal
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setTempData({ ...tempData, [name]: value });
-  };
-
   // Save updated data
-  const handleUpdate = () => {
-    setUserData({ ...tempData });
-    setIsModalOpen(false); // Close the modal after updating
+  const handleUpdate = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/rider/updateRiderInfo', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          Rider_id: Session.user_id,
+          name: tempData.name,
+          contactno: tempData.phone,
+          email: tempData.email,
+          pwd: tempData.pwd,
+          location: tempData.location,
+        }),
+      });
+
+      const result = await response.json();
+      if (response.ok && result.success) {
+        setUserData({ ...tempData });
+        setIsModalOpen(false);
+
+        // Update session data
+        Session.name = tempData.name;
+        Session.contactno = tempData.phone;
+        Session.email = tempData.email;
+        Session.pwd = tempData.pwd;
+        Session.location = tempData.location;
+
+        alert('Profile updated successfully.');
+      } else {
+        throw new Error(result.message || 'Failed to update profile.');
+      }
+    } catch (err) {
+      alert(`Error: ${err.message}`);
+    }
   };
 
   // Loading and error handling
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="profile-page">
@@ -81,6 +97,7 @@ const ProfilePage = () => {
         </div>
         <div className="data">
           <p><strong>Name:</strong> {userData.name}</p>
+          <p><strong>Rating:</strong> {userData.total}</p>
           <p><strong>Contact No:</strong> {userData.phone}</p>
           <p><strong>Email:</strong> {userData.email}</p>
           <p><strong>Password:</strong> {userData.pwd}</p>
@@ -89,7 +106,7 @@ const ProfilePage = () => {
       </div>
 
       {/* Action Buttons */}
-      <div className="actions">
+      <div className="Rider-actions">
         <button className="edit-button" onClick={() => setIsModalOpen(true)}>
           Edit Personal Info
         </button>
@@ -103,13 +120,14 @@ const ProfilePage = () => {
         <div className="modal">
           <div className="modal-content">
             <h2>Edit Personal Information</h2>
+
             <label>
               Name:
               <input
                 type="text"
                 name="name"
                 value={tempData.name}
-                onChange={handleInputChange}
+                onChange={(e) => setTempData({ ...tempData, name: e.target.value })}
               />
             </label>
             <label>
@@ -118,7 +136,7 @@ const ProfilePage = () => {
                 type="text"
                 name="phone"
                 value={tempData.phone}
-                onChange={handleInputChange}
+                onChange={(e) => setTempData({ ...tempData, phone: e.target.value })}
               />
             </label>
             <label>
@@ -127,7 +145,7 @@ const ProfilePage = () => {
                 type="email"
                 name="email"
                 value={tempData.email}
-                onChange={handleInputChange}
+                onChange={(e) => setTempData({ ...tempData, email: e.target.value })}
               />
             </label>
             <label>
@@ -136,17 +154,25 @@ const ProfilePage = () => {
                 type="text"
                 name="pwd"
                 value={tempData.pwd}
-                onChange={handleInputChange}
+                onChange={(e) => setTempData({ ...tempData, pwd: e.target.value })}
               />
             </label>
             <label>
               Location:
-              <input
-                type="text"
+              <select
                 name="location"
                 value={tempData.location}
-                onChange={handleInputChange}
-              />
+                onChange={(e) => setTempData({ ...tempData, location: e.target.value })}
+              >
+                <option value="Shahdara, Badami Bagh, Ravi Town">Shahdara, Badami Bagh, Ravi Town</option>
+                <option value="Inner Lahore, Anarkali, Data Darbar, Circular Road">Inner Lahore, Anarkali, Data Darbar, Circular Road</option>
+                <option value="Liberty Market, MM Alam Road, Ghalib Market, Main Boulevard">Liberty Market, MM Alam Road, Ghalib Market, Main Boulevard</option>
+                <option value="Model Town, Garden Town, Faisal Town, Township">Model Town, Garden Town, Faisal Town, Township</option>
+                <option value="DHA Phases 1-8, Lahore Cantt, Walton">DHA Phases 1-8, Lahore Cantt, Walton</option>
+                <option value="Johar Town, Wapda Town, Valencia Town">Johar Town, Wapda Town, Valencia Town</option>
+                <option value="Allama Iqbal Town, Sabzazar, Samanabad">Allama Iqbal Town, Sabzazar, Samanabad</option>
+                <option value="Bahria Town, NFC Society, Canal Road extensions">Bahria Town, NFC Society, Canal Road extensions</option>
+              </select>
             </label>
 
             <div className="modal-actions">

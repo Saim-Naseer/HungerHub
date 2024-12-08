@@ -2,6 +2,7 @@ import React from "react";
 import "./Bill.css";
 import Session from "../../../Session";
 import Discount from "./Discount";
+import R_Session from "../Restaurant/Session"
 
 class Bill extends React.Component {
     constructor() {
@@ -20,15 +21,15 @@ class Bill extends React.Component {
     }
 
     fetchData = async () => {
-        const data2 = await fetch("http://localhost:5000/customer/cart?uid=" + Session.user_id);
+        const data2 = await fetch(`http://localhost:5000/customer/cart?uid=${Session.user_id}&rid=${R_Session.restaurant_id}`);
         const data3 = await data2.json();
         this.setState({ data: data3 });
 
-        const data4 = await fetch("http://localhost:5000/customer/discounts?uid=" + Session.user_id);
+        const data4 = await fetch(`http://localhost:5000/customer/discounts?uid=${Session.user_id}&rid=${R_Session.restaurant_id}`);
         const data5 = await data4.json();
         this.setState({ discounts: data5 });
 
-        const data6 = await fetch("http://localhost:5000/customer/activeorder?uid=" + Session.user_id);
+        const data6 = await fetch(`http://localhost:5000/customer/activeorder?uid=${Session.user_id}&rid=${R_Session.restaurant_id}`);
         const data7 = await data6.json();
         this.setState({ order: data7 });
 
@@ -42,9 +43,17 @@ class Bill extends React.Component {
 
     };
 
-    componentDidMount = async () => {
-        await this.fetchData();
-    };
+    componentDidMount() 
+    {
+        this.fetchData();
+
+        this.interval = setInterval(this.fetchData, 3000);
+    }
+    
+    componentWillUnmount() 
+    {
+        clearInterval(this.interval);
+    }
 
     showDiscounts = () => {
         this.setState({ discount_prompt: true });

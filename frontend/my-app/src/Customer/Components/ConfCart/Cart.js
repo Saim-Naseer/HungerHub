@@ -2,7 +2,7 @@ import React from 'react';
 import "./Cart.css"
 import Session from "../../../Session"
 import CartItem from "../Restaurant/CartItem"
-
+import R_Session from "../Restaurant/Session"
 
 
 
@@ -19,15 +19,29 @@ class Cart extends React.Component{
 
 
     
-    fetchData = async() =>{
-        const data2 = await fetch("http://localhost:5000/customer/cart?uid="+Session.user_id)
-        const data = await data2.json()
-        this.setState({items:data})
+    fetchData = async () => {
+        try {
+            const response = await fetch(
+                `http://localhost:5000/customer/cart?uid=${Session.user_id}&rid=${R_Session.restaurant_id}`
+            );
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status}`);
+            }
+            const data = await response.json();
+            this.setState({ items: data });
 
-        const data3 = await fetch("http://localhost:5000/customer/activeorder?uid="+Session.user_id)
-        const data4 = await data3.json()
-        this.setState({price:data4.price})
-    }
+            const orderResponse = await fetch(
+                `http://localhost:5000/customer/activeorder?uid=${Session.user_id}&rid=${R_Session.restaurant_id}`
+            );
+            if (!orderResponse.ok) {
+                throw new Error(`Error: ${orderResponse.status}`);
+            }
+            const orderData = await orderResponse.json();
+            this.setState({ price: orderData.price });
+        } catch (error) {
+            console.error('Error fetching cart data:', error);
+        }
+    };
 
 
 

@@ -44,7 +44,7 @@ class Body extends React.Component{
         })
 
         const content2 = content1.map((x) => {
-            return <Card key={x.id_} name={x.name} cusine={x.cusine} image={x.image} onClick={()=>{R_Session.restaurant_id=x.Restaurant_id;  R_Session.name=x.name; R_Session.location=x.location; R_Session.image=x.image; R_Session.cusine=x.cusine; R_Session.exact_address=x.exact_address; this.changePage("restaurant")}}/>
+            return <Card key={x.Restaurant_id} name={x.name} cusine={x.cusine} image={x.image} onClick={()=>{R_Session.restaurant_id=x.Restaurant_id;  R_Session.name=x.name; R_Session.location=x.location; R_Session.image=x.image; R_Session.cusine=x.cusine; R_Session.exact_address=x.exact_address; this.changePage("restaurant")}}/>
         })
 
 

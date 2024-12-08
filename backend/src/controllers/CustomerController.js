@@ -5,6 +5,8 @@ const MenuModel = require('../models/Menu')
 const service = require("../services/CustomerServices")
 const CounterServices = require("../services/CounterService")
 const DiscountModel  = require("../models/Discounts")
+const path = require("path");
+const utils = require("../utils/utils")
 
 module.exports = {
     Create: async (req,res) => {
@@ -66,10 +68,12 @@ module.exports = {
         try{
             
             const Customer_id = req.query.uid
+            const Restaurant_id = req.query.rid
 
-            const order = await service.GetActiveOrders(Customer_id)
 
-            res.status(200).send(order)
+            const order = await service.GetActiveOrders(Customer_id,Restaurant_id)
+
+            await res.status(200).send(order)
 
         }catch(e){
             res.send("not done")
@@ -81,10 +85,10 @@ module.exports = {
           const Restaurant_id = req.query.rid
           const Item_id = req.query.iid
       
-          let customerOrder = await service.GetActiveOrders(Customer_id)
+          let customerOrder = await service.GetActiveOrders(Customer_id,Restaurant_id)
       
           if (!customerOrder) { 
-            customerOrder = await service.CreateOrder({ Customer_id })
+            customerOrder = await service.CreateOrder(Customer_id,Restaurant_id)
           }
       
 
@@ -100,12 +104,21 @@ module.exports = {
     ViewCart: async(req,res) =>{
         try{
             const Customer_id = req.query.uid
-            let customerOrder = await service.GetActiveOrders(Customer_id)
+            const Restaurant_id = req.query.rid
 
-            const val = await service.GetCartItems(customerOrder)
+            let customerOrder = await service.GetActiveOrders(Customer_id,Restaurant_id)
 
+            if(customerOrder===null)
+            {
+                res.status(200).send([])
+            }
+            else
+            {
+                const val = await service.GetCartItems(customerOrder)
 
-            res.status(200).send(val)
+                res.status(200).send(val)
+            }
+            
         }catch(e){
             res.send("not done")
         }
@@ -113,12 +126,23 @@ module.exports = {
     ViewDiscounts: async(req,res) =>{
         try{
             const Customer_id = req.query.uid
-            let customerOrder = await service.GetActiveOrders(Customer_id)
-            const val = await service.GetCartItems(customerOrder)
+            const Restaurant_id = req.query.rid
 
-            const content = await service.GetDiscounts(val)
+            let customerOrder = await service.GetActiveOrders(Customer_id,Restaurant_id)
 
-            res.send(content)
+            if(customerOrder===null)
+            {
+                res.send([])
+            }
+            else
+            {
+                //const val = await service.GetCartItems(customerOrder)
+
+                const content = await service.GetDiscounts(customerOrder)
+
+                res.send(content)
+            }
+            
         }catch(e){
             res.send("not done")
         }
@@ -129,7 +153,7 @@ module.exports = {
             const Restaurant_id = req.query.rid;
             const Discount_id = req.query.did;
     
-            const customerOrder = await service.GetActiveOrders(Customer_id);
+            const customerOrder = await service.GetActiveOrders(Customer_id,Restaurant_id);
     
             const val = await service.ApplyDiscount({ Restaurant_id, Discount_id, customerOrder });
     
@@ -171,14 +195,36 @@ module.exports = {
     
             console.log("email", email);
             console.log("pwd", pwd);
-    
+
+
             const val = await service.FindUser(email, pwd);
     
             if (val) {
                 res.status(200).send(val);
             } else {
-                res.status(404).send("User not found");
-            }
+                res.status(404).send({msg:"User not found"});
+            } 
+        } catch (e) {
+            console.error("Error in FindUser:", e);
+            res.status(500).send("Internal Server Error");
+        }
+    },
+    FindUser2: async (req, res) => {
+        try {
+            const email = req.query.email;
+            const meal = req.query.meal; // Fix the typo here
+    
+            console.log("email", email);
+            console.log("meal", meal);
+
+
+            const val = await service.FindUser2(email, meal);
+    
+            if (val) {
+                res.status(200).send(val);
+            } else {
+                res.status(404).send({msg:"User not found"});
+            } 
         } catch (e) {
             console.error("Error in FindUser:", e);
             res.status(500).send("Internal Server Error");
@@ -187,8 +233,85 @@ module.exports = {
     Signup: async(req,res) =>{
         try{
 
+            let msg
+
+            console.log(req.body)
+            const name = req.body.name
+            const email = req.body.email
+            const phone = req.body.phone
+            const role = req.body.role
+
+            const location = req.body.region
+            const address = req.body.address
+
+            const pwd = req.body.pwd
+            const forget = req.body.forget
+
+            if(utils.isEmail(email)===false)
+            {
+                res.status(400).json({message:"Enter a valid email"})
+            }
+            else
+            {
+                if(role==="Customer")
+                {
+                    const msg2 = await service.check_email(role,email)
+    
+                    if(msg2==="Email already Exists")
+                    {
+                        res.status(400).json({message:msg2})
+                    }
+                    else
+                    {
+                        msg = await service.Signup_Customer(name,email,phone,location,address,pwd,forget)
+                        const val = await service.FindUser(email, pwd)
+                        res.status(200).json({message:msg,message2:val.Customer_id})
+                    }
+    
+                }
+                else if (role === "Restaurant") {
+                    const image = req.files?.image; // Safely access req.files.image
+                    const cusine = req.body.cusine;
+                    const description = req.body.description;
+                
+                    const msg2 = await service.check_email(role,email)
+    
+                    if(msg2==="Email already Exists")
+                    {
+                        res.status(400).json({message:msg2})
+                    }
+                    else
+                    {   
+                        const image2 = await service.SaveImage(image)
+                        msg = await service.Signup_Restaurant(name, email, phone, location, address, pwd, forget, image2, cusine, description);
+                        const val = await service.FindUser(email, pwd);
+                        res.status(200).json({message:msg,message2:val.Restaurant_id})
+                    }
+                }            
+                else if(role==="Rider")
+                {
+                    const image = req.files.image
+    
+                    const msg2 = await service.check_email(role,email)
+    
+                    if(msg2==="Email already Exists")
+                    {
+                        res.status(400).json({message:msg2})
+                    }
+                    else
+                    {   
+                        const image2 = await service.SaveImage(image)
+                        msg = await service.Signup_Rider(name, email, phone, location, address, pwd, forget, image2);
+                        const val = await service.FindUser(email, pwd);
+                        res.status(200).json({message:msg,message2:val.Rider_id})
+                    }
+                }
+            }
+
+
+
         }catch(e){
-            
+            res.status(400).json({message:"not successfull"})
         }
     },
     GetRestaurantReports: async (req, res) => {

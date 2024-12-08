@@ -1,0 +1,7 @@
+.footer{
+    width:100vw;
+    height:200px;
+    background-color: #FFB703;
+    position:fixed;
+    top:100vh;
+}

@@ -12,9 +12,9 @@ import Reports from "../Components/Reports/Reports.js";
 const App = () => {
     return (
         <Router>
-        <div className="app">
+        <div >
           
-          <div className="main-content">
+          <div >
             <NavbarTop/> 
             <Routes>
               <Route path="/" element={<Orders />} />
