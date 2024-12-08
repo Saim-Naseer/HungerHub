@@ -33,11 +33,10 @@ class Main_Resturant_Details extends Component {
     }
     render() {
         const { Restaurant_id } = this.props;  // Now id is passed as a prop
-        console.log(Restaurant_id);
         return (
         <div>
             <Background />
-            <CardList Restaurant_id={Number(Restaurant_id)} restaurants={this.state.restaurants} />
+            <CardList  Restaurant_id={Number(Restaurant_id)} restaurants={this.state.restaurants} />
         </div>
         );
     }

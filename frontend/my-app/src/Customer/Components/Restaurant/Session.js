@@ -1,6 +1,6 @@
 
 const Session = {
-    restaurant_id:0,
+    restaurant_id:1,
     name:"",
     location:"",
     image:"",

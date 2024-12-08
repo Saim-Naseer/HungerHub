@@ -60,7 +60,7 @@ const ReportsTable = ({ riders_reports,onRefresh }) => {
                                     <td>{report.rider_name || "Annonymous"}</td>
                                     <td>{report.customer_name || "Anonymous"}</td>
                                     <td>
-                                        <div className="message">Message: {report.message}</div>
+                                        <div className="message">Message: {report.Message}</div>
 
                                         {report.reply ? (
                                             <p>{report.reply}</p> // Show reply if it exists

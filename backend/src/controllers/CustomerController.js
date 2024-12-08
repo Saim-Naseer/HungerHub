@@ -351,6 +351,48 @@ module.exports = {
           console.error("Error fetching customer reports:", error);
           res.status(500).send({ message: "Failed to fetch customer reports" });
         }
-    }
+    },
+    WriteRestaurantReport: async (req, res) => {
+        try {
+            const { customer_id, restaurant_id, message } = req.body;
+    
+            // Validate the input
+            if (!customer_id || !restaurant_id || !message || message.trim() === "") {
+                return res.status(400).send({ message: "Invalid input. All fields are required." });
+            }
+    
+            // Call the service to create the report
+            const newReport = await service.CreateRestaurantReport({ customer_id, restaurant_id, message});
+    
+            res.status(201).send({
+                message: "Report submitted successfully",
+                report: newReport
+            });
+        } catch (error) {
+            console.error("Error writing a restaurant report:", error);
+            res.status(500).send({ message: "Failed to write the restaurant report" });
+        }
+    },
+    WriteRiderReport: async (req, res) => {
+        try {
+            const { customer_id, rider_id, message } = req.body;
+    
+            // Validate the input
+            if (!customer_id || !rider_id || !message || message.trim() === "") {
+                return res.status(400).send({ message: "Invalid input. All fields are required." });
+            }
+    
+            // Call the service to create the report
+            const newReport = await service.CreateRiderReport({ customer_id, rider_id, message});
+    
+            res.status(201).send({
+                message: "Report submitted successfully",
+                report: newReport
+            });
+        } catch (error) {
+            console.error("Error writing a rider report:", error);
+            res.status(500).send({ message: "Failed to write the rider report" });
+        }
+    }    
 
 }
