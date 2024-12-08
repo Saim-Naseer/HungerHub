@@ -26,7 +26,7 @@ class Menu extends React.Component{
     render()
     {
         const content = this.state.items.map((x)=>{
-            return <Item name={x.name} price={x.price} Item_id={x.Item_id}/>
+            return <Item key={x.Item_id} name={x.name} price={x.price} Item_id={x.Item_id}/>
         })
 
         let content1

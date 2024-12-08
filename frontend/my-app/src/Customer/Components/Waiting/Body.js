@@ -4,6 +4,7 @@ import Session from "../../../Session"
 import Completed from "../../Containers/Completed"
 import Preparing from "./Preparing"
 import Delivering from "./Delivering"
+import R_Session from "../Restaurant/Session"
 
 class Body extends React.Component{
     constructor()
@@ -17,7 +18,7 @@ class Body extends React.Component{
     }
 
     fetchData=async()=>{
-        const data3 = await fetch(`http://localhost:5000/customer/activeorder?uid=${Session.user_id}`)
+        const data3 = await fetch(`http://localhost:5000/customer/activeorder?uid=${Session.user_id}&rid=${R_Session.restaurant_id}`)
         const data4 = await data3.json()
         this.setState({isReadt:data4.isReady})
         this.setState({completed:data4.completed})

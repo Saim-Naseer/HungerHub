@@ -1,11 +1,9 @@
 import React from 'react';
 import { CartContext } from './CartContext';
-import "./Cart.css"
-import Session from "../../../Session"
-import CartItem from "./CartItem"
-
-
-
+import "./Cart.css";
+import Session from "../../../Session";
+import CartItem from "./CartItem";
+import R_Session from "./Session";
 
 class Cart extends React.Component {
     constructor() {
@@ -18,26 +16,28 @@ class Cart extends React.Component {
 
     static contextType = CartContext;
 
-    componentDidMount = async() => {
-        await this.fetchData();
+    componentDidMount() {
+        // Fetch data once on mount
+        this.fetchData();
     }
 
-    componentDidUpdate = async(prevProps, prevState) => {
+    componentDidUpdate(prevProps, prevState) {
+        // Only fetch data when context's fetchTrigger changes
         if (this.context.fetchTrigger !== prevState.fetchTrigger) {
-            await this.fetchData();
+            this.fetchDataDebounced(); // Debounced fetch call
         }
     }
 
     fetchData = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/customer/cart?uid=${Session.user_id}`);
+            const response = await fetch( `http://localhost:5000/customer/cart?uid=${Session.user_id}&rid=${R_Session.restaurant_id}`);
             if (!response.ok) {
                 throw new Error(`Error: ${response.status}`);
             }
             const data = await response.json();
             this.setState({ items: data });
 
-            const orderResponse = await fetch(`http://localhost:5000/customer/activeorder?uid=${Session.user_id}`);
+            const orderResponse = await fetch( `http://localhost:5000/customer/activeorder?uid=${Session.user_id}&rid=${R_Session.restaurant_id}`);
             if (!orderResponse.ok) {
                 throw new Error(`Error: ${orderResponse.status}`);
             }
@@ -48,9 +48,18 @@ class Cart extends React.Component {
         }
     };
 
+    // Debounce fetch calls
+    fetchDataDebounced = (() => {
+        let timeout;
+        return () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(this.fetchData, 500); // Delay fetch by 500ms
+        };
+    })();
+
     render() {
         const content = this.state.items.map((x) => (
-            <CartItem name={x.itemDetails.name} price={x.price} qty={x.qty} />
+            <CartItem key={x.itemDetails.id} name={x.itemDetails.name} price={x.price} qty={x.qty} />
         ));
 
         return (
@@ -70,5 +79,4 @@ class Cart extends React.Component {
     }
 }
 
-
-export default Cart
+export default Cart;

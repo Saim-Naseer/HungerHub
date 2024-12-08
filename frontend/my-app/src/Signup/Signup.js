@@ -447,10 +447,11 @@ class Signup extends React.Component{
         }
         else if(this.state.page==="signup" & this.state.match===false)
         {
+            alert("Your passwords don't match")
             content = (
                 <>
                     {content1}
-                    <p style={{color:"red",position:"relative",bottom:"173px",left:"500px"}}>Your passwords don't match</p>
+                    {/* <p style={{color:"red",position:"relative",bottom:"173px",left:"500px"}}>Your passwords don't match</p> */}
                 </>
             )
         }

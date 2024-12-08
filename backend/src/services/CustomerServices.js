@@ -7,6 +7,11 @@ const Carts = require("../models/Cart")
 const Discounts = require("../models/Discounts")
 const Admin = require("../models/Admin")
 const Riders = require("../models/Rider")
+
+const RestaurantReport = require("../models/RestaurantReport")
+const RiderReport = require("../models/RiderReport")
+
+
 const fs = require("fs");
 const path = require("path");
 
@@ -22,6 +27,7 @@ module.exports = {
       let val;
   
       val = await Admin.findOne({ email, pwd });
+    
       if (val) {
           console.log("admin", val);
           return val;
@@ -46,6 +52,35 @@ module.exports = {
       }
   
       return null;
+    },
+    FindUser2: async (email, meal) => {
+      let val;
+  
+      val = await Admin.findOne({ email, forget_pwd:meal });
+      if (val) {
+          console.log("admin", val);
+          return val;
+      }
+  
+      val = await Customers.findOne({ email, forget_pwd:meal });
+      if (val) {
+          console.log("customer", val);
+          return val; 
+      }
+  
+      val = await Restaurants.findOne({ email, forget_pwd:meal });
+      if (val) {
+          console.log("restaurant", val);
+          return val;
+      }
+  
+      val = await Riders.findOne({ email, forget_pwd:meal });
+      if (val) {
+          console.log("rider", val);
+          return val;
+      }
+  
+      return null;
     },  
     GetPopularItems: async(Restaurant_id) =>{
         return await Menu.find({Restaurant_id,popular:true})
@@ -53,8 +88,8 @@ module.exports = {
     GetItems: async(Restaurant_id) =>{
         return await Menu.find({Restaurant_id})
     },
-    GetActiveOrders: async(Customer_id) =>{
-        return await Orders.findOne({Customer_id,isPlaced:false})
+    GetActiveOrders: async(Customer_id,Restaurant_id) =>{
+        return await Orders.findOne({Customer_id,Restaurant_id,isPlaced:false})
     },
     GetPastOrders: async(Customer_id) =>{
       return await Orders.find({Customer_id,completed:true})
@@ -62,13 +97,14 @@ module.exports = {
     GetWaitingOrders: async(Customer_id) =>{
       return await Orders.find({Customer_id,isPlaced:true,completed:false})
     },
-    CreateOrder: async({Customer_id}) =>{
+    CreateOrder: async(Customer_id,Restaurant_id) =>{
         const orderId = await CounterServices.Get("Order");
         const cartId = await CounterServices.Get("Cart");
 
 
         const newOrder = new Orders({
             Customer_id: Customer_id,
+            Restaurant_id:Restaurant_id,
             Order_id: orderId,
             Cart_id: cartId,
         });
@@ -160,17 +196,19 @@ module.exports = {
         ]);
 
       },
-      GetDiscounts: async(cart)=>{
-        const RestaurantIds = cart.map((x)=>{
-          return x.Restaurant_id
-        })
+      GetDiscounts: async(customerOrder)=>{
+        // const RestaurantIds = cart.map((x)=>{
+        //   return x.Restaurant_id
+        // })
+
+        const Restaurant_id=customerOrder.Restaurant_id
 
        // return await Discounts.find({Restaurant_id:{$in:RestaurantIds}})
 
         return await Discounts.aggregate([
           {
             $match: {
-              Restaurant_id:{$in:RestaurantIds}
+              Restaurant_id:Restaurant_id
             },
           },
           {
@@ -230,7 +268,7 @@ module.exports = {
 
 
             await Orders.findOneAndUpdate(
-              {Customer_id,Order_id},
+              {Customer_id,Order_id,Restaurant_id},
               {price:n_price},
               {new:true}
             )
@@ -241,6 +279,23 @@ module.exports = {
             throw new Error("Error applying discount");
         }
     },
+
+    GetRestaurantReportsByCustomerId: async (customerId) => {
+      try {
+        return await RestaurantReport.find({ Customer_id: customerId });
+      } catch (error) {
+        console.error("Error fetching reports for customer:", error);
+        throw error;
+      }
+    },
+    GetRiderReportsByCustomerId: async (customerId) => {
+      try {
+        return await RiderReport.find({ Customer_id: customerId });
+      } catch (error) {
+        console.error("Error fetching reports for customer:", error);
+        throw error;
+      }
+
     check_email: async(role,email)=>{
       let val
       if(role==="Customer")
@@ -350,6 +405,7 @@ module.exports = {
       await val2.save()
 
       return "succesfull"
+
     }
     
       

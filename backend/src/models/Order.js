@@ -13,6 +13,10 @@ const Order = Mongoose.Schema({
         type:Number,
         required:true
     },
+    Restaurant_id:{
+        type:Number,
+        required:true
+    },
     Cart_id:{
         type:Number,
         required:true
@@ -22,14 +26,6 @@ const Order = Mongoose.Schema({
         default:0
     },
     completed:{
-        type:Boolean,
-        default:false
-    },
-    isPlaced:{
-        type:Boolean,
-        default:false
-    },
-    isReady:{
         type:Boolean,
         default:false
     },
