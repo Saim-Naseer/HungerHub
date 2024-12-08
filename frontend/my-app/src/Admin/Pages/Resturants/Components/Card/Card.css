@@ -10,7 +10,7 @@
     width: 300px; /* Fixed width for all cards */
     height: auto; /* Reduced height for compactness */
     text-align: center; /* Center-align content */
-    
+    margin-bottom: 20px;
 }
 
 .card img {

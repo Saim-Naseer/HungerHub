@@ -10,10 +10,17 @@ const RestaurantReport = Mongoose.Schema({
         required: true // Corrected typo here
     },
     Message: {
-        type: String
+        type: String,
     },
     Reply: {
         type: String
+    }
+});
+
+RestaurantReport.set("toJSON", {
+    transform: (doc, ret) => {
+        delete ret.__v; // Remove `__v`
+        return ret;
     }
 });
 
