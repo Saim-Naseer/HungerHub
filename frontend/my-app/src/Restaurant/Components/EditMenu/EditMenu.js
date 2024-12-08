@@ -1,31 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./EditMenu.css";
 
 const EditMenu = () => {
-  const [menuData, setMenuData] = useState([
-    {
-      category: "Famous Item",
-      items: [{ name: "Pasta", price: 600 }],
-    },
-    {
-      category: "Normal Items",
-      items: [
-        { name: "Pizza", price: 1200 },
-        { name: "Burger", price: 400 },
-        { name: "Wrap", price: 300 },
-        { name: "Handi", price: 2300 },
-        { name: "Karahi", price: 2200 },
-        { name: "Sajji", price: 2200 },
-      ],
-    },
-  ]);
-
+  const [menuData, setMenuData] = useState([]); // Dynamic data from API
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newItem, setNewItem] = useState({ name: "", price: "" });
   const [isFamous, setIsFamous] = useState(false);
 
-  // Function to add an item
-  const handleAddItem = () => {
+  // Fetch menu data from backend
+  useEffect(() => {
+    const fetchMenuData = async () => {
+      try {
+        const restaurantId = 1; // Replace with dynamic ID if needed
+        const response = await fetch(`http://localhost:5000/restaurant/menu?rid=${restaurantId}`);
+        if (!response.ok) {
+          throw new Error(`Error fetching menu data: ${response.statusText}`);
+        }
+        const data = await response.json();
+        const items = data.menuItems;
+
+        // Categorize items into Famous and Normal
+        const famousItems = items.filter((item) => item.popular);
+        const normalItems = items.filter((item) => !item.popular);
+
+        setMenuData([
+          { category: "Famous Item", items: famousItems },
+          { category: "Normal Items", items: normalItems },
+        ]);
+      } catch (error) {
+        console.error("Error fetching menu data:", error);
+      }
+    };
+
+    fetchMenuData();
+  }, []);
+
+  // Add new item
+  const handleAddItem = async () => {
     if (newItem.price < 0) {
       alert("Price cannot be negative!");
       return;
@@ -36,25 +47,74 @@ const EditMenu = () => {
       return;
     }
 
-    const updatedMenuData = menuData.map((category) => {
-      if ((isFamous && category.category === "Famous Item") || (!isFamous && category.category === "Normal Items")) {
-        return {
-          ...category,
-          items: [...category.items, { name: newItem.name, price: parseInt(newItem.price) }],
-        };
-      }
-      return category;
-    });
+    try {
+      const restaurantId = 1; // Replace with dynamic restaurant ID if needed
+      const response = await fetch(
+        `http://localhost:5000/restaurant/menu?rid=${restaurantId}&name=${newItem.name}&price=${newItem.price}&popular=${isFamous}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-    setMenuData(updatedMenuData);
-    setNewItem({ name: "", price: "" });
-    setIsFamous(false);
-    setIsModalOpen(false);
+      if (!response.ok) {
+        throw new Error(`Failed to add item: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+
+      // Update the menu data with the newly added item
+      const updatedMenuData = menuData.map((category) => {
+        if (
+          (isFamous && category.category === "Famous Item") ||
+          (!isFamous && category.category === "Normal Items")
+        ) {
+          return {
+            ...category,
+            items: [...category.items, { name: newItem.name, price: parseInt(newItem.price) }],
+          };
+        }
+        return category;
+      });
+
+      setMenuData(updatedMenuData);
+      setNewItem({ name: "", price: "" });
+      setIsFamous(false);
+      setIsModalOpen(false);
+
+      alert(data.message); // Show success message
+    } catch (error) {
+      console.error("Error adding menu item:", error);
+      alert("Failed to add item. Please try again.");
+    }
   };
 
-  // Function to confirm and delete an item
-  const handleDeleteItem = (categoryName, itemName) => {
-    if (window.confirm("Are you sure you want to delete this item?")) {
+  // Delete item
+  // Delete item
+const handleDeleteItem = async (categoryName, itemName, itemId) => {
+  if (window.confirm("Are you sure you want to delete this item?")) {
+    try {
+      const restaurantId = 1; // Replace with dynamic restaurant ID if needed
+      const response = await fetch(
+        `http://localhost:5000/restaurant/menu?rid=${restaurantId}&iid=${itemId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Failed to delete item: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      alert(data.message); // Show success message
+
+      // Remove the item from the frontend
       const updatedMenuData = menuData.map((category) => {
         if (category.category === categoryName) {
           return {
@@ -66,8 +126,13 @@ const EditMenu = () => {
       });
 
       setMenuData(updatedMenuData);
+    } catch (error) {
+      console.error("Error deleting menu item:", error);
+      alert("Failed to delete item. Please try again.");
     }
-  };
+  }
+};
+
 
   return (
     <div className="edit-menu">
@@ -88,11 +153,12 @@ const EditMenu = () => {
                   <span>{item.name}</span>
                   <span>{item.price}/-</span>
                   <button
-                    className="delete-btn"
-                    onClick={() => handleDeleteItem(category.category, item.name)}
-                  >
-                    🗑
-                  </button>
+                  className="delete-btn"
+                  onClick={() => handleDeleteItem(category.category, item.name, item.Item_id)}
+                >
+                  🗑
+                </button>
+
                 </div>
               ))}
             </div>

@@ -13,7 +13,7 @@ module.exports = () => {
     router.delete('/menu', RestaurantController.DeleteMenuItem);
 
     // Edit item in menu
-    router.put('/menu', RestaurantController.EditMenuItem);
+    //router.put('/menu', RestaurantController.EditMenuItem);
 
     // Get active orders
     router.get('/active-orders', RestaurantController.GetActiveOrders);

@@ -125,7 +125,8 @@ module.exports = {
                         riderName: rider ? rider.name : 'Unknown',
                         items: items,
                         totalPrice: totalPrice,
-                        paymentMethod: paymentMethod
+                        paymentMethod: paymentMethod,
+                        date: order.date // Add the date field
                     };
                 })
             );
@@ -135,6 +136,7 @@ module.exports = {
             throw new Error('Error retrieving active orders: ' + error.message);
         }
     },
+    
 
     setOrderReady: async (orderId) => {
         try {
