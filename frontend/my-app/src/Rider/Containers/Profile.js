@@ -94,7 +94,7 @@ const ProfilePage = () => {
       <h1>Profile</h1>
 
       {/* Display User Info */}
-      <div className="user-info">
+      <div className="user-info-1">
         <div className="user-img">
           <img src={riderProfile} alt={"Rider Profile"} className="profile-image" />
         </div>

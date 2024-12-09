@@ -132,7 +132,7 @@ const OrderHistory = () => {
                     <strong>Date:</strong> {new Date(order.orderDate).toLocaleDateString()}
                   </p>
                   <p>
-                    <strong>Rs:</strong> {order.orderAmount}/-
+                    <strong>Rs:</strong> {order.price}/-
                   </p>
                 </div>
               </div>
