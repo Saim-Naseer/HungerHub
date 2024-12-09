@@ -48,8 +48,8 @@ const ReportsTable = ({ riders_reports,onRefresh }) => {
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Rider Name</th>
-                                <th>Customer Name</th>
+                                <th>Rider<br/>Name</th>
+                                <th>Customer<br /> Name</th>
                                 <th>Message</th>
                             </tr>
                         </thead>

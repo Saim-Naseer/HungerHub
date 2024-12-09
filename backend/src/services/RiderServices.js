@@ -50,9 +50,9 @@ const GetActiveOrders = async (userId) => {
                 // Return the required data
                 return {
                     orderId: order.Order_id,
-                    restaurantAddress: restaurant.location || 'Unknown',
+                    restaurantAddress: restaurant.exact_address || 'Unknown',
                     restaurantName: restaurant.name || 'Unknown',
-                    customerAddress: customer.location || 'Unknown',
+                    customerAddress: customer.exact_address || 'Unknown',
                     orderAmount: order.price,
                 }; 
             })
@@ -75,8 +75,7 @@ const getOrderDetails = async (orderId) => {
 
         // Step 2: Fetch the associated customer
         const customer = await Customer.findOne(
-            { Customer_id: order.Customer_id },
-            'name location phone'
+            { Customer_id: order.Customer_id }
         );
 
         if (!customer) throw new Error('Customer not found');
@@ -91,8 +90,7 @@ const getOrderDetails = async (orderId) => {
 
         // Step 4: Fetch the associated restaurant
         const restaurant = await Restaurant.findOne(
-            { Restaurant_id: cart.Restaurant_id },
-            'name location phone'
+            { Restaurant_id: cart.Restaurant_id }
         );
 
         if (!restaurant) throw new Error('Restaurant not found');
@@ -105,12 +103,12 @@ const getOrderDetails = async (orderId) => {
             customer: {
                 name: customer.name,
                 contact: customer.phone || 'N/A',
-                address: customer.location || 'Unknown'
+                address: customer.exact_address || 'Unknown'
             },
             restaurant: {
                 name: restaurant.name,
                 contact: restaurant.phone || 'N/A',
-                address: restaurant.location || 'Unknown'
+                address: restaurant.exact_address || 'Unknown'
             }
         };
     } catch (error) {
@@ -139,7 +137,7 @@ const getOrdersHistory = async (userId) => {
     
                 const restaurant = await Restaurant.findOne({ Restaurant_id: cart.Restaurant_id });
                 const customer = await Customer.findOne({ Customer_id: order.Customer_id });
-    
+                
                 return {
                     restaurantName: restaurant?.name || 'Unknown',
                     customerAddress: customer?.exact_address || 'Unknown',
@@ -237,6 +235,8 @@ const Get_Rider = async (riderId) => {
 
 const getNewOrders = async (userLocation) => {
     try {
+
+        console.log("userlocation:", userLocation)
         // Step 1: Fetch orders where Rider_id is -1
         const orders = await Order.find({ Rider_id: -1, completed: false });
         
@@ -252,11 +252,9 @@ const getNewOrders = async (userLocation) => {
             if (cart) {
                 // Fetch the Restaurant based on Restaurant_id from Cart
                 const restaurant = await Restaurant.findOne({ Restaurant_id: cart.Restaurant_id });
-                console.log('RiderLocation: ',userLocation);
-                console.log('restaurantLocation: ',restaurant.location);
                 if (restaurant) {
                     // Compare restaurant's location with user's location                  
-                    if (userLocation.includes(restaurant.location)) {
+                    if (userLocation === restaurant.location) {
 
                     
                         // If locations match, add this order to the result
@@ -264,7 +262,7 @@ const getNewOrders = async (userLocation) => {
                             order_id: order.Order_id,
                             orderAmount: order.price,
                             restaurantName: restaurant.name,
-                            restaurantLocation: restaurant.location,
+                            restaurantLocation: restaurant.exact_address,
                             customerLocation: customer.exact_address,
                             orderDate: order.date
                         });
@@ -303,7 +301,7 @@ const GetOrder = async (orderId, userId) => {
                 message: `Order with Order_id ${orderId} not found`
             };
         }
-
+        console.log(order)
         // Update the Rider_id field to the provided userId
         order.Rider_id = userId;
 

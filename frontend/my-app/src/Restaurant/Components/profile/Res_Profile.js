@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Res_Profile.css";
 import Session from "../../../Session"; // Assuming Session stores user data
+import { useNavigate } from "react-router-dom";
+
 
 const Res_Profile = () => {
   // State for restaurant data
@@ -93,6 +95,7 @@ const Res_Profile = () => {
     }
   };
 
+  const navigate = useNavigate();
   // Loading and error handling
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -120,7 +123,7 @@ const Res_Profile = () => {
             <strong>Password:</strong> {restaurantData.password}
           </p>
         </div>
-        <div className="logut-div" onClick={() => window.location.reload()}>
+        <div className="logut-div" onClick={() => {window.location.reload()}}>
           <button className="logout-btn">Logout</button>
         </div>
       </div>

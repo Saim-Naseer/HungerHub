@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import riderProfile from '../Assets/Rider_img.png'; 
+import riderProfileAlter from '../Assets/Rider_img.png'; 
 import '../Styles/Profile.css';
 import Session from '../../Session';
 
@@ -11,7 +11,7 @@ const ProfilePage = () => {
   const [userData, setUserData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  let riderProfile = Session.image;
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -86,14 +86,17 @@ const ProfilePage = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
+  if(riderProfile === ''){
+    riderProfile = riderProfileAlter;
+  }
   return (
     <div className="profile-page">
       <h1>Profile</h1>
 
       {/* Display User Info */}
-      <div className="user-info">
+      <div className="user-info-1">
         <div className="user-img">
-          <img src={riderProfile} alt="Rider Profile" className="profile-image" />
+          <img src={riderProfile} alt={"Rider Profile"} className="profile-image" />
         </div>
         <div className="data">
           <p><strong>Name:</strong> {userData.name}</p>

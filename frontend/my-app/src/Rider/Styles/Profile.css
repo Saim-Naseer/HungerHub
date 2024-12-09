@@ -3,13 +3,14 @@
     font-family: Arial, sans-serif;
   }
   
-  .user-info {
+  .user-info-1 {
     background-color: #ccc;
     border: 1px solid #ccc;
     padding: 15px;
     border-radius: 5px;
     margin-bottom: 20px;
     display: flex;
+    justify-content: flex-start;
     box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
   }
   

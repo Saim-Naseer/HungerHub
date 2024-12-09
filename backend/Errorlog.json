@@ -409,5 +409,29 @@
     "time": 1733672533132,
     "message": "format is not a function",
     "stack": "TypeError: format is not a function\n    at Object.getError (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\errors\\error-manager.js:11:25)\n    at getRestaurantReports (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\controllers\\RestaurantController.js:143:33)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"
+  },
+  {
+    "id": 67,
+    "time": 1733672908395,
+    "message": "format is not a function",
+    "stack": "TypeError: format is not a function\n    at Object.getError (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\errors\\error-manager.js:11:25)\n    at getRestaurantReports (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\controllers\\RestaurantController.js:143:33)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"
+  },
+  {
+    "id": 68,
+    "time": 1733672928397,
+    "message": "format is not a function",
+    "stack": "TypeError: format is not a function\n    at Object.getError (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\errors\\error-manager.js:11:25)\n    at getRestaurantReports (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\controllers\\RestaurantController.js:143:33)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"
+  },
+  {
+    "id": 69,
+    "time": 1733673527403,
+    "message": "format is not a function",
+    "stack": "TypeError: format is not a function\n    at Object.getError (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\errors\\error-manager.js:11:25)\n    at getRestaurantReports (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\controllers\\RestaurantController.js:143:33)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"
+  },
+  {
+    "id": 70,
+    "time": 1733673527442,
+    "message": "format is not a function",
+    "stack": "TypeError: format is not a function\n    at Object.getError (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\errors\\error-manager.js:11:25)\n    at getRestaurantReports (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\controllers\\RestaurantController.js:143:33)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"
   }
 ]
