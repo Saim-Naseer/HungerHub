@@ -47,7 +47,7 @@ class Body extends React.Component {
                         justifyContent:"center",
                         alignItems:"center",
                         fontSize:"22px",
-                        position:"relative",
+                        position:"absolute",
                         left:"950px",
                         bottom:"500px",
                         borderRadius:"10px",

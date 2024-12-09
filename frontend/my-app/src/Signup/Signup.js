@@ -99,25 +99,30 @@ class Signup extends React.Component{
                 body: formData, // Send FormData
             });
     
+            
             const result = await response.json();
             console.log('Upload response:', result);
 
-            alert(result.message)
-
+            
             if(result.message==="succesfull")
             {
-                if(this.state.role==="Customer")
-                {
-                    this.setState({page:"customer"})
-                }
-                else if(this.state.role==="Rider")
-                {
-                    this.setState({page:"rider"})
-                }
-                else if(this.state.role==="Restaurant")
-                {
-                    this.setState({page:"restaurant"})
-                }
+                // if (result.message === "succesfull") {
+                //     if (this.state.role === "Customer") {
+                //         this.setState({ page: "customer" });
+                //     } else if (this.state.role === "Rider") {
+                //         this.setState({ page: "rider" });
+                //     } else if (this.state.role === "Restaurant") {
+                //         console.log("Navigating to Restaurant page");
+                //         this.setState({ page: "restaurant" });
+                //     }
+                // }
+
+                this.setState({page:"signin"})
+
+                console.log("PU  ",this.state.role)
+                console.log("PU  ",this.state.page)
+                alert("Account Created")
+
 
                 Session.user_id=result.message2
                 Session.name=this.state.name
@@ -135,15 +140,17 @@ class Signup extends React.Component{
 
 
     checkInputs = async() => {
+        console.log(this.state.role)
+        console.log(this.state.page)
         if(this.state.name!=="" & this.state.email!=="" & this.state.phone!==-1 & this.state.role!=="-" & this.state.region!=="-" & this.state.address!=="" & this.state.pwd!=="" & this.state.cpwd!=="" & this.state.forget!=="")
         {
-            console.log("1")
+            //console.log("1")
             if(this.state.role==="-" || this.state.role==="Customer")
             {
-                console.log("2-customer")
+                //console.log("2-customer")
                 if(this.state.pwd===this.state.cpwd)
                 {
-                    console.log("3-passwords match")
+                    //console.log("3-passwords match")
                     //this.setState({page:"home"})
     
                     await this.postUser()
@@ -154,13 +161,13 @@ class Signup extends React.Component{
             }
             else if(this.state.role==="Restaurant")
             {
-                console.log("2-restaurant")
+                //console.log("2-restaurant")
                 if(this.state.res_image!==null & this.state.res_cuisine!=="" & this.state.res_description!=="")
                 {
                     if(this.state.pwd===this.state.cpwd)
                     {
                         //this.setState({page:"home"})
-                        console.log("3-passwords match")
+                        //console.log("3-passwords match")
                         //api post(user)
                         await this.postUser()
                     }
@@ -171,18 +178,18 @@ class Signup extends React.Component{
             }
             else if(this.state.role==="Rider")
             {
-                console.log("2-rider")
+                //console.log("2-rider")
                 if(this.state.rid_image!==null)
                 {
                     if(this.state.pwd===this.state.cpwd)
                     {
                         //this.setState({page:"home"})
-                        console.log("3-passwords match")
+                        //console.log("3-passwords match")
                         //api post(user)
                         await this.postUser()
                     }
                     else{
-                        console.log("3-passwords dont match")
+                        //console.log("3-passwords dont match")
                         this.setState({match:false})
                     }
                 }
@@ -223,13 +230,13 @@ class Signup extends React.Component{
                                 <div className="signup_personal">
                                     <p className="signup_title3_personal">Personal Info</p>
                                     <p className="signup_title2">Name</p> 
-                                    <input type="text" placeholder="Name"  className="name1" style={{borderColor:this.state.borderColor.name}} onChange={(event)=>this.setState({name:event.target.value})}/>
+                                    <input type="text" placeholder="Name" className="name1" style={{borderColor:this.state.borderColor.name}} onChange={(event)=>this.setState({name:event.target.value})}/>
                                     <p className="signup_title2">Email</p>
                                     <input type="email" placeholder="Email"  className="email1" style={{borderColor:this.state.borderColor.email}} onChange={(event)=>this.setState({email:event.target.value})}/>
                                     <p className="signup_title2">Phone no.</p>
                                     <input type="number" placeholder="Phone No."  className="phone1" style={{borderColor:this.state.borderColor.phone}} onChange={(event)=>this.setState({phone:event.target.value})}/>
                                     <p className="signup_title2">Role</p>
-                                    <select className="role" style={{borderColor:this.state.borderColor.role}} onChange={(event)=>this.setState({role:event.target.value})}>
+                                    <select className="role" value={this.state.role} style={{borderColor:this.state.borderColor.role}} onChange={(event)=>this.setState({role:event.target.value})}>
                                         <option>-</option>
                                         <option>Customer</option>
                                         <option>Restaurant</option>
@@ -299,7 +306,7 @@ class Signup extends React.Component{
                                     <p className="signup_title2">Phone no.</p>
                                     <input type="number" placeholder="Phone No."  className="phone1" style={{borderColor:this.state.borderColor.phone}} onChange={(event)=>this.setState({phone:event.target.value})}/>
                                     <p className="signup_title2">Role</p>
-                                    <select className="role" style={{borderColor:this.state.borderColor.role}} onChange={(event)=>this.setState({role:event.target.value})}>
+                                    <select className="role" value={this.state.role} style={{borderColor:this.state.borderColor.role}} onChange={(event)=>this.setState({role:event.target.value})}>
                                         <option>-</option>
                                         <option>Customer</option>
                                         <option>Restaurant</option>
@@ -380,7 +387,7 @@ class Signup extends React.Component{
                                         <p className="signup_title2">Phone no.</p>
                                         <input type="number" placeholder="Phone No."  className="phone1" style={{borderColor:this.state.borderColor.phone}} onChange={(event)=>this.setState({phone:event.target.value})}/>
                                         <p className="signup_title2">Role</p>
-                                        <select className="role" style={{borderColor:this.state.borderColor.role}} onChange={(event)=>this.setState({role:event.target.value})}>
+                                        <select className="role" value={this.state.role} style={{borderColor:this.state.borderColor.role}} onChange={(event)=>this.setState({role:event.target.value})}>
                                             <option>-</option>
                                             <option>Customer</option>
                                             <option>Restaurant</option>

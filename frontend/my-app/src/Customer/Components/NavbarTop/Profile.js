@@ -34,6 +34,7 @@ class Profile extends React.Component {
     } catch (error) {
       console.error("Error fetching orders:", error);
     }
+
   };
 
   componentDidMount() {
@@ -50,7 +51,7 @@ class Profile extends React.Component {
         <div className="orders-container2">
           {waiting.length > 0 ? (
             waiting.map((order) => (
-              <Order key={order.Order_id} Order_id={order.Order_id} Price={order.price} />
+              <Order key={order.Order_id} Order_id={order.Order_id} Restaurant_id={order.Restaurant_id} Price={order.price} />
             ))
           ) : (
             <p style={{display:"inline"}}>No waiting orders found.</p>

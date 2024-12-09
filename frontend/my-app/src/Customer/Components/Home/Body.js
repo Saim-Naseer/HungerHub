@@ -14,7 +14,8 @@ class Body extends React.Component{
             restaurants:[],
             pastOrders:[],
             search:"",
-            page:"home"
+            page:"home",
+            button:false
         }
     }
 
@@ -22,6 +23,7 @@ class Body extends React.Component{
         const restaurants = await fetch("http://localhost:5000/customer/restaurants?uid="+Session.user_id)
         const data = await restaurants.json()
         this.setState({restaurants:data})
+
     }
 
     componentDidMount()

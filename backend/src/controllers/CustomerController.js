@@ -9,6 +9,7 @@ const path = require("path");
 const utils = require("../utils/utils")
 const RestaurantReportModel = require("../models/RestaurantReport")
 const CartModel = require("../models/Cart")
+const AdminModel = require("../models/Admin")
 
 
 module.exports = { 
@@ -16,11 +17,12 @@ module.exports = {
 
         try{
 
-            const val = await CartModel({
-                Restaurant_id:1,
-                Item_id:1,
-                Order_id:1,
-                Cart_id:2
+            const val = await AdminModel({
+                Admin_id:1,
+                email:"ebaad@gmail.com",
+                pwd:"1234",
+                name:"ebaad",
+                forget_pwd:"Lassi"
             })
 
             await val.save()
@@ -123,6 +125,9 @@ module.exports = {
         try{
             const Customer_id = req.query.uid
             const Restaurant_id = req.query.rid
+
+            console.log("uid",Customer_id)
+            console.log("rid",Restaurant_id)
 
             await service.PlaceOrder(Customer_id,Restaurant_id)
 
@@ -269,8 +274,9 @@ module.exports = {
             
             const Customer_id = req.query.uid
             const Restaurant_id = req.query.rid
+            const Order_id = req.query.oid
 
-            const order = await service.GetWaitingOrder2(Customer_id,Restaurant_id)
+            const order = await service.GetWaitingOrder2(Customer_id,Restaurant_id,Order_id)
 
             res.status(200).send(order)
 
@@ -381,7 +387,7 @@ module.exports = {
                 else if(role==="Rider")
                 {
                     const image = req.files.image
-    
+     
                     const msg2 = await service.check_email(role,email)
     
                     if(msg2==="Email already Exists")
@@ -483,6 +489,18 @@ module.exports = {
             console.error("Error writing a rider report:", error);
             res.status(500).send({ message: "Failed to write the rider report" });
         }
-    }    
+    },
+    GetRider: async(req,res) =>{
+        try{
+            Rider_id = req.query.rid
+
+            const val = await service.GetRider(Rider_id)
+
+            res.status(200).send(val)
+        }catch(e){
+            res.status(400).send({msg:"not found"})
+        }
+
+    }
 
 }

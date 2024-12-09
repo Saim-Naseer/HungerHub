@@ -9,6 +9,25 @@
     border-radius: 50px;
     margin-left: 20px;
     margin-right: 20px;
+    box-shadow: 5px 5px 10px rgba(34, 71, 109, 0.5); /* Red shadow */
+}
+
+
+.c_card:hover{
+    height:375px;
+    width:300px;
+    background-color: #D6D6D6;
+    margin-top:50px;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    border-radius: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    box-shadow: 5px 5px 10px rgba(34, 71, 109, 0.5); /* Red shadow */    
+    transform: translateY(-10px) scale(1.05); 
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+
 }
 
 .c_image{

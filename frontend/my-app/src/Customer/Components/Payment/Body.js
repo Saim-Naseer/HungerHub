@@ -7,13 +7,14 @@ import Home from "../../Containers/Home";
 import ConfCart from "../../Containers/ConfCart";
 import Session from "../../../Session";
 import R_Session from "../Restaurant/Session";
+import R_Session2 from "../Waiting/Session"
 
 class Body extends React.Component {
   constructor() {
     super();
     this.state = {
       page: "payment",
-      showPopup: true, // For toggling popup visibility
+      showPopup: false, // For toggling popup visibility
       atmAccount: "",
       atmPassword: "",
     };
@@ -30,6 +31,13 @@ class Body extends React.Component {
     const data2 = await data.json();
 
     this.changePage("waiting");
+
+    R_Session2.name=R_Session.name
+    R_Session2.restaurant_id=R_Session.restaurant_id
+    R_Session2.location=R_Session.location
+    R_Session2.image=R_Session.image
+    R_Session2.cusine=R_Session.cusine
+    R_Session2.exact_address=R_Session.exact_address
   };
 
   openPopup = () => {
@@ -46,7 +54,7 @@ class Body extends React.Component {
   };
 
   render() {
-    const { showPopup, atmAccount, atmPassword } = this.state;
+    const { atmAccount, atmPassword } = this.state;
     let content;
 
     let content2 = (

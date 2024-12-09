@@ -4,7 +4,7 @@ import Session from "../../../Session";
 import Completed from "../../Containers/Completed";
 import Preparing from "./Preparing";
 import Delivering from "./Delivering";
-import R_Session from "../Restaurant/Session";
+import R_Session from "./Session";
 
 class Body extends React.Component {
   constructor() {
@@ -12,6 +12,7 @@ class Body extends React.Component {
     this.state = {
       isReady: false,
       completed: false,
+      Rider_id:0
     };
     this.fetchInterval = null; // Store interval ID for later clearing
   }
@@ -19,6 +20,7 @@ class Body extends React.Component {
   componentDidMount() {
     // Fetch data once on mount
     this.fetchData();
+
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -31,7 +33,7 @@ class Body extends React.Component {
   fetchData = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/customer/placedwaitingorder?uid=${Session.user_id}&rid=${R_Session.restaurant_id}`
+        `http://localhost:5000/customer/placedwaitingorder?uid=${Session.user_id}&rid=${R_Session.restaurant_id}&oid=${R_Session.Order_id}`
       );
       
       if (!response.ok) {
@@ -44,7 +46,9 @@ class Body extends React.Component {
         this.setState({
           isReady: data.isReady || false,
           completed: data.completed || false,
+          Rider_id: data.Rider_id
         });
+        R_Session.Order_id=data.Order_id
       } else {
         console.warn("No active orders found.");
         this.setState({
@@ -96,7 +100,7 @@ class Body extends React.Component {
       content = (
         <>
           <StatusBar />
-          <Delivering />
+          <Delivering  Rider_id={this.state.Rider_id}/>
         </>
       );
     } else {
@@ -107,7 +111,6 @@ class Body extends React.Component {
       <>
         {content}
         {/* Button to manually trigger the state change and thus componentDidUpdate */}
-        <button onClick={this.triggerStateChange} style={{position:"relative",top:"150px",left:"800px"}}>Trigger State Change</button>
       </>
     );
   }

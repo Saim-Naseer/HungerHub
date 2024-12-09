@@ -82,7 +82,7 @@ class RiderReport extends React.Component {
                     {sortedReports.map((report, index) => (
                         <div key={index} className="report-item">
                             <h3>{report.rider_name}</h3>
-                            <p><div className="report-message">Message</div> {report.message}</p>
+                            <p><div className="report-message">Message</div> {report.Message}</p>
                             {/* Conditionally render the reply section */}
                             {report.Reply && report.Reply.trim() !== "" && (
                                 <p><div className="report-reply">Reply</div> {report.Reply}</p>

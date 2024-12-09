@@ -6,7 +6,8 @@ const Session = {
     email:"",
     location:"",
     address:"",
-    phone:0
+    phone:0,
+    image:""
 }
 
 export default Session

@@ -12,7 +12,7 @@ class NavbarTop extends React.Component {
     R_Session.location = "";
   };
 
-  render() {
+  render() { 
     return (
       <div className="Navbar4">
         {/* Navigate to Home on Logo Click */}
