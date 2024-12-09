@@ -12,8 +12,10 @@ module.exports = {
     getMenuItems: async (restaurantId) => {
         try {
             const menuItems = await MenuModel.find({ Restaurant_id: restaurantId });
+            console.log(menuItems)
             return menuItems;
         } catch (error) {
+            console.log(error)
             throw new Error('Error retrieving menu items');
         }
     },
@@ -224,7 +226,7 @@ module.exports = {
             // Find active orders using order IDs
             const activeOrders = await OrderModel.find({
                 Order_id: { $in: orderIds },
-                isPlaced: true, // Order has been placed
+                isReady: true, // Order has been placed
             });
     
             if (!activeOrders || activeOrders.length === 0) {

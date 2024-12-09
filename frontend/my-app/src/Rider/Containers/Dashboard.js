@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../Styles/Dashboard.css';
 import { Link, useParams, Navigate, useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import riderProfile from '../Assets/Rider_img.png';
+import riderProfileAlter from '../Assets/Rider_img.png'; 
 import orderImage from '../Assets/order_img.png';
 import Session from '../../Session.js';
 
@@ -10,8 +10,12 @@ const Dashboard = () => {
   const [activeOrders, setActiveOrders] = useState([]); // Initialize as an empty array
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
-  
+  let riderProfile = Session.image;
   const navigate = useNavigate();
+
+  if(riderProfile === ''){
+    riderProfile = riderProfileAlter;
+  }
 
   useEffect(() => {
     const fetchActiveOrders = async () => {

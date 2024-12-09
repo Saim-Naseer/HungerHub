@@ -6,13 +6,15 @@ module.exports = {
     GetMenu: async (req, res) => {
         try {
             const restaurantId = req.query.rid; // Fix destructuring
+            console.log(restaurantId)
             if (!restaurantId) return ErrorManager.getError(res, "RESTAURANT_ID_REQUIRED");
     
             const menuItems = await RestaurantService.getMenuItems(restaurantId);
             if (!menuItems || menuItems.length === 0) {
+                console.log("no menu found")
                 return ErrorManager.getError(res, "MENU_NOT_FOUND");
             }
-    
+            console.log(menuItems)
             res.status(200).json({ menuItems });
         } catch (error) {
             return ErrorManager.getError(res, "INTERNAL_SERVER_ERROR", error.message);

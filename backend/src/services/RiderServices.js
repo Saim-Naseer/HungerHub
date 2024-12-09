@@ -50,9 +50,9 @@ const GetActiveOrders = async (userId) => {
                 // Return the required data
                 return {
                     orderId: order.Order_id,
-                    restaurantAddress: restaurant.location || 'Unknown',
+                    restaurantAddress: restaurant.exact_address || 'Unknown',
                     restaurantName: restaurant.name || 'Unknown',
-                    customerAddress: customer.location || 'Unknown',
+                    customerAddress: customer.exact_address || 'Unknown',
                     orderAmount: order.price,
                 }; 
             })
@@ -75,8 +75,7 @@ const getOrderDetails = async (orderId) => {
 
         // Step 2: Fetch the associated customer
         const customer = await Customer.findOne(
-            { Customer_id: order.Customer_id },
-            'name location phone'
+            { Customer_id: order.Customer_id }
         );
 
         if (!customer) throw new Error('Customer not found');
@@ -91,8 +90,7 @@ const getOrderDetails = async (orderId) => {
 
         // Step 4: Fetch the associated restaurant
         const restaurant = await Restaurant.findOne(
-            { Restaurant_id: cart.Restaurant_id },
-            'name location phone'
+            { Restaurant_id: cart.Restaurant_id }
         );
 
         if (!restaurant) throw new Error('Restaurant not found');
@@ -105,12 +103,12 @@ const getOrderDetails = async (orderId) => {
             customer: {
                 name: customer.name,
                 contact: customer.phone || 'N/A',
-                address: customer.location || 'Unknown'
+                address: customer.exact_address || 'Unknown'
             },
             restaurant: {
                 name: restaurant.name,
                 contact: restaurant.phone || 'N/A',
-                address: restaurant.location || 'Unknown'
+                address: restaurant.exact_address || 'Unknown'
             }
         };
     } catch (error) {
