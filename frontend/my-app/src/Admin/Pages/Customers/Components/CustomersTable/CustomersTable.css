@@ -36,7 +36,7 @@
 }
 
 .customers-table tbody tr:nth-child(even) {
-    background-color: #f5f5f5; /* Alternate row color */
+    background-color: #f1eded; /* Alternate row color */
 }
 
 .customers-table tbody tr:nth-child(odd) {

@@ -9,12 +9,12 @@ const Background = () => {
             <div className = "upper">
                 <img src = {logo} alt = "Logo" ></img>
                 <h2>Hunger Hub</h2>
-                <div className='sign_out'>
+                {/* <div className='sign_out'>
                     <Link to = "/sign-in">
                     <h2>Sign Out</h2>
                     </Link>
                     <img src={sign_out} alt="sign out"/>
-                </div>
+                </div> */}
             </div>
             <div className = "lower">
                 <Link to="/">

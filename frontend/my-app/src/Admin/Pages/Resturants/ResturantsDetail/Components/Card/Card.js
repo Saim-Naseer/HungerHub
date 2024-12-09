@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Card.css";
 import axios from "axios"; // Import axios for API calls
 import { Link } from 'react-router-dom';
@@ -8,6 +8,7 @@ const Card = ({ Restaurant_id, name, email, phone, total_stars, exact_address, t
     const halfStar = "/Images/half_star.png";
     const noImage = "/Images/no image available.png"; // Updated noImage path
     const rating = ((total_stars / total_ratings)/2).toFixed(1);
+    const [totalOrders, setTotalOrders] = useState(0); 
 
     // Generate an array of stars based on the rating
     const renderStars = () => {
@@ -58,6 +59,19 @@ const Card = ({ Restaurant_id, name, email, phone, total_stars, exact_address, t
         }
     };
 
+    const fetchData = async () => {
+        try {
+            const response = await fetch(`http://localhost:5000/restaurant/history-orders?rid=${Restaurant_id}`);
+            const data = await response.json();
+            setTotalOrders(data.activeOrders.length); // Update the state with the total number of orders
+        } catch (error) {
+            console.error("Error fetching total orders:", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData(); // Fetch data when the component mounts
+    }, []); 
     return (
         <div className="resturants-detail">
             <div className="card-main">
@@ -90,7 +104,7 @@ const Card = ({ Restaurant_id, name, email, phone, total_stars, exact_address, t
                 </div>
                 <div className="stat">
                     <span className="label">Total Orders</span>
-                    <span className="value">--</span>
+                    <span className="value">{totalOrders}</span>
                 </div>
                 <div className="stat">
                     <span className="label">Overall Rating</span>
