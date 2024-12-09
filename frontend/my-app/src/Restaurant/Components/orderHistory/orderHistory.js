@@ -3,23 +3,28 @@ import './orderHistory.css'; // Updated CSS file for styling
 import Session from "../../../Session";
 
 const OrderHistory = () => {
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [orders, setOrders] = useState([]); // Store all orders
+  const [filteredOrders, setFilteredOrders] = useState([]); // Store filtered orders
+  const [loading, setLoading] = useState(true); // Show loading spinner
+  const [error, setError] = useState(null); // Handle error messages
 
+  // Filter states
   const [filterDay, setFilterDay] = useState('');
   const [filterMonth, setFilterMonth] = useState('');
   const [filterYear, setFilterYear] = useState('');
 
+  // Fetch orders on component mount
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const restaurantId = Session.user_id;
-        const response = await fetch(`http://localhost:5000/restaurant/history-orders?rid=${restaurantId}`);
+        const restaurantId = Session.user_id; // Assuming Session contains user details
+        const response = await fetch(`http://localhost:5000/restaurant/history-orders?rid=${encodeURIComponent(restaurantId)}`);
         if (!response.ok) throw new Error('Failed to fetch order history.');
 
         const data = await response.json();
-        setOrders(data.activeOrders || []);
+        const activeOrders = Array.isArray(data.activeOrders) ? data.activeOrders : [];
+        setOrders(activeOrders);
+        setFilteredOrders(activeOrders); // Initially, show all orders
       } catch (err) {
         console.error('Error fetching orders:', err);
         setError('Failed to load order history. Please try again later.');
@@ -31,26 +36,38 @@ const OrderHistory = () => {
     fetchOrders();
   }, []);
 
+  // Extract day, month, and year from date string
   const extractDateParts = (date) => {
     const dateObj = new Date(date);
+    if (isNaN(dateObj)) return { day: '', month: '', year: '' };
     const day = String(dateObj.getDate()).padStart(2, '0');
     const month = String(dateObj.getMonth() + 1).padStart(2, '0');
     const year = String(dateObj.getFullYear());
     return { day, month, year };
   };
 
-  const filteredOrders = orders.filter((order) => {
-    const { day, month, year } = extractDateParts(order.date);
-    const isDayMatch = !filterDay || day === filterDay;
-    const isMonthMatch = !filterMonth || month === filterMonth;
-    const isYearMatch = !filterYear || year === filterYear;
-    return isDayMatch && isMonthMatch && isYearMatch;
-  });
+  // Handle filtering of orders
+  useEffect(() => {
+    const applyFilters = () => {
+      const filtered = orders.filter((order) => {
+        const { day, month, year } = extractDateParts(order.date);
+        const isDayMatch = !filterDay || day === filterDay;
+        const isMonthMatch = !filterMonth || month === filterMonth;
+        const isYearMatch = !filterYear || year === filterYear;
+        return isDayMatch && isMonthMatch && isYearMatch;
+      });
+      setFilteredOrders(filtered);
+    };
 
+    applyFilters();
+  }, [filterDay, filterMonth, filterYear, orders]);
+
+  // Clear filters
   const clearFilters = () => {
     setFilterDay('');
     setFilterMonth('');
     setFilterYear('');
+    setFilteredOrders(orders); // Reset filtered orders to all orders
   };
 
   return (
@@ -66,7 +83,7 @@ const OrderHistory = () => {
             id="month"
             placeholder="MM"
             value={filterMonth}
-            onChange={(e) => setFilterMonth(e.target.value)}
+            onChange={(e) => setFilterMonth(e.target.value.replace(/\D/g, '').slice(0, 2))}
             className="date-picker-input"
           />
         </div>
@@ -77,7 +94,7 @@ const OrderHistory = () => {
             id="day"
             placeholder="DD"
             value={filterDay}
-            onChange={(e) => setFilterDay(e.target.value)}
+            onChange={(e) => setFilterDay(e.target.value.replace(/\D/g, '').slice(0, 2))}
             className="date-picker-input"
           />
         </div>
@@ -88,7 +105,7 @@ const OrderHistory = () => {
             id="year"
             placeholder="YYYY"
             value={filterYear}
-            onChange={(e) => setFilterYear(e.target.value)}
+            onChange={(e) => setFilterYear(e.target.value.replace(/\D/g, '').slice(0, 4))}
             className="date-picker-input"
           />
         </div>
@@ -102,24 +119,22 @@ const OrderHistory = () => {
         <p>Loading order history...</p>
       ) : error ? (
         <p className="error-message">{error}</p>
-      ) : (
+      ) : filteredOrders.length > 0 ? (
         <div className="ordersHistory">
-          {filteredOrders.length > 0 ? (
-            filteredOrders.map((order) => (
-              <div key={order.Order_id} className="order-Card">
-                <div className="order-details">
-                  <p><strong>Order ID:</strong> {order.Order_id}</p>
-                  <p><strong>Customer Name:</strong> {order.customerName}</p>
-                  <p><strong>Rider Name:</strong> {order.riderName}</p>
-                  <p><strong>Date:</strong> {order.date}</p>
-                  <p><strong>Total Price:</strong> Rs. {order.totalPrice}/-</p>
-                </div>
+          {filteredOrders.map((order) => (
+            <div key={order.Order_id || Math.random()} className="order-Card">
+              <div className="order-details">
+                <p><strong>Order ID:</strong> {order.Order_id || 'N/A'}</p>
+                <p><strong>Customer Name:</strong> {order.customerName || 'N/A'}</p>
+                <p><strong>Rider Name:</strong> {order.riderName || 'N/A'}</p>
+                <p><strong>Date:</strong> {order.date || 'N/A'}</p>
+                <p><strong>Total Price:</strong> Rs. {order.totalPrice ? `${order.totalPrice}/-` : 'N/A'}</p>
               </div>
-            ))
-          ) : (
-            <p className="no-orders-message">No orders found.</p>
-          )}
+            </div>
+          ))}
         </div>
+      ) : (
+        <p className="no-orders-message">No orders found for the selected criteria.</p>
       )}
     </div>
   );
