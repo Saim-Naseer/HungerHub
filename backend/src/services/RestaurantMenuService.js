@@ -213,38 +213,30 @@ module.exports = {
         try {
             // Find all cart items associated with the restaurant
             const cartItems = await CartModel.find({ Restaurant_id: restaurantId });
-    
             if (!cartItems || cartItems.length === 0) {
                 return []; // No cart items for the restaurant
-            } else {
-                console.log("Cart items found for the restaurant.");
             }
     
             // Extract relevant order IDs from cart items
             const orderIds = cartItems.map(cart => cart.Order_id);
     
-            // Find active orders using order IDs
-            const activeOrders = await OrderModel.find({
+            // Find all orders using order IDs
+            const allOrders = await OrderModel.find({
                 Order_id: { $in: orderIds },
-                isReady: true, // Order has been placed
             });
     
-            if (!activeOrders || activeOrders.length === 0) {
-                return []; // No active orders found
+            if (!allOrders || allOrders.length === 0) {
+                return []; // No orders found
             }
-            console.log("Active orders found:", activeOrders);
     
-            // Prepare detailed response for each active order
+            // Prepare detailed response for each order
             const detailedOrders = await Promise.all(
-                activeOrders.map(async (order) => {
-                    // Fetch associated customer and rider details
+                allOrders.map(async (order) => {
                     const customer = await CustomerModel.findOne({ Customer_id: order.Customer_id });
                     const rider = await RiderModel.findOne({ Rider_id: order.Rider_id });
     
-                    // Fetch items in the cart for this order
                     const orderCartItems = cartItems.filter(cart => cart.Order_id === order.Order_id);
     
-                    // Fetch item names and calculate total price
                     const items = await Promise.all(
                         orderCartItems.map(async (item) => {
                             const menuItem = await MenuModel.findOne({ Item_id: item.Item_id });
@@ -259,28 +251,26 @@ module.exports = {
     
                     const totalPrice = items.reduce((sum, item) => sum + item.price * item.qty, 0);
     
-                    // Format date as MM/DD/YYYY
                     const dateObj = new Date(order.date);
-                    const formattedDate = `${
-                        dateObj.getMonth() + 1 // Months are zero-based, so add 1
-                    }/${dateObj.getDate()}/${dateObj.getFullYear()}`;
+                    const formattedDate = `${dateObj.getMonth() + 1}/${dateObj.getDate()}/${dateObj.getFullYear()}`;
     
                     return {
                         Order_id: order.Order_id,
                         customerName: customer ? customer.name : 'Unknown',
                         riderName: rider ? rider.name : 'Unknown',
                         totalPrice: totalPrice,
-                        date: formattedDate, // Return formatted date
+                        date: formattedDate,
                     };
                 })
             );
     
             return detailedOrders;
         } catch (error) {
-            console.error('Error retrieving active orders:', error.message);
-            throw new Error('Error retrieving active orders: ' + error.message);
+            console.error('Error retrieving orders:', error.message);
+            throw new Error('Error retrieving orders: ' + error.message);
         }
     },
+    
 
 
 
