@@ -293,6 +293,8 @@ const getNewOrders = async (userLocation) => {
 const GetOrder = async (orderId, userId) => {
     try {
         // Find the order by Order_id
+        console.log('orderid: ',orderId)
+        console.log('userid: ',userId)
         const order = await Order.findOne({ Order_id: orderId });
 
         if (!order) {
@@ -301,7 +303,8 @@ const GetOrder = async (orderId, userId) => {
                 message: `Order with Order_id ${orderId} not found`
             };
         }
-        console.log(order)
+        console.log("yeh order mila;",order)
+        console.log('customerId:',order.Customer_id)
         // Update the Rider_id field to the provided userId
         order.Rider_id = userId;
 

@@ -125,7 +125,6 @@ module.exports = {
 
     setRider: async (req, res) => {
         const { orderId, riderId } = req.params; // Extract orderId and userId from the URL parameters
-        
     
         try {
             // Call the service to set the Rider_id for the given Order_id

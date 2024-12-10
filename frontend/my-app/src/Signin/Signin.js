@@ -105,7 +105,6 @@ class Signin extends React.Component {
             Session.location=data2.location
             Session.address=data2.exact_address
             Session.phone=data2.phone
-            Session.image=data2.image
 
             if(data2.type==="customer")
             {
