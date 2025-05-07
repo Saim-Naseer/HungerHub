@@ -1,16 +1,24 @@
 .c_confirmOrder{
-    height:65px;
-    width:450px;
-    background-color: #22476D;
-    color:#D9D9D9;
-    font-size: 30px;
-    border-radius: 50px;
-
-    display:flex;
+    height: 45px;
+    width: 13%;
+    background-color: #0d5210;
+    color: #D9D9D9;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 30px;
+    display: flex
+;
     justify-content: center;
     align-items: center;
-
     position: relative;
-    top:685px;
-    left:525px;
+    bottom: -62px;
+    left: 52%;
+    transition: all 0.2s ease-in-out;
+}
+
+.c_confirmOrder:hover{
+    scale: 1.05;
+    font-size: 108%;
+    cursor: pointer;
+    background-color: green;
 }

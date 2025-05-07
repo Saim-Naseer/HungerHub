@@ -44,6 +44,10 @@ const Rider = Mongoose.Schema({
     },
     forget_pwd:{
         type:String
+    }, 
+    totalEarning:{
+        type:Number,
+        default:0
     }
 
 });

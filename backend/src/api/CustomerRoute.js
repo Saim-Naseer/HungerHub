@@ -27,6 +27,12 @@ module.exports = () => {
     router.post("/writeriderreport", CustomerController.WriteRiderReport);
     router.get("/placeorder",CustomerController.PlaceOrder)
     router.get("/riderinfo",CustomerController.GetRider)
+    router.delete('/removefromcart', CustomerController.removeFromCart);
+    router.post('/mark-group-order', CustomerController.markAsGroupOrder);
+    router.post('/cancel-group-order', CustomerController.cancelGroupOrder);
+    router.post('/join-group-order', CustomerController.joinGroupOrder);
+
+
     return router
 }
 

@@ -18,7 +18,22 @@
     padding: 20px;
     width: 15%;
   }
-  
+  .separator {
+    border: none;
+    height: 0.5px;
+    width: 100%;
+    background-color: #555;
+    margin: 10px 0;
+  }
+  .rider-earnings{
+    color: rgb(6, 48, 90);
+    font-size: 100%;
+  }
+
+  .earnings{
+    color: rgb(3, 255, 3);
+    font-size: 132%;
+  }
   .profile-image {
     width: 80px;
     height: 80px;
@@ -42,6 +57,8 @@
     font-size: 15px;
     font-weight: bold;
     transition: transform 0.3s ease, background-color 0.3s ease;
+    position: relative;
+    top: 5%;
   }
   
   .logout-button:hover {

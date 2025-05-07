@@ -39,7 +39,7 @@ class Popular extends React.Component {
 
         return (
             <div className="c_popitems">
-                <h2 className="c_popheading">Popular Items</h2>
+                <h2 className="c_popheading">Popular Items🔥</h2>
                 {pop_items.map((x) => (
                     <Item key={x.Item_id} name={x.name} price={x.price} Item_id={x.Item_id} />
                 ))}

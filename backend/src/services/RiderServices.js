@@ -321,7 +321,7 @@ const GetOrder = async (orderId, userId) => {
     }
 };
 
-const completeOrder = async (orderId) => {
+const completeOrder = async (orderId, riderId) => {
     try {
         // Find the order by Order_id
         const order = await Order.findOne({ Order_id: orderId });
@@ -339,9 +339,28 @@ const completeOrder = async (orderId) => {
         // Save the updated order document
         await order.save();
 
+        const rider = await Rider.findOne({ Rider_id: riderId });
+        if (!rider) {
+            return {
+                success: false,
+                message: `Rider with Rider_id ${riderId} not found`
+            };
+        }
+
+        if(order.price <= 1000){
+            rider.totalEarning = (rider.totalEarning + 100);
+        }
+        else{
+            rider.totalEarning = (rider.totalEarning + ((order.price/100)*10));
+        }
+       
+
+        // Save the updated order document
+        await rider.save();
+
         return {
             success: true,
-            message: `Order with Order_id ${orderId} marked as completed`
+            message: `Order with Order_id ${orderId} marked as completed and earning updated.`
         };
     } catch (error) {
         console.error('Error completing the order:', error);
@@ -351,6 +370,39 @@ const completeOrder = async (orderId) => {
         };
     }
 };
+
+const getRiderEarningsLast24Hours = async (riderId) => {
+    const now = new Date();
+    const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+    
+    const orders = await Order.find({
+        Rider_id: riderId,
+        completed: true,
+        date: { $gte: twentyFourHoursAgo.toISOString() }
+    });
+    console.log(twentyFourHoursAgo.toISOString());
+    const totalEarnings = orders.reduce((sum, order) => {
+        const price = order.price || 0;
+        const earning = price > 1000 ? price * 0.10 : 100;
+        return sum + earning;
+    }, 0);
+   
+    return totalEarnings;
+};
+
+
+const getTotalEarnings = async (riderId) => {
+
+    const rider = await Rider.findOne({
+        Rider_id: riderId,
+    });
+
+    const totalEarnings = rider.totalEarning;
+
+    return totalEarnings;
+};
+
+
 
   
   
@@ -367,7 +419,9 @@ module.exports = {
     getNewOrders,
     GetOrder,
     completeOrder,
-    Get_Rider
+    Get_Rider, 
+    getRiderEarningsLast24Hours, 
+    getTotalEarnings
 };
 
 

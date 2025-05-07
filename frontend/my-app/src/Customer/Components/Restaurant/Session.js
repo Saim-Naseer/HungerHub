@@ -5,7 +5,10 @@ const Session = {
     location:"",
     image:"",
     cusine:"",
-    exact_address:""
+    exact_address:"",
+    group_order:0, 
+    group_leaderId:0,
+    OrderId:0
 }
 
 export default Session

@@ -9,18 +9,18 @@
 
 
 .orders-container1{
-    position:relative;
-    top:400px;
-    left:300px;
-    width:1000px;
+    position: relative;
+    top: 420px;
+    left: 21%;
+    width: 75%;
     z-index: -1;
 }
 
 .orders-container2{
-    position:relative;
-    top:200px;
-    left:300px;
-    width:1000px;
+    position: relative;
+    top: 200px;
+    left: 21%;
+    width: 75%;
     z-index: -1;
 }
 

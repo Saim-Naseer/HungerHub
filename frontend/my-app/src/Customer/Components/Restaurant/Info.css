@@ -1,6 +1,6 @@
 .c_info{
     height:275px;
-    width:1100px;
+    width:730px;
     position:relative;
     top:150px;
     border-bottom: 1px solid #D4D4D4;
@@ -34,4 +34,194 @@
     left:300px;
     bottom:260px;
     font-size: 25px;;
+}
+
+.back{
+    position: relative;
+    top: -15%;
+    left: 2%;
+    width: 7%;
+    background-color: #43a7b7;
+    height: 10%;
+    border-radius: 8px;
+    border-color: #43a7b7;
+    color: #f9f9f9;
+    font-size: 90%; 
+    transition: all 0.2s ease-in-out;  
+}
+
+.back:hover{
+    scale: 1.08;
+    cursor: pointer;
+    background-color: #1f4f57;
+    border-color: #1f4f57;
+}
+
+.StartGroupOrderbtn{
+    position: relative;
+    top: -19%;
+    left: 57%;
+    width: 9%;
+    background-color: #43a7b7;
+    height: 59px;
+    border-radius: 11px;
+    border-color: #43a7b7;
+    color: #f9f9f9;
+    font-size: 98%;
+    transition: all 0.2s ease-in-out;
+}
+.JoinGroupOrderbtn{
+    position: relative;
+    top: 70px;
+    left: 48%;
+    width: 9%;
+    background-color: #43a7b7;
+    height: 60px;
+    border-radius: 10px;
+    border-color: #43a7b7;
+    color: #f9f9f9;
+    font-size: 98%;
+    transition: all 0.2s ease-in-out;
+}
+
+.JoinGroupOrderbtn:hover,.StartGroupOrderbtn:hover{
+    scale: 1.08;
+    cursor: pointer;
+    background-color: #1f4f57;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+}
+
+.code-box {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f3f3f3;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: monospace;
+}
+
+.code-box button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.group-note {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 10px;
+}
+
+.close-popup {
+    margin-top: 10px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.code-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.join-btn {
+    margin-right: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.group-status {
+    margin: 10px 0;
+    font-weight: bold;
+    color: green;
+    position: relative;
+    bottom: 78%;
+    left: 43%;
+}
+
+.StartGroupOrderbtn:disabled,
+.JoinGroupOrderbtn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    border-color: rgba(130, 130, 130, 0.628);
+}
+.group-status {
+    margin-top: 10px;
+    font-weight: bold;
+    color: green;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+}
+
+.code-box {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+
+.code-input {
+    width: 80%;
+    padding: 8px;
+    margin-top: 10px;
+}
+
+.close-popup,
+.join-btn {
+    margin: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
 }

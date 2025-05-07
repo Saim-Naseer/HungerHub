@@ -433,5 +433,178 @@
     "time": 1733673527442,
     "message": "format is not a function",
     "stack": "TypeError: format is not a function\n    at Object.getError (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\errors\\error-manager.js:11:25)\n    at getRestaurantReports (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\controllers\\RestaurantController.js:143:33)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"
+  },
+  {
+    "id": 71,
+    "time": 1746297438996,
+    "message": "useState is not defined",
+    "stack": "ReferenceError: useState is not defined\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\controllers\\CustomerController.js:13:31)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)\n    at Module.require (node:internal/modules/cjs/loader:1340:12)\n    at require (node:internal/modules/helpers:141:16)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\api\\CustomerRoute.js:2:28)"
+  },
+  {
+    "id": 72,
+    "time": 1746349727839,
+    "message": "Order validation failed: Customer_id: Path `Customer_id` is required., Restaurant_id: Path `Restaurant_id` is required.",
+    "stack": "ValidationError: Order validation failed: Customer_id: Path `Customer_id` is required., Restaurant_id: Path `Restaurant_id` is required.\n    at Document.invalidate (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\document.js:3200:32)\n    at D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\document.js:2993:17\n    at D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\schemaType.js:1370:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)",
+    "errors": {
+      "Customer_id": {
+        "name": "ValidatorError",
+        "message": "Path `Customer_id` is required.",
+        "properties": {
+          "message": "Path `Customer_id` is required.",
+          "type": "required",
+          "path": "Customer_id"
+        },
+        "kind": "required",
+        "path": "Customer_id"
+      },
+      "Restaurant_id": {
+        "name": "ValidatorError",
+        "message": "Path `Restaurant_id` is required.",
+        "properties": {
+          "message": "Path `Restaurant_id` is required.",
+          "type": "required",
+          "path": "Restaurant_id"
+        },
+        "kind": "required",
+        "path": "Restaurant_id"
+      }
+    },
+    "_message": "Order validation failed"
+  },
+  {
+    "id": 73,
+    "time": 1746350124814,
+    "message": "Constructor Int16Array requires 'new'",
+    "stack": "TypeError: Constructor Int16Array requires 'new'\n    at Int16Array (<anonymous>)\n    at markAsGroupOrder (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\controllers\\CustomerController.js:532:25)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"
+  },
+  {
+    "id": 74,
+    "time": 1746350592652,
+    "message": "Order validation failed: Customer_id: Path `Customer_id` is required., Restaurant_id: Path `Restaurant_id` is required.",
+    "stack": "ValidationError: Order validation failed: Customer_id: Path `Customer_id` is required., Restaurant_id: Path `Restaurant_id` is required.\n    at Document.invalidate (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\document.js:3200:32)\n    at D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\document.js:2993:17\n    at D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\schemaType.js:1370:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)",
+    "errors": {
+      "Customer_id": {
+        "name": "ValidatorError",
+        "message": "Path `Customer_id` is required.",
+        "properties": {
+          "message": "Path `Customer_id` is required.",
+          "type": "required",
+          "path": "Customer_id"
+        },
+        "kind": "required",
+        "path": "Customer_id"
+      },
+      "Restaurant_id": {
+        "name": "ValidatorError",
+        "message": "Path `Restaurant_id` is required.",
+        "properties": {
+          "message": "Path `Restaurant_id` is required.",
+          "type": "required",
+          "path": "Restaurant_id"
+        },
+        "kind": "required",
+        "path": "Restaurant_id"
+      }
+    },
+    "_message": "Order validation failed"
+  },
+  {
+    "id": 75,
+    "time": 1746350599501,
+    "message": "Order validation failed: Customer_id: Path `Customer_id` is required., Restaurant_id: Path `Restaurant_id` is required.",
+    "stack": "ValidationError: Order validation failed: Customer_id: Path `Customer_id` is required., Restaurant_id: Path `Restaurant_id` is required.\n    at Document.invalidate (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\document.js:3200:32)\n    at D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\document.js:2993:17\n    at D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\schemaType.js:1370:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)",
+    "errors": {
+      "Customer_id": {
+        "name": "ValidatorError",
+        "message": "Path `Customer_id` is required.",
+        "properties": {
+          "message": "Path `Customer_id` is required.",
+          "type": "required",
+          "path": "Customer_id"
+        },
+        "kind": "required",
+        "path": "Customer_id"
+      },
+      "Restaurant_id": {
+        "name": "ValidatorError",
+        "message": "Path `Restaurant_id` is required.",
+        "properties": {
+          "message": "Path `Restaurant_id` is required.",
+          "type": "required",
+          "path": "Restaurant_id"
+        },
+        "kind": "required",
+        "path": "Restaurant_id"
+      }
+    },
+    "_message": "Order validation failed"
+  },
+  {
+    "id": 76,
+    "time": 1746366233041,
+    "message": "Order validation failed: Customer_id: Path `Customer_id` is required., Restaurant_id: Path `Restaurant_id` is required.",
+    "stack": "ValidationError: Order validation failed: Customer_id: Path `Customer_id` is required., Restaurant_id: Path `Restaurant_id` is required.\n    at Document.invalidate (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\document.js:3200:32)\n    at D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\document.js:2993:17\n    at D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\schemaType.js:1370:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)",
+    "errors": {
+      "Customer_id": {
+        "name": "ValidatorError",
+        "message": "Path `Customer_id` is required.",
+        "properties": {
+          "message": "Path `Customer_id` is required.",
+          "type": "required",
+          "path": "Customer_id"
+        },
+        "kind": "required",
+        "path": "Customer_id"
+      },
+      "Restaurant_id": {
+        "name": "ValidatorError",
+        "message": "Path `Restaurant_id` is required.",
+        "properties": {
+          "message": "Path `Restaurant_id` is required.",
+          "type": "required",
+          "path": "Restaurant_id"
+        },
+        "kind": "required",
+        "path": "Restaurant_id"
+      }
+    },
+    "_message": "Order validation failed"
+  },
+  {
+    "id": 77,
+    "time": 1746374834232,
+    "message": "Order validation failed: Customer_id: Path `Customer_id` is required., Restaurant_id: Path `Restaurant_id` is required.",
+    "stack": "ValidationError: Order validation failed: Customer_id: Path `Customer_id` is required., Restaurant_id: Path `Restaurant_id` is required.\n    at Document.invalidate (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\document.js:3200:32)\n    at D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\document.js:2993:17\n    at D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\mongoose\\lib\\schemaType.js:1370:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)",
+    "errors": {
+      "Customer_id": {
+        "name": "ValidatorError",
+        "message": "Path `Customer_id` is required.",
+        "properties": {
+          "message": "Path `Customer_id` is required.",
+          "type": "required",
+          "path": "Customer_id"
+        },
+        "kind": "required",
+        "path": "Customer_id"
+      },
+      "Restaurant_id": {
+        "name": "ValidatorError",
+        "message": "Path `Restaurant_id` is required.",
+        "properties": {
+          "message": "Path `Restaurant_id` is required.",
+          "type": "required",
+          "path": "Restaurant_id"
+        },
+        "kind": "required",
+        "path": "Restaurant_id"
+      }
+    },
+    "_message": "Order validation failed"
+  },
+  {
+    "id": 78,
+    "time": 1746636913908,
+    "message": "Route.get() requires a callback function but got a [object Undefined]",
+    "stack": "Error: Route.get() requires a callback function but got a [object Undefined]\n    at Route.<computed> [as get] (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\route.js:216:15)\n    at proto.<computed> [as get] (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\node_modules\\express\\lib\\router\\index.js:521:19)\n    at module.exports (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\src\\api\\RestaurantRoute.js:43:13)\n    at Object.<anonymous> (D:\\University Projects\\5th Semester\\HungerHu2\\HungerHub\\backend\\config\\server.js:51:62)\n    at Module._compile (node:internal/modules/cjs/loader:1546:14)\n    at Object..js (node:internal/modules/cjs/loader:1689:10)\n    at Module.load (node:internal/modules/cjs/loader:1318:32)\n    at Function._load (node:internal/modules/cjs/loader:1128:12)\n    at TracingChannel.traceSync (node:diagnostics_channel:315:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:218:24)"
   }
 ]

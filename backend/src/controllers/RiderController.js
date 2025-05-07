@@ -152,10 +152,11 @@ module.exports = {
     },
 
     completeOrder: async (req, res) => {
-        const { orderId } = req.params; // Extract orderId from the URL parameters
+        const { orderId, riderId } = req.params;
+
         try {
             // Call the service to complete the order for the given Order_id
-            const result = await service.completeOrder(orderId);
+            const result = await service.completeOrder(orderId, riderId);
     
             if (result.success) {
                 return res.status(200).json({
@@ -212,7 +213,29 @@ module.exports = {
                 message: `Error fetching rider reports: ${error.message}`
             });
         }
-    }
+    },
+    getEarningsLast24Hours: async (req, res) => {
+        const riderId = parseInt(req.params.riderId);
+    
+        try {
+            const totalEarnings = await service.getRiderEarningsLast24Hours(riderId);
+            res.json({ success: true, earnings: totalEarnings });
+        } catch (error) {
+            console.error("Error getting rider earnings:", error);
+            res.status(500).json({ success: false, message: "Internal Server Error" });
+        }
+    },
+    getTotalEarnings: async (req, res) => {
+        const riderId = parseInt(req.params.riderId);
+    
+        try {
+            const totalEarnings = await service.getTotalEarnings(riderId);
+            res.json({ success: true, earnings: totalEarnings });
+        } catch (error) {
+            console.error("Error getting rider earnings:", error);
+            res.status(500).json({ success: false, message: "Internal Server Error" });
+        }
+    },
 
     
 }

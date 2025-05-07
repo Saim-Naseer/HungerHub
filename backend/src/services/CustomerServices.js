@@ -10,10 +10,11 @@ const Riders = require("../models/Rider")
 
 const RestaurantReport = require("../models/RestaurantReport")
 const RiderReport = require("../models/RiderReport")
-
+const mongoose = require('mongoose');
 
 const fs = require("fs");
 const path = require("path");
+const Cart = require("../models/Cart")
 
 module.exports = {
     GetRestaurants: async(location) =>{
@@ -41,6 +42,94 @@ module.exports = {
       )
 
       console.log("after",await Orders.find({Customer_id,Restaurant_id,isPlaced:true}))
+    },
+    deleteCartItem: async (rid, iid) => {
+      const cartItem = await Carts.findOne({
+        Restaurant_id: Number(rid),
+        Item_id:       Number(iid),
+      });
+      if (!cartItem) {
+        // nothing to delete
+        return { deleted: null, updatedOrder: null };
+      }
+    
+      const { Cart_id, price, qty } = cartItem;
+      const amountToSubtract = price;
+    
+      // 2. Delete the cart item
+      const deleted = await Carts.findOneAndDelete({
+        Restaurant_id: Number(rid),
+        Item_id:       Number(iid),
+      });
+    
+      // 3. Decrement the corresponding order's total price
+      const updatedOrder = await Orders.findOneAndUpdate(
+        {
+          Cart_id:       Cart_id,
+          Restaurant_id: Number(rid),
+        },
+        {
+          // subtract the cart-item total from the order price
+          $inc: { price: -amountToSubtract }
+        },
+        {
+          new: true  // return the updated document
+        }
+      );
+      return { deleted, updatedOrder };
+    },
+    setGroupOrder: async (orderId, goc) => {
+      try {
+        if (!mongoose.Types.ObjectId.isValid(orderId)) {
+          throw new Error('Invalid order ID');
+        }
+    
+        const order = await Orders.findOne({ Order_id: orderId }); // this supports .save()
+
+    
+        if (!order) {
+          throw new Error('Order not found');
+        }
+    
+        order.groupOrderCode = goc;
+        order.isGroupOrder = true;
+    
+        const updatedOrder = await order.save();
+    
+        return updatedOrder;
+      } catch (err) {
+        throw err;
+      }
+    },
+    cancelGroupOrder: async (customerId) => {
+      try {
+        // Assuming the latest active order is the one to cancel
+        const order = await Orders.findOne({ Customer_id: customerId }).sort({ createdAt: -1 });
+    
+        if (!order) {
+          throw new Error('Order not found');
+        }
+    
+        order.groupOrderCode = '';
+        order.isGroupOrder = false;
+    
+        const updatedOrder = await order.save();
+        return updatedOrder;
+      } catch (err) {
+        throw err;
+      }
+    },
+    findGroupOrderByCode: async (groupOrderCode) => {
+      try {
+        const order = await Orders.findOne({ 
+          groupOrderCode: groupOrderCode,
+          isGroupOrder: true 
+        });
+    
+        return order;
+      } catch (err) {
+        throw err;
+      }
     },
     FindRestaurant: async(Restaurant_id) =>{
       return await Restaurants.findOne({Restaurant_id})
@@ -147,6 +236,7 @@ module.exports = {
             Restaurant_id:Restaurant_id,
             Order_id: orderId,
             Cart_id: cartId,
+            date: new Date()
         });
 
     
@@ -228,6 +318,7 @@ module.exports = {
               Cart_id: 1,
               price: 1,
               qty: 1,
+              
               "itemDetails.name": 1,
               "itemDetails.price": 1,
               "itemDetails.popular": 1,

@@ -49,12 +49,20 @@ const Order = Mongoose.Schema({
         type:Boolean,
         default:false
     },
+    date:{
+        type:Date, 
+    }, 
     isReady:{
         type:Boolean,
         default:false
     },
-    date:{
-        type:Date
+    isGroupOrder:{
+        type:Boolean, 
+        default:false
+    },
+    groupOrderCode:{
+        type:String,
+        default:""
     }
 
 })

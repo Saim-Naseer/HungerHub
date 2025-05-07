@@ -57,7 +57,7 @@ module.exports = {
             const location = await service.GetLocation(Customer_id)
 
             const restaurant = await service.GetRestaurants(location)
-
+            
             await res.send(restaurant)
 
         }catch(e){
@@ -157,6 +157,11 @@ module.exports = {
         } catch (e){
           res.status(400).send({msg:"not found"})
         }
+    },
+    createNewOrder: async(req, res)=>{
+        const Customer_id = req.query.uid
+        const Restaurant_id = req.query.rid
+        await service.CreateOrder(Customer_id,Restaurant_id)
     },
     ViewCart: async(req,res) =>{
         try{
@@ -501,6 +506,79 @@ module.exports = {
             res.status(400).send({msg:"not found"})
         }
 
-    }
+    },
+    removeFromCart : async (req, res) => {
+        const { rid, iid } = req.query;
+        
+        try {
+            const result = await service.deleteCartItem(rid, iid);
+            if (result.affectedRows > 0) {
+                res.status(200).json({ message: "Item removed from cart" });
+            } else {
+                res.status(404).json({ message: "Item not found in cart" });
+            }
+        } catch (error) {
+            console.error("Error deleting item from cart:", error);
+            res.status(500).json({ message: "Internal server error" });
+        }
+    },
+    markAsGroupOrder: async (req, res) => {
+        const groupOrderCode = String(req.query.goc);
+        
+        const Customer_id = req.query.uid
+        const Restaurant_id = req.query.rid
+        
+        const customerOrder = await service.CreateOrder(Customer_id,Restaurant_id);
+        const orderId = parseInt(customerOrder?.Order_id, 10)
+
+        console.log("new order created" + orderId);
+
+        try {
+          const updatedOrder = await service.setGroupOrder(orderId, groupOrderCode);
+          console.log("group order set");
+          if (!updatedOrder) {
+
+            return res.status(404).json({ success: false, message: 'Order not found or update failed' });
+          }
+      
+          res.json({ success: true, order: updatedOrder });
+        } catch (err) {
+          console.error('Error marking as group order:', err);
+          res.status(500).json({ success: false, message: 'Internal server error' });
+        }
+      },
+      cancelGroupOrder: async (req, res) => {
+        const customerId = req.query.uid;
+      
+        try {
+          const result = await service.cancelGroupOrder(customerId);
+      
+          if (!result) {
+            return res.status(404).json({ success: false, message: 'Order not found or update failed' });
+          }
+      
+          res.json({ success: true, order: result });
+        } catch (err) {
+          console.error('Error canceling group order:', err);
+          res.status(500).json({ success: false, message: 'Internal server error' });
+        }
+      },
+      joinGroupOrder: async (req, res) => {
+        const groupOrderCode = req.query.cog;
+      
+        try {
+          const order = await service.findGroupOrderByCode(groupOrderCode);
+          console.log(order.Customer_id);
+          if (!order) {
+            return res.status(404).json({ success: false, message: 'Group order not found' });
+          }
+          
+          res.json({ success: true, Customer_id: order.Customer_id });
+          
+        } catch (err) {
+          console.error('Error joining group order:', err);
+          res.status(500).json({ success: false, message: 'Internal server error' });
+        }
+      }
 
 }

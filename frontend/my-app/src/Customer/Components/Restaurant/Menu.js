@@ -40,7 +40,7 @@ class Menu extends React.Component{
             content1 = (
                 <>
                     <div className="c_popitems">
-                        <h2 className="c_menuheading">Menu</h2>
+                        <h2 className="c_menuheading">Regular Items</h2>
                         {content}
                     </div>
                 </>

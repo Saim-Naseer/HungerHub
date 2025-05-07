@@ -1,12 +1,13 @@
 .navbar1{
-    height:875px;
-    width:230px;
-    background-color:#22476D;
-    position:fixed;
-    top:148px;
-    left:0px;;
-    color:white;
+    height: 100%;
+    width: 200px;
+    background-color: #22476D;
+    position: fixed;
+    top: 2%;
+    left: 0px;
+    color: white;
     align-items: center;
+    padding: 9px;
 }
 
 .navbar_profile{
@@ -19,62 +20,90 @@
 .navbar_update{
     font-size: 17px;
     background-color: #4CA9A9;
-    width:200px;
-    height:30px;
-    display:flex;
+    width: 200px;
+    height: 30px;
+    display: flex;
     justify-content: center;
-    align-items:center;
-    position:relative;
-    top:180px;
-    left:13px;
+    align-items: center;
+    position: relative;
+    top: 140px;
+    /* left: 13px; */
     margin-top: 20px;
     margin-bottom: 20px;
-    cursor:pointer;
+    cursor: pointer;
+    border-radius: 15px;
+    font-weight: bold;
+    color: black;
 }
 .navbar_restaurantreport{
     font-size: 17px;
     background-color: #4CA9A9;
-    width:200px;
-    height:30px;
-    display:flex;
+    width: 200px;
+    height: 30px;
+    display: flex
+;
     justify-content: center;
-    align-items:center;
-    position:relative;
-    top:180px;
-    left:13px;
+    align-items: center;
+    position: relative;
+    top: 140px;
+    /* left: 13px; */
     margin-top: 20px;
     margin-bottom: 20px;
-    cursor:pointer;
+    cursor: pointer;
+    border-radius: 15px;
+    font-weight: bold;
 }
 
 .navbar_riderreport{
     font-size: 17px;
     background-color: #4CA9A9;
-    width:200px;
-    height:30px;
-    display:flex;
+    width: 200px;
+    height: 30px;
+    display: flex
+;
     justify-content: center;
-    align-items:center;
-    position:relative;
-    top:180px;
-    left:13px;
+    align-items: center;
+    position: relative;
+    top: 140px;
+    /* left: 13px; */
     margin-top: 20px;
     margin-bottom: 20px;
-    cursor:pointer;
+    cursor: pointer;
+    border-radius: 15px;
+    /* color: white; */
+    font-weight: bold;
 }
 
 .navbar_logout{
     font-size: 17px;
-    background-color: red;
-    width:200px;
-    height:30px;
-    display:flex;
+    background-color: #9d0808;
+    width: 200px;
+    height: 30px;
+    display: flex
+;
     justify-content: center;
-    align-items:center;
-    position:relative;
-    top:180px;
-    left:13px;
+    align-items: center;
+    position: relative;
+    top: 140px;
+    /* left: 13px; */
     margin-top: 20px;
     margin-bottom: 20px;
-    cursor:pointer;
+    cursor: pointer;
+    border-radius: 15px;
+    font-weight: bold;
+
+}
+
+.navbar_update:hover, 
+.navbar_riderreport:hover,
+.navbar_restaurantreport:hover{
+    scale: 1.03;
+    color: white;
+    background-color: #376464;
+}
+
+.navbar_logout:hover{
+    scale: 1.03;
+    color: white;
+    background-color: red;
 }

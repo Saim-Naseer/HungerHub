@@ -1,81 +1,109 @@
 .c_cart{
-    height:600px;
-    width:400px;
-    position:fixed;
-    top:200px;
-    left:1100px;
-    background-color: #D6D6D6;
-    display:flex;
-    flex-wrap:wrap;
+    height: 450px;
+    width: 29%;
+    position: fixed;
+    top: 20%;
+    left: 69%;
+    background-color: #4ca9a9;
+    display: flex
+;
+    flex-wrap: wrap;
+    border-radius: 25px;
     justify-content: center;
 }
 
 .c_heading{
-    margin-top:10px;
-    font-size:30px;
+    margin-top: 10px;
+    font-size: 200%;
+    align-items: center;
+    align-content: center;
+    position: relative;
+    left: 14%;
+    color: white;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 
 .c_items{
-    height:375px;
-    width:375px;
-    background-color: white;
+    height: 54%;
+    width: 91%;
+    background-color: #f8f8f8;
     border-radius: 25px;
-    margin-top: 5px;
+    max-height: 300px; /* or any height suitable for your design */
+    overflow-y: auto;
+    
 }
 
 .c_bill{
-    height:100px;
-    width:375px;
-    background-color: white;
-    border-radius: 25px;
+    height: 17%;
+    width: 91%;
+    background-color: #f8f8f8;
+    border-radius: 20px;
     
 }
 
 .c_hname{
-    display:inline-flex;
-    position:relative;
-    top:60px;
-    right:164px;
+    display: inline-flex;
+    position: relative;
+    top: 12%;
+    right: 44%;
+    color: white;
 }
 
 .c_hprice{
-    display:inline-flex;
-    position:relative;
-    top:60px;
-    right:54px;
+    display: inline-flex;
+    position: relative;
+    top: 12%;
+    
+    color: white;
 }
 
 .c_hqty{
-    display:inline-flex;
-    position:relative;
-    top:60px;
-    left:36px;
+    display: inline-flex;
+    position: relative;
+    top: 12%;
+    left: -9%;
+    color: white;
 }
 
 .c_htotal{
     font-weight: bold;
-    position:relative;
-    left:10px;
-    display:inline-block;
+    position: relative;
+    left: 3%;
+    display: inline-block;
+    font-size: 103%;
+    top: -14%;
 }
 
 .c_vtotal{
-    position:relative;
-    bottom:53px;
-    left:175px;
+    position: relative;
+    bottom: 52%;
+    left: 67%;
+    font-size: 106%;
+    font-weight: bold;
+    top: -90%;
 }
 
 .c_cartOrder{
-    height:50px;
-    width:300px;
+    height: 43%;
+    width: 92%;
     border-radius: 50px;
-    background-color: #4CA9A9;
-    color:white;
-    position:relative;
-    bottom:60px;
-    left:35px;
-    display:flex;
-    justify-content:center;
+    background-color: #4fad3e;
+    color: white;
+    position: relative;
+    bottom: 106%;
+    left: 4%;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.c_cartOrder:hover{
+    scale: 1.05;
+    background-color: #60fa45;
+    color: rgb(80, 78, 78);
+    font-size: 108%;
+    cursor: pointer;
 }

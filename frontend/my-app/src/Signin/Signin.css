@@ -1,143 +1,190 @@
-.background3{
-    width:100vw;
-    height:100vh;
-    display:flex;
-    justify-content:center;
+.background3 {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
     align-items: center;
     background-image: url("./background2.jpg");
     background-size: cover;
+    background-position: center;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
-.box3{
-    width:1000px;
-    height:600px;
+.box3 {
+    width: 70%;
+    height: 535px;
     background-color: #FFB703;
-    display:flex;
-    border-radius: 10%;
-   
+    display: flex;
+    border-radius: 40px;
+    flex-wrap: wrap;
 }
 
-.logo13{
-    height:200px;
-    width:270px;
+.logo13 {
+    height: 36%;
+    width: 55%;
     background-image: url("./HH_logo.png");
-    background-size: cover;
-    position:relative;
-    top:150px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    top: 25%;
 }
 
-.left3{
-    height:600px;
-    width:500px;
-    border-right:1px solid black;
+
+.left3 {
+    height: 100%;
+    width: 50%;
+    border-right: 1px solid black;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
+    box-sizing: border-box;
 }
 
-.error-msg{
-    color: black
-}
-
-.right3{
-    height:600px;
-    width:500px;
-    border-left:1px solid black;
+.right3 {
+    height: 90%;
+    width: 50%;
+    border-left: 1px solid black;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    box-sizing: border-box;
 }
 
-.title6{
-    font-size: 45px;
-    font-family:'CustomFont', sans-serif;
-    color:#926902;
+.title6 {
+    font-size: 2.5em;
+    font-family: 'CustomFont', sans-serif;
+    color: #926902;
+    text-align: center;
+    width: 100%;
 }
 
-
-.title23{
-    font-size: 45px;
-    font-family:'CustomFont', sans-serif;
-    color:#926902;
-    padding-right: 170px;
-    padding-left: 170px;
-    position:relative;
-    top:80px;
-    right:5px;
+.title23 {
+    font-size: 2.2em;
+    font-family: 'CustomFont', sans-serif;
+    color: #926902;
+    padding: 0 15%;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 2.4em;
+    position: relative;
+    top: 10%;
 }
 
-.button3{
-    background-color:#22476D;
-    color:#F8F8F8;
-    position:relative;
-    left:97px;
-    top:60px;
-    height:40px;
-    width:200px;
-    font-size: 20px;
-    display:flex;
+.button3 {
+    background-color: #22476D;
+    color: #F8F8F8;
+    height: 10%;
+    width: 80%;
+    font-size: 1.2em;
+    display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50px;
+    border-radius: 15px;
     cursor: pointer;
+    margin-top: 1em;
+    
 }
 
-.button3:hover{
-    background-color:#43A7B7;
-    color:#F8F8F8;
-    position:relative;
-    left:97px;
-    top:60px;
-    height:40px;
-    width:200px;
-    font-size: 20px;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50px;
+.button3:hover {
+    background-color: #43A7B7;
+    transform: scale(1.05);
 }
 
-.email3{
-    height:50px;
-    width:400px;
-    background-color:#F8F8F8;
-    position:relative;
-    top:15px;
-    right:15px;
-    border-radius: 50px;
-    padding-left: 20px;
-    border-color: #F8F8F8;
+.email3,
+.pwd3 {
+    height: 10%;
+    width: 80%;
+    background-color: #F8F8F8;
+    border-radius: 15px;
+    padding-left: 1em;
+    border: none;
+    box-sizing: border-box;
+    margin-bottom: 1.5em;eight: 2.8em;
+    background-color: #F8F8F8;
+    border-radius: 15px;
+    padding-left: 1em;
+    border: none;
+    box-sizing: border-box;
+    margin-bottom: 1.5em;
 }
 
-.pwd3{
-    height:50px;
-    width:400px;
-    background-color:#F8F8F8;
-    position:relative;
-    top:35px;
-    right:15px;
-    border-radius: 50px;
-    padding-left: 20px;
-    border-color: #F8F8F8;
-}
-
-
-.signup3{
-    display:inline-block;
-    color:red;
+.signup3 {
+    color: red;
     cursor: pointer;
+    text-decoration: underline;
 }
 
-.account3{
-    position:relative;
-    bottom:25px;
-    left:60px;
+.account3 {
+    margin-top: 2em;
+    font-size: 1em;
+    text-align: center;
+    width: 100%;
 }
 
-.forget_pwd{
-    position:relative;
-    bottom:100px;
-    left:50px;
-    color:red;
+.forget_pwd {
+    margin-top: 1em;
+    color: red;
+    font-size: 1em;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    margin-left: 55%;
+}
+
+.error-msg {
+    color: black;
+}
+
+/* ============================= */
+/*       RESPONSIVE DESIGN       */
+/* ============================= */
+
+@media screen and (max-width: 1200px) {
+    .box3 {
+        width: 75%;
+    }
+    .title6, .title23 {
+        font-size: 2.2em;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .box3 {
+        flex-direction: column;
+        height: auto;
+        width: 70%;
+    }
+    .left3, .right3 {
+        width: 100%;
+        border: none;
+        height: auto;
+    }
+    .title23 {
+        font-size: 1.8em;
+        padding: 0;
+        top: 5%;
+    }
+    .button3 {
+       
+        width: 80%;
+    }
+    .email3, .pwd3 {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .box3 {
+        width: 80%;
+        border-radius: 20px;
+    }
+    .title6, .title23 {
+        font-size: 1.5em;
+    }
+    .logo13 {
+        width: 70%;
+        top: 10%;
+    }
 }

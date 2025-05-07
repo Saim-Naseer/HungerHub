@@ -39,5 +39,8 @@ module.exports = () => {
      // Get restaurant password
      router.get('/password', RestaurantController.GetRestaurantPassword);
 
+
+     router.get('/earnings/:restaurantId', RestaurantController.getRestaurantEarnings);
+
     return router;
 };

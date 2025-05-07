@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Res_Profile.css";
 import Session from "../../../Session"; // Assuming Session stores user data
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 
 const Res_Profile = () => {
@@ -9,6 +10,8 @@ const Res_Profile = () => {
   const [restaurantData, setRestaurantData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+    const [earnings, setEarnings] = useState(0);
+    const [TotalEarnings, setTotalEarnings] = useState(0);
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,6 +56,23 @@ const Res_Profile = () => {
       }
     };
 
+    const fetchEarnings = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/restaurant/earnings/${Session.user_id}`);
+        
+        if (response.data && response.data.success) {
+          setEarnings(response.data.earnings24hrs);
+          setTotalEarnings(response.data.totalEarnings);
+        } else {
+          throw new Error('Unexpected earnings response format');
+        }
+      } catch (err) {
+        console.error('Error fetching earnings:', err);
+        setError('Failed to fetch earnings');
+      }
+    };
+    
+    fetchEarnings();
     fetchRestaurantInfo();
   }, []);
 
@@ -95,6 +115,8 @@ const Res_Profile = () => {
     }
   };
 
+  
+
   const navigate = useNavigate();
   // Loading and error handling
   if (isLoading) return <div>Loading...</div>;
@@ -105,34 +127,38 @@ const Res_Profile = () => {
       <h1>Restaurant Profile</h1>
 
       {/* Display Restaurant Info */}
-      <div className="user-info">
-        <div className="data">
-          <p>
-            <strong>Name:</strong> {restaurantData.name}
-          </p>
-          <p>
-            <strong>Rating:</strong> {restaurantData.rating}
-          </p>
-          <p>
-            <strong>Contact No:</strong> {restaurantData.contactNo}
-          </p>
-          <p>
-            <strong>Email:</strong> {restaurantData.email}
-          </p>
-          <p>
-            <strong>Password:</strong> {restaurantData.password}
-          </p>
-        </div>
-        <div className="logut-div" onClick={() => {window.location.reload()}}>
-          <button className="logout-btn">Logout</button>
-        </div>
-      </div>
+      <div className="profile-container">
+  <div className="user-info">
+    <div className="data">
+      <p><strong>Name:</strong> {restaurantData.name}</p>
+      <p><strong>Rating:</strong> {restaurantData.rating}</p>
+      <p><strong>Contact No:</strong> {restaurantData.contactNo}</p>
+      <p><strong>Email:</strong> {restaurantData.email}</p>
+      <p><strong>Password:</strong> {restaurantData.password}</p>
+    </div>
+  </div>
+
+  <div className="vertical-line"></div>
+
+  <div className="earnings-info">
+    <h3>Earnings in Last 24 Hours:</h3>
+    <p className="earnings">Rs {Math.round(earnings)} /-</p>
+    <h3>Total Earnings:</h3>
+    <p className="earnings">Rs {Math.round(TotalEarnings)} /-</p>
+  </div>
+</div>
+
 
       {/* Action Buttons */}
-      <div className="Rider-actions">
-        <button className="edit-button" onClick={() => setIsModalOpen(true)}>
-          Edit Personal Info
-        </button>
+      <div className="buttons">
+        <div className="Rider-actions">
+          <button className="edit-button" onClick={() => setIsModalOpen(true)}>
+            Edit Personal Info
+          </button>
+        </div>
+        <div className="logout-div" onClick={() => {window.location.reload()}}>
+          <button className="logout-btn">Logout</button>
+        </div>
       </div>
 
       {/* Edit Info Modal */}

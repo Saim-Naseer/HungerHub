@@ -1,44 +1,47 @@
-.Navbar4{
-    height:148px;
-    width:100vw;
-    background-color:#FFB703;
-    position:fixed;
-    top:0px;
-    left:0px;
+.Navbar4 {
+    height: 13%;
+    width: 100%;
+    background-color: #FFB703;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
     align-items: center;
-    display:flex;
+    justify-content: space-between;
+    padding: 0 2vw;
     z-index: 5;
+    box-sizing: border-box;
 }
 
-.logo4{
-    height:125px;
-    width:170px;
+.logo4 {
+    height: 74%;
+    width: 7.5%;
     background-image: url("./HH_logo.png");
     background-size: cover;
-    margin-left:20px;
-    display:inline-flex;
+    background-position: center;
+    flex-shrink: 0;
 }
 
 @font-face {
-    font-family: 'CustomFont'; /* The name you'll use in CSS */
-    src: url('./CarterOne-Regular.ttf') format('truetype'); /* Path to the font file */
+    font-family: 'CustomFont';
+    src: url('./CarterOne-Regular.ttf') format('truetype');
 }
 
-.title4{
-    display:inline-flex;
-    font-size: 45px;
-    font-family:'CustomFont', sans-serif;
-    color:#926902;
-    margin-left:25px;
+.title4 {
+    font-size: 2.5vw;
+    font-family: 'CustomFont', sans-serif;
+    color: #926902;
+    margin-left: 20px;
+    flex-grow: 1;
 }
 
-.profile4{
-    display:inline-flex;
-    height:50px;
-    width:50px;
+.profile4 {
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     background-color: white;
-    margin-left:950px;
     background-image: url("./profile.png");
     background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
 }

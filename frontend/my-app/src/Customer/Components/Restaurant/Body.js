@@ -39,20 +39,22 @@ class Body extends React.Component {
                     <Menu />
                     <Cart pagefunc={this.pageChange} />
                     <div style={{
-                        backgroundColor:"red",
+                        backgroundColor:"#a10303",
                         color:"white",
                         display:"inline-flex",
-                        width:"120px",
-                        height:"30px",
+                        width:"8%",
+                        height:"5%",
                         justifyContent:"center",
                         alignItems:"center",
-                        fontSize:"22px",
+                        fontSize:"19px",
                         position:"absolute",
-                        left:"950px",
-                        bottom:"500px",
-                        borderRadius:"10px",
+                        left:"57%",
+                        bottom:"65%",
+                        borderRadius:"15px",
                         cursor:"pointer"
                         }}  onClick={this.openReport}>Report</div>
+                        
+
                 </>
             );
         } else if (page === "restaurant" & report ===true) {

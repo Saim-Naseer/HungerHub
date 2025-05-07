@@ -32,8 +32,8 @@ const OrderDetail = () => {
   // Handle the complete order action
   const handleCompleteOrder = async () => {
     try {
-        alert("Are you sure you want to proceed?")
-        await axios.put(`http://localhost:5000/rider/complete-order/${id}`);
+        alert("Are you sure you want to proceed?");
+        await axios.put(`http://localhost:5000/rider/complete-order/${id}/${Session.user_id}`);
         console.log('Order completed');
         navigate('/'); // Redirect to the dashboard after completing the order
       

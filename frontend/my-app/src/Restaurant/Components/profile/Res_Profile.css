@@ -5,11 +5,58 @@
     flex-direction: column;
     align-items: center;
   }
+  .profile-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #d3d3d3;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+  }
   
-  .logut-div{
+  .user-info, .earnings-info {
+    flex: 1;
+    padding: 0 20px;
+  }
+  
+  .vertical-line {
+    width: 2px;
+    background-color: #444;
+    height: auto;
+  }
+  
+  .buttons{
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 25%;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+  }
+  .logout-div{
     align-items: end;
   }
-  .user-info {
+  .earnings{
+    font-size: 125%;
+    font-weight: bold;
+    color: green;
+  }
+  .logout-btn{
+    margin-top: 6px;
+    background-color: #dd3833;
+    color: white;
+    border: none;
+    padding: 13px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  /* .user-info {
     background-color: #ccc;
     border: 1px solid #ccc;
     padding: 23px;
@@ -20,7 +67,7 @@
     width: 60%;
     flex-direction: row;
     justify-content: space-between;
-  }
+  } */
   
   .data{
     margin-left: 25px;

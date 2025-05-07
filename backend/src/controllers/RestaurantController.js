@@ -20,6 +20,23 @@ module.exports = {
             return ErrorManager.getError(res, "INTERNAL_SERVER_ERROR", error.message);
         }
     },
+    getRestaurantEarnings: async (req, res) => {
+            const restaurantId  = parseInt(req.params.restaurantId);
+        
+            try {
+                const { earnings24hrs, totalEarnings } = await RestaurantService.getTotalEarnings(restaurantId);
+
+                res.json({ 
+                    success: true, 
+                    earnings24hrs: earnings24hrs, 
+                    totalEarnings: totalEarnings 
+                  });
+                  
+            } catch (error) {
+                console.error("Error getting rider earnings:", error);
+                res.status(500).json({ success: false, message: "Internal Server Error" });
+            }
+        },
     
 
     AddMenuItem: async (req, res) => {

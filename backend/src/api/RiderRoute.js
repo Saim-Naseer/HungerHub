@@ -18,10 +18,13 @@ module.exports = () => {
 
     router.put('/set-rider/:orderId/:riderId', RiderController.setRider);
 
-    router.put('/complete-order/:orderId', RiderController.completeOrder);
+    router.put('/complete-order/:orderId/:riderId', RiderController.completeOrder);
 
     router.get('/get-rider-info/:riderId', RiderController.getRiderInfo);
 
+    router.get('/earnings/:riderId', RiderController.getEarningsLast24Hours);
+    
+    router.get('/TotalEarnings/:riderId', RiderController.getTotalEarnings);
     
 
     return router

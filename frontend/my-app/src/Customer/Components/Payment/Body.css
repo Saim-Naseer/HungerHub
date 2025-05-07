@@ -4,9 +4,20 @@
     background-image: url("../../../../public/Images/COD.png");
     background-size: cover;
     position:relative;
-    bottom:300px;
-    left:700px
+    bottom:325px;
+    left:620px;
+    border-radius: 25px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
+
 }
+
+
+
+.c_COD:hover, .c_Online:hover{
+  scale: 1.1;
+}
+
 
 .c_Online{
     width:300px;
@@ -14,8 +25,12 @@
     background-image: url("../../../../public/Images/Online.png");
     background-size: cover;
     position:relative;
-    bottom:600px;
-    left:1100px
+    bottom: 626px;
+    left: 1001px;
+    border-radius: 25px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
+
 };
 
 

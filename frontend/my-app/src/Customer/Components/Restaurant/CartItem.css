@@ -1,25 +1,55 @@
 .c_cartitem{
-    height:30px;
-    width:375px;
-    display:flex;
-    align-items: center;
+    height: 8%;
+    width: 90%;
+    display: flex;
+    
+    justify-content: center;
+    flex-direction: row;
 }
 
 .c_cartitem_name{
     position:relative;
     left:10px;
-    display:inline-flex
+    
+    flex:3;
 }
 
 
 .c_cartitem_price{
     position:relative;
-    left:100px;
-    display:inline-flex
+    left:24%;
+    flex: 2;
 }
 
 .c_cartitem_qty{
-    position:relative;
-    left:200px;
-    display:inline-flex
+    position: relative;
+    display: inline-flex
+;
+    left: 9%;
 }
+
+.Deletebtn {
+    background-color: #db4747;
+    color: rgb(236, 236, 236);
+    font-size: medium;
+    border: none;
+    padding: 7px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    left: 9%;
+    top: 83%;
+    height: 115%;
+    width: 8%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px; /* Add space below the button */
+}
+
+.Deletebtn:hover{
+    scale: 1.06;
+    background-color: red;
+    font-weight: bold;
+}
+

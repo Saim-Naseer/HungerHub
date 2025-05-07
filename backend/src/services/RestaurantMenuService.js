@@ -146,6 +146,31 @@ module.exports = {
             throw new Error('Error retrieving active orders: ' + error.message);
         }
     },
+    getTotalEarnings : async (restaurantId) => {
+        const now = new Date();
+        const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+
+        // Get orders from last 24 hours
+        const orders24hrs = await OrderModel.find({
+            Restaurant_id: restaurantId,
+            isReady: true,
+            date: { $gte: twentyFourHoursAgo.toISOString() }
+        });
+     
+        // Get all completed orders
+        const allOrders = await OrderModel.find({
+            Restaurant_id: restaurantId,
+            isReady: true,
+        });
+
+
+
+        // Calculate earnings
+        const earnings24hrs = orders24hrs.reduce((sum, order) => sum + (order.price || 0), 0);
+        const totalEarnings = allOrders.reduce((sum, order) => sum + (order.price || 0), 0);
+
+        return { earnings24hrs, totalEarnings };
+    },
     
     
 

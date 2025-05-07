@@ -75,7 +75,7 @@ class Cart extends React.Component{
                     <div className="c_items1">
                         {content}
                     </div>
-                    <p className="c_htotal1">Total</p>
+                    <p className="c_htotal1">Total:</p>
                     <p className="c_vtotal1">Rs {this.state.price}/-</p>
                     <div className='c_cartOrder1' onClick={()=>this.props.pagefunc("home")} >Add More Items</div>
                 </div>

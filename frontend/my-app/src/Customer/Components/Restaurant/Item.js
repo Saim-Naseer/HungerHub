@@ -16,8 +16,14 @@ class Item extends React.Component {
 
     addToCart = async () => {
         try {
+            let uid;
             // Parameters to send in the request
-            const uid = Session.user_id; // Replace with dynamic values if needed
+            if(R_Session.group_order === 1){
+                uid = R_Session.group_leaderId;  // for group order it will add items to group leader cart
+            } else {
+                uid = Session.user_id; // for single order
+            }
+            
             const rid = R_Session.restaurant_id;
             const iid = this.state.Item_id;
 

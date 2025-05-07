@@ -1,17 +1,18 @@
 .c_popitems{
-    position:relative;
-    top:150px;
+    position: relative;
+    top: 150px;
+    width: 85%;
 }
 
 .c_popheading{
-    position:relative;
-    left:475px;
+    position: relative;
+    left: 5%;
     font-size: 40px;
 
 }
 
 .c_menuheading{
     position:relative;
-    left:510px;
+    left:5%;
     font-size: 40px;
 }
